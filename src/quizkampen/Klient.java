@@ -28,7 +28,7 @@ public class Klient implements ActionListener{
     private JButton butB = new JButton("");
     private JButton butC = new JButton("");
     private JButton butD = new JButton("");
-    private JButton butColor = new JButton();
+//    private JButton butColor = new JButton();
     private JButton next = new JButton("next");
     private JPanel panelBtu = new JPanel();
     private JPanel panelAll = new JPanel();
@@ -55,8 +55,8 @@ public class Klient implements ActionListener{
         butD.addActionListener(this);
         panelAll.add(question, BorderLayout.NORTH);
         panelAll.add(panelBtu, BorderLayout.CENTER);
-        panelAll.add(butColor, BorderLayout.WEST);
-//        panelAll.add(next, BorderLayout.SOUTH);
+//        panelAll.add(butColor, BorderLayout.WEST);
+        panelAll.add(next, BorderLayout.SOUTH);
         frame.add(panelAll);
         frame.pack();
         
@@ -124,6 +124,7 @@ public class Klient implements ActionListener{
         JButton answer = (JButton)e.getSource();
         num = num + 1;
         out.println(answer.getText()+","+num);
+        if(num==3) num=0;
     }
     
 }
