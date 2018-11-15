@@ -45,8 +45,8 @@ public class ServerSidePlayer extends Thread{
            String answer;
            while((answer = input.readLine()) != null){
                String[] s = answer.split(",");
-               int ss = Integer.parseInt(s[1].trim());
-               if(game.legalMove(this, ss)){
+               int twoTimes = Integer.parseInt(s[1].trim());
+               if(game.legalMove(this, twoTimes)){
                     if(answer.startsWith(game.q1.getResult())){
                         output.println("yes"+","+game.q1.getResult());
                     }
@@ -65,17 +65,17 @@ public class ServerSidePlayer extends Thread{
                     }
                }
                 if(answer.startsWith("next")){
-                    if(ss==100){
+                    if(twoTimes==100){
                         output.println(game.q2.getFraga()+","+game.q2.getValjningar(0)+","+
                         game.q2.getValjningar(1)+","+game.q2.getValjningar(2)+","+
                         game.q2.getValjningar(3)); 
                     }
-                    if(ss==101){
+                    if(twoTimes==101){
                         output.println(game.q3.getFraga()+","+game.q3.getValjningar(0)+","+
                         game.q3.getValjningar(1)+","+game.q3.getValjningar(2)+","+
                         game.q3.getValjningar(3)); 
                     }
-                    if(ss==102){
+                    if(twoTimes==102){
                         output.println(game.q4.getFraga()+","+game.q4.getValjningar(0)+","+
                         game.q4.getValjningar(1)+","+game.q4.getValjningar(2)+","+
                         game.q4.getValjningar(3)); 

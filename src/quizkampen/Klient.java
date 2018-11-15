@@ -53,7 +53,8 @@ public class Klient implements ActionListener{
         panelBtu.add(butB);
         panelBtu.add(butC);
         panelBtu.add(butD);
-        next.addActionListener(nextQ ->{   //Lamda
+        next.addActionListener(nextQ ->{ 
+            out.println("next, "+ nextNum);
             nextNum = nextNum+1;
             butNum=1;
             butCount++;
@@ -62,6 +63,7 @@ public class Klient implements ActionListener{
             butC.setBackground(null);
             butD.setBackground(null);
 //            if(butCount==2 || butCount==4){
+//                out.println("Your turn ,"+butCount );
 //                panelAll.setVisible(false);
 //            }
         });
@@ -152,7 +154,7 @@ public class Klient implements ActionListener{
         if(butControll(butNum)){
             butNum=2;
             num = num + 1;
-            out.println(answer.getText()+","+num);
+            out.println(answer.getText()+","+num );
             if(num==2) num=0;
         }
     }
