@@ -1,4 +1,4 @@
-package QuizServer;
+package GameServer;
 
 /**
  *
