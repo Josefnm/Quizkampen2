@@ -47,30 +47,33 @@ public class ServerSidePlayer extends Thread{
                String[] s = answer.split(",");
                int ss = Integer.parseInt(s[1].trim());
                if(game.legalMove(this, ss)){
+                   System.out.println(this);
                     if(answer.startsWith(game.q1.getResult())){
                         output.println("yes"+","+game.q1.getResult());
                     }
-                    if(!answer.startsWith(game.q1.getResult())){
-                        output.println("no"+","+game.q1.getResult()+","+answer);
-                    }
-                    if(answer.startsWith(game.q2.getResult())){
+                    else if(answer.startsWith(game.q2.getResult())){
                         output.println("yes"+","+game.q2.getResult());
                     }
-                    if(!answer.startsWith(game.q2.getResult())){
-                        output.println("no"+","+game.q2.getResult()+","+answer);
-                    }
-                    if(answer.startsWith(game.q3.getResult())){
+                    else if(answer.startsWith(game.q3.getResult())){
                         output.println("yes"+","+game.q3.getResult());
                     }
-                    if(!answer.startsWith(game.q3.getResult())){
-                        output.println("no"+","+game.q3.getResult()+","+answer);
-                    }
-                    if(answer.startsWith(game.q4.getResult())){
+                    else if(answer.startsWith(game.q4.getResult())){
                         output.println("yes"+","+game.q4.getResult());
                     }
-                    if(!answer.startsWith(game.q4.getResult())){
-                        output.println("no"+","+game.q4.getResult()+","+answer);
+                    else{
+                        String indata = game.qa.findResult(s[0]);
+                        output.println("no"+","+indata+","+answer);
+                        System.out.println("no");
                     }
+//                    else if(!answer.startsWith(game.q2.getResult())){
+//                        output.println("no"+","+game.q2.getResult()+","+answer);
+//                    }
+//                    else if(!answer.startsWith(game.q3.getResult())){
+//                        output.println("no"+","+game.q3.getResult()+","+answer);
+//                    }
+//                    else if(!answer.startsWith(game.q4.getResult())){
+//                        output.println("no"+","+game.q4.getResult()+","+answer);
+//                    }
                }
                 if(answer.startsWith("next")){
                     if(ss==100){

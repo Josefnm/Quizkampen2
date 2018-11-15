@@ -76,6 +76,8 @@ public class Klient implements ActionListener{
         try{
             while((response = in.readLine()) != null){
                 if((response.startsWith("yes"))){
+                    System.out.println("yes");
+                    System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
                         if(buttons[i].getText().equals(choice[1])){
@@ -85,6 +87,8 @@ public class Klient implements ActionListener{
                     }
                 }
                 else if((response.startsWith("no"))){
+                    System.out.println("no");
+                    System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
                         if(buttons[i].getText().equals(choice[1])){

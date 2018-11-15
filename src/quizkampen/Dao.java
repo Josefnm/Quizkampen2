@@ -37,6 +37,22 @@ public class Dao {
         }
         return null;
     }
+    public String findResult(String answer){
+        String result="";
+        for(int i=0; i<4; i++){
+            if(answer.equals(histryQ1.getValjningar(i))) return result=histryQ1.result;
+        }
+        for(int i=0; i<4; i++){
+            if(answer.equals(histryQ2.getValjningar(i))) return result=histryQ2.result;
+        }
+        for(int i=0; i<4; i++){
+            if(answer.equals(naturalQ1.getValjningar(i))) return result=naturalQ1.result;
+        }
+        for(int i=0; i<4; i++){
+            if(answer.equals(naturalQ2.getValjningar(i))) return result=naturalQ2.result;
+        }
+        return result;
+    }
     
     
 }
