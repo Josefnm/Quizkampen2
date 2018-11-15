@@ -129,7 +129,7 @@ public class Klient implements ActionListener{
     }    
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {//
         JButton answer = (JButton)e.getSource();
         num = num + 1;
         out.println(answer.getText()+","+num);
