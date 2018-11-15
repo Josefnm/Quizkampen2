@@ -38,6 +38,7 @@ public class Klient implements ActionListener{
     private BufferedReader in;
     JButton[] buttons = new JButton[]{butA, butB, butC, butD};
     private int num =0;
+    private int nextNum =100;
 
     public Klient(String serverAddress) throws IOException{
         socket = new Socket(serverAddress, PORT);
@@ -49,6 +50,14 @@ public class Klient implements ActionListener{
         panelBtu.add(butB);
         panelBtu.add(butC);
         panelBtu.add(butD);
+        next.addActionListener(nextQ ->{   //Lamda
+            out.println("next , " + nextNum);
+            nextNum = nextNum+1;
+            butA.setBackground(null);
+            butB.setBackground(null);
+            butC.setBackground(null);
+            butD.setBackground(null);
+        });
         butA.addActionListener(this);
         butB.addActionListener(this);
         butC.addActionListener(this);
@@ -124,7 +133,7 @@ public class Klient implements ActionListener{
         JButton answer = (JButton)e.getSource();
         num = num + 1;
         out.println(answer.getText()+","+num);
-        if(num==3) num=0;
+        if(num==2) num=0;
     }
     
 }
