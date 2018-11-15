@@ -2,10 +2,6 @@ package GameServer;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Josef
- */
 public class Questions implements Serializable{
     private String amne;
     private String fraga;
@@ -40,6 +36,5 @@ public class Questions implements Serializable{
     public String getSvar() {
         return svar;
     }
-    
     
 }

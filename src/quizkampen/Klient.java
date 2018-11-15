@@ -1,6 +1,3 @@
-/*
- * Java
- */
 package quizkampen;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,13 +11,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-/**
- *
- * @author Julia
- */
+
 public class Klient implements ActionListener{
     private JFrame frame = new JFrame("Quiz Nu");
     private JLabel question = new JLabel("");
@@ -36,7 +31,8 @@ public class Klient implements ActionListener{
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
+    
+    ArrayList<JButton> buttons = new ArrayList<>();
     private int num =0;
     private int nextNum =100;
 
@@ -46,6 +42,7 @@ public class Klient implements ActionListener{
         out = new PrintWriter(socket.getOutputStream(), true);
         panelBtu.setLayout(new GridLayout(2,2));
         panelAll.setLayout(new BorderLayout());
+
         panelBtu.add(butA);
         panelBtu.add(butB);
         panelBtu.add(butC);
@@ -80,9 +77,9 @@ public class Klient implements ActionListener{
                     System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
-                        if(buttons[i].getText().equals(choice[1])){
-                            buttons[i].setBackground(Color.green);
-                            buttons[i].repaint();
+                        if(buttons.get(i).getText().equals(choice[1])){
+                            buttons.get(i).setBackground(Color.green);
+                            buttons.get(i).repaint();
                         }
                     }
                 }
@@ -91,27 +88,25 @@ public class Klient implements ActionListener{
                     System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
-                        if(buttons[i].getText().equals(choice[1])){
-                            buttons[i].setBackground(Color.green);
-                            buttons[i].repaint();
+                        if(buttons.get(i).getText().equals(choice[1])){
+                            buttons.get(i).setBackground(Color.green);
+                            buttons.get(i).repaint();
                         }
-                        if(buttons[i].getText().equals(choice[2])){
-                            buttons[i].setBackground(Color.red);
-                            buttons[i].repaint();
+                        if(buttons.get(i).getText().equals(choice[2])){
+                            buttons.get(i).setBackground(Color.red);
+                            buttons.get(i).repaint();
                         }
                     }                    
                 }
                 else{
                     choice = response.split(",");
                     question.setText(choice[0]);
-                    butA.setText(choice[1]);
-                    butA.repaint();
-                    butB.setText(choice[2]);
-                    butB.repaint();
-                    butC.setText(choice[3]);
-                    butC.repaint();
-                    butD.setText(choice[4]);
-                    butD.repaint();
+                    int i = 1;
+                    for(JButton button : buttons){
+                        button.setText(choice[i]);
+                        button.repaint();
+                        i++;
+                    }
                 }
             }
         }
