@@ -13,11 +13,11 @@ public class Game{
     Questions q2 = qa.getByNum(2);
     Questions q3 = qa.getByNum(3);
     Questions q4 = qa.getByNum(4);
-    ServerSidePlayer currentPlayer;
+    Player currentPlayer;
     
-    public synchronized boolean legalMove(ServerSidePlayer player, int num){
+    public synchronized boolean legalMove(Player player, int num){
         if(player==currentPlayer && num==2){
-            currentPlayer = currentPlayer.opponent;
+            player = currentPlayer.opponent;
             return true;
         }        
         if(player==currentPlayer && num==1){

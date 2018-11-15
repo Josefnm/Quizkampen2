@@ -2,8 +2,6 @@ package GameServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import quizkampen.ServerSideGame;
-import quizkampen.ServerSidePlayer;
 
 /**
  *
@@ -15,9 +13,9 @@ public class Server {
         System.out.println("Quiz Server is Running");
         try{
             while(true){
-                ServerSideGame game = new ServerSideGame();
-                ServerSidePlayer playerX = new ServerSidePlayer(listener.accept(), "X", game);
-                ServerSidePlayer playerO = new ServerSidePlayer(listener.accept(), "O", game);
+                Game game = new Game();
+                Player playerX = new Player(listener.accept(), "X", game);
+                Player playerO = new Player(listener.accept(), "O", game);
                 playerX.setOpponent(playerO);
                 playerO.setOpponent(playerX);
                 game.currentPlayer = playerX;
