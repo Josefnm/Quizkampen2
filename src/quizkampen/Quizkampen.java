@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 public class Quizkampen extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) { // hej Jonas
+        
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
