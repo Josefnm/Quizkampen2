@@ -39,6 +39,9 @@ public class Klient implements ActionListener{
     JButton[] buttons = new JButton[]{butA, butB, butC, butD};
     private int num =0;
     private int nextNum =100;
+    private int butNum=1;
+    private int butCount=0;
+
 
     public Klient(String serverAddress) throws IOException{
         socket = new Socket(serverAddress, PORT);
@@ -51,12 +54,16 @@ public class Klient implements ActionListener{
         panelBtu.add(butC);
         panelBtu.add(butD);
         next.addActionListener(nextQ ->{   //Lamda
-            out.println("next , " + nextNum);
             nextNum = nextNum+1;
+            butNum=1;
+            butCount++;
             butA.setBackground(null);
             butB.setBackground(null);
             butC.setBackground(null);
             butD.setBackground(null);
+//            if(butCount==2 || butCount==4){
+//                panelAll.setVisible(false);
+//            }
         });
         butA.addActionListener(this);
         butB.addActionListener(this);
@@ -69,15 +76,22 @@ public class Klient implements ActionListener{
         frame.add(panelAll);
         frame.pack();
         
+        
+    }
+    public boolean butControll(int butNum){
+        if(butNum == 1){
+            butNum=2;
+            return true;
+        }
+        return false;
     }
     public void play() throws Exception{
         String response;
         String[] choice;
+
         try{
             while((response = in.readLine()) != null){
                 if((response.startsWith("yes"))){
-                    System.out.println("yes");
-                    System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
                         if(buttons[i].getText().equals(choice[1])){
@@ -133,11 +147,14 @@ public class Klient implements ActionListener{
     }    
 
     @Override
-    public void actionPerformed(ActionEvent e) {//
+    public void actionPerformed(ActionEvent e) {
         JButton answer = (JButton)e.getSource();
-        num = num + 1;
-        out.println(answer.getText()+","+num);
-        if(num==2) num=0;
+        if(butControll(butNum)){
+            butNum=2;
+            num = num + 1;
+            out.println(answer.getText()+","+num);
+            if(num==2) num=0;
+        }
     }
     
 }
