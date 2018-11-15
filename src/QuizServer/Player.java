@@ -17,6 +17,7 @@ public class Player extends Thread {
     ObjectOutputStream out;
     ArrayList<Player> clientList;
     Question question;
+    String playerName;
 
     public Player(Socket clientSocket, ArrayList<Player> clientList, Question question) {
         this.clientSocket = clientSocket;
