@@ -19,8 +19,11 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Klient implements ActionListener{
     private JFrame frame = new JFrame("Quiz Nu");
     private JLabel question = new JLabel("");
-   
-    private JButton butColor = new JButton();
+    private JButton butA = new JButton("");
+    private JButton butB = new JButton("");
+    private JButton butC = new JButton("");
+    private JButton butD = new JButton("");
+//    private JButton butColor = new JButton();
     private JButton next = new JButton("next");
     private JPanel panelBtu = new JPanel();
     private JPanel panelAll = new JPanel();
@@ -31,6 +34,7 @@ public class Klient implements ActionListener{
     
     ArrayList<JButton> buttons = new ArrayList<>();
     private int num =0;
+    private int nextNum =100;
 
     public Klient(String serverAddress) throws IOException{
         socket = new Socket(serverAddress, PORT);
@@ -38,18 +42,27 @@ public class Klient implements ActionListener{
         out = new PrintWriter(socket.getOutputStream(), true);
         panelBtu.setLayout(new GridLayout(2,2));
         panelAll.setLayout(new BorderLayout());
-        
-        for(int i =0; i<4; i++){
-            JButton button = new JButton("");
-            button.addActionListener(this);
-            buttons.add(button);
-            panelBtu.add(button);
-        }
-        
+
+        panelBtu.add(butA);
+        panelBtu.add(butB);
+        panelBtu.add(butC);
+        panelBtu.add(butD);
+        next.addActionListener(nextQ ->{   //Lamda
+            out.println("next , " + nextNum);
+            nextNum = nextNum+1;
+            butA.setBackground(null);
+            butB.setBackground(null);
+            butC.setBackground(null);
+            butD.setBackground(null);
+        });
+        butA.addActionListener(this);
+        butB.addActionListener(this);
+        butC.addActionListener(this);
+        butD.addActionListener(this);
         panelAll.add(question, BorderLayout.NORTH);
         panelAll.add(panelBtu, BorderLayout.CENTER);
-        panelAll.add(butColor, BorderLayout.WEST);
-//        panelAll.add(next, BorderLayout.SOUTH);
+//        panelAll.add(butColor, BorderLayout.WEST);
+        panelAll.add(next, BorderLayout.SOUTH);
         frame.add(panelAll);
         frame.pack();
         
@@ -111,10 +124,11 @@ public class Klient implements ActionListener{
     }    
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {//
         JButton answer = (JButton)e.getSource();
         num = num + 1;
         out.println(answer.getText()+","+num);
+        if(num==2) num=0;
     }
     
 }

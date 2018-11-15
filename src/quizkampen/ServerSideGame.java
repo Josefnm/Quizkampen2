@@ -18,13 +18,13 @@ public class ServerSideGame {
     ServerSidePlayer currentPlayer;
     
     public synchronized boolean legalMove(ServerSidePlayer player, int num){
+        if(player==currentPlayer && num==1){
+            return true;
+        }
         if(player==currentPlayer && num==2){
             currentPlayer = currentPlayer.opponent;
             return true;
         }        
-        if(player==currentPlayer && num==1){
-            return true;
-        }
         return false;
     }
 

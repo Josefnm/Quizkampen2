@@ -1,4 +1,4 @@
-/*
+ /*
  * Java
  */
 package quizkampen;
@@ -53,7 +53,42 @@ public class ServerSidePlayer extends Thread{
                     if(!answer.startsWith(game.q1.getResult())){
                         output.println("no"+","+game.q1.getResult()+","+answer);
                     }
+                    if(answer.startsWith(game.q2.getResult())){
+                        output.println("yes"+","+game.q2.getResult());
+                    }
+                    if(!answer.startsWith(game.q2.getResult())){
+                        output.println("no"+","+game.q2.getResult()+","+answer);
+                    }
+                    if(answer.startsWith(game.q3.getResult())){
+                        output.println("yes"+","+game.q3.getResult());
+                    }
+                    if(!answer.startsWith(game.q3.getResult())){
+                        output.println("no"+","+game.q3.getResult()+","+answer);
+                    }
+                    if(answer.startsWith(game.q4.getResult())){
+                        output.println("yes"+","+game.q4.getResult());
+                    }
+                    if(!answer.startsWith(game.q4.getResult())){
+                        output.println("no"+","+game.q4.getResult()+","+answer);
+                    }
                }
+                if(answer.startsWith("next")){
+                    if(ss==100){
+                        output.println(game.q2.getFraga()+","+game.q2.getValjningar(0)+","+
+                        game.q2.getValjningar(1)+","+game.q2.getValjningar(2)+","+
+                        game.q2.getValjningar(3)); 
+                    }
+                    if(ss==101){
+                        output.println(game.q3.getFraga()+","+game.q3.getValjningar(0)+","+
+                        game.q3.getValjningar(1)+","+game.q3.getValjningar(2)+","+
+                        game.q3.getValjningar(3)); 
+                    }
+                    if(ss==102){
+                        output.println(game.q4.getFraga()+","+game.q4.getValjningar(0)+","+
+                        game.q4.getValjningar(1)+","+game.q4.getValjningar(2)+","+
+                        game.q4.getValjningar(3)); 
+                    }
+                }
            }
         }
         catch(Exception e){
