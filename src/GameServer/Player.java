@@ -43,7 +43,7 @@ public class Player extends Thread{
                String[] s = answer.split(",");
                int ss = Integer.parseInt(s[1].trim());
                if(game.legalMove(this, ss)){
-                   System.out.println("ok");
+                   System.out.println(this);
                     if(answer.startsWith(game.q1.getResult())){
                         output.println("yes"+","+game.q1.getResult());
                     }

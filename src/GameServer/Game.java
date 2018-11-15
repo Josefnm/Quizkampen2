@@ -17,7 +17,6 @@ public class Game{
     public synchronized boolean legalMove(Player player, int num){
         if(player==currentPlayer && num==2){
             player = currentPlayer.opponent;
-            System.out.println("uu");
             return true;
         }        
         if(player==currentPlayer && num==1){
