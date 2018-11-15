@@ -1,7 +1,6 @@
 package GameServer;
 
-import quizkampen.QandA;
-import quizkampen.ServerSidePlayer;
+
 
 /**
  *
