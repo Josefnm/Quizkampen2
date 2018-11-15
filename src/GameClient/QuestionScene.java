@@ -8,39 +8,54 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javax.swing.JButton;
 
 
 public class QuestionScene {
 
-    Scene scene;
-    BorderPane border = new BorderPane();
-    GridPane grid = new GridPane(); 
-    
+    private Scene scene;
+    String[] svar = new String[]{"Svar:","hej","sa","nej"};
     QuestionScene(){   
     
-        for(int i = 0; i<2; i++){            
-            for(int j = 0; j<2; j++){
-                Button button = new Button("Svar:");
-                button.setMinSize(50,50);
-                button.setOnAction(click);
-                grid.add(button, i, j);
-            }
+        ArrayList<Button> buttons = new ArrayList();
+        BorderPane border = new BorderPane();
+        GridPane grid = new GridPane(); 
+        
+        for(int i=0;i<4;i++){
+     
+            Button button = new Button();
+            button.setMinSize(300,200);
+            button.setOnAction(click);
+            button.setText(svar[i]);
+            buttons.add(button);
         }
+        
+        grid.add((buttons.get(0)),0,0);
+        grid.add((buttons.get(1)),0,1);
+        grid.add((buttons.get(2)),1,0);
+        grid.add((buttons.get(3)),1,1);
+        
         Text text = new Text("Frågan som ställs");
         border.setTop(text);
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         
-        this.scene = new Scene(border,300,300);
+        this.scene = new Scene(border);
     }
     
     
     EventHandler click = new EventHandler() {
         @Override
         public void handle(Event event) {
-            System.out.println("hej");
+            Button btn = (Button)event.getSource();
+            if(btn.getText().equals(svar[0])){
+                btn.setStyle("-fx-background-color: Green");
+            }
+            else{
+                btn.setStyle("-fx-background-color: Red");
+            }
         }
     };
     

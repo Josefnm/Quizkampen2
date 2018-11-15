@@ -23,7 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         QuestionScene quest = new QuestionScene();
-        primaryStage.setTitle("Hello!");
+        primaryStage.setTitle("QuizKampen!");
         primaryStage.setScene(quest.getScene());
         primaryStage.show();
     }
