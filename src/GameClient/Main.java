@@ -36,7 +36,7 @@ public class Main extends Application {
         
         stage = primaryStage;
         sc = new StartScene(this);
-        qs = new QuestionScene();
+        qs = new QuestionScene(this);
         primaryStage.setTitle("Quiz!");
         primaryStage.setScene(sc.getScene());
         //setMain();
@@ -47,7 +47,7 @@ public class Main extends Application {
         root.getChildren().add(btn);
         
         mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        btn.setOnAction(e -> setStartScene());
+        btn.setOnAction(e -> setQuestionScene());
     }  
     public void setQuestionScene()
     {
