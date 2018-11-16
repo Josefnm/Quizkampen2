@@ -6,17 +6,20 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javax.swing.JButton;
 
 
 public class QuestionScene {
 
     private Scene scene;
-    String[] svar = new String[]{"Svar:","hej","sa","nej"};
+    String[] svar = new String[]{"Svar:","hej","sa","nej"};     //Questions ska in här istället
     QuestionScene(){   
     
         ArrayList<Button> buttons = new ArrayList();
@@ -37,8 +40,10 @@ public class QuestionScene {
         grid.add((buttons.get(2)),1,0);
         grid.add((buttons.get(3)),1,1);
         
-        Text text = new Text("Frågan som ställs");
-        border.setTop(text);
+        Label label = new Label("Fråga");
+        label.setMinSize(600, 200);
+        label.setAlignment(Pos.CENTER);
+        border.setTop(label);
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         
