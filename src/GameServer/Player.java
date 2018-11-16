@@ -30,11 +30,12 @@ public class Player extends Thread{
 
     @Override
     public void run(){
-        System.out.println("run");
         try{
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            output.writeObject(d.getByNum(0));
+            output.writeObject(d.getALL());
+//            output.writeObject(d.getFirst());
+//            output.writeObject(d.getByNum(0));
         }
         catch(Exception e){
             e.printStackTrace();

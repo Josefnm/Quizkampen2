@@ -3,6 +3,7 @@
  */
 package GameServer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  *
  * @author Julia
  */
-public class Dao {
+public class Dao implements Serializable{
     Question histryQ1 = new Question("history", "what is the year?", 
             new String[]{"1999", "1990", "1992", "1998"}, "1998", "");
     
@@ -23,6 +24,7 @@ public class Dao {
     Question naturalQ2 = new Question("natural", "what is the water?", 
             new String[]{"hot", "cold", "iced", "steam"}, "iced", "");
     List<Question> qAndAn = new ArrayList<>();
+    Question[] first = new Question[]{histryQ1, histryQ2};
     public Dao(){
         qAndAn.add(histryQ1);
         qAndAn.add(histryQ2);
@@ -31,6 +33,12 @@ public class Dao {
     }
     public Question getByNum(int num){
         return qAndAn.get(num);
+    }
+    public Question[] getFirst(){
+        return first;
+    }
+    public List<Question> getALL(){
+        return qAndAn;
     }
     
     

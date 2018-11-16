@@ -1,5 +1,6 @@
 package GameClient;
 
+import GameServer.Question;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -12,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,14 +53,27 @@ public class Client{
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
         Object input;
+//        List<Object> input;
         try{
 //            while(true){
                 if((input=in.readObject())!=null){
                     System.out.println("yes");
-                    if(input instanceof GameServer.Question)
-                        System.out.println(((GameServer.Question)input).getFraga());
+                    System.out.println(((List<Question>) input).get(0).getFraga());
+                    System.out.println(((List<Question>) input).get(1).getFraga());
+//                        System.out.println(((Question[]) input)[0].getFraga());
+//                        System.out.println(((Question[]) input)[1].getFraga());
+//                    
+//                    if(input instanceof GameServer.Question){
+//                        System.out.println(((GameServer.Question)input).getFraga());
+//                        System.out.println(((GameServer.Question)input).getAmne());
+//                        System.out.println(((GameServer.Question)input).getValjningar(0));
+//                        System.out.println(((GameServer.Question)input).getValjningar(1));
+//                        System.out.println(((GameServer.Question)input).getValjningar(2));
+//                        System.out.println(((GameServer.Question)input).getValjningar(3));
+//                        System.out.println(((GameServer.Question)input).getSvar());
+//                        System.out.println(((GameServer.Question)input).getResult());
+//                    }
                 }
-//            }
         }
         catch(Exception e){
             e.printStackTrace();
