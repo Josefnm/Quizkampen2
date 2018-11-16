@@ -6,7 +6,7 @@ package GameServer;
  */
 public class GameRoom {
 
-    private boolean isNotFull; //när 2 spelare är inne
+    private boolean isNotFull; // false när 2 spelare är inne
     Player player1;
     Player player2;
 //    public Dao qa = new Dao();
@@ -18,7 +18,7 @@ public class GameRoom {
     
 
     public GameRoom(Player player) {
-        this.isNotFull = true;
+        isNotFull = true;
         player1 = player;
     }
 
