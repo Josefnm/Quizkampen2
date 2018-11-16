@@ -28,10 +28,11 @@ public class Klient implements ActionListener{
     private JButton butB = new JButton("");
     private JButton butC = new JButton("");
     private JButton butD = new JButton("");
-//    private JButton butColor = new JButton();
+    private JButton butColor = new JButton();
     private JButton next = new JButton("next");
     private JPanel panelBtu = new JPanel();
     private JPanel panelAll = new JPanel();
+    private JPanel panelExtra = new JPanel();
     private static int PORT = 8901;
     private Socket socket;
     private PrintWriter out;
@@ -49,6 +50,7 @@ public class Klient implements ActionListener{
         out = new PrintWriter(socket.getOutputStream(), true);
         panelBtu.setLayout(new GridLayout(2,2));
         panelAll.setLayout(new BorderLayout());
+        panelExtra.setLayout(new BorderLayout());
         panelBtu.add(butA);
         panelBtu.add(butB);
         panelBtu.add(butC);
@@ -62,10 +64,14 @@ public class Klient implements ActionListener{
             butB.setBackground(null);
             butC.setBackground(null);
             butD.setBackground(null);
-//            if(butCount==2 || butCount==4){
+            if(butCount==2 || butCount==4){
 //                out.println("Your turn ,"+butCount );
-//                panelAll.setVisible(false);
-//            }
+//                System.out.println(butCount);
+                panelAll.setVisible(false);
+            }
+        });
+        butColor.addActionListener(nextQ ->{ 
+            panelAll.setVisible(true);
         });
         butA.addActionListener(this);
         butB.addActionListener(this);
@@ -73,9 +79,10 @@ public class Klient implements ActionListener{
         butD.addActionListener(this);
         panelAll.add(question, BorderLayout.NORTH);
         panelAll.add(panelBtu, BorderLayout.CENTER);
-//        panelAll.add(butColor, BorderLayout.WEST);
         panelAll.add(next, BorderLayout.SOUTH);
-        frame.add(panelAll);
+        panelExtra.add(butColor, BorderLayout.WEST);
+        panelExtra.add(panelAll, BorderLayout.CENTER);
+        frame.add(panelExtra);
         frame.pack();
         
         
@@ -103,8 +110,6 @@ public class Klient implements ActionListener{
                     }
                 }
                 else if((response.startsWith("no"))){
-                    System.out.println("no");
-                    System.out.println(response);
                     choice = response.split(",");
                     for(int i=0; i<4; i++){
                         if(buttons[i].getText().equals(choice[1])){
@@ -117,6 +122,10 @@ public class Klient implements ActionListener{
                         }
                     }                    
                 }
+//                else if((response.startsWith("your"))){
+//                    System.out.println("your");
+//                    panelAll.setVisible(true);
+//                }
                 else{
                     choice = response.split(",");
                     question.setText(choice[0]);
