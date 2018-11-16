@@ -15,10 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Josef
- */
+
 public class Client implements ActionListener{
     private JFrame frame = new JFrame("Quiz Nu");
     private JLabel question = new JLabel("");

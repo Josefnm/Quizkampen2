@@ -13,11 +13,11 @@ public class Player extends Thread{
     String mark;
     Player opponent;
     Socket socket;
-    Game game;
+    GameRoom game;
     BufferedReader input;
     PrintWriter output;
     
-    public Player(Socket socket, String mark, Game game){
+    public Player(Socket socket, String mark, GameRoom game){
         this.socket=socket;
         this.mark=mark;
         this.game=game;
