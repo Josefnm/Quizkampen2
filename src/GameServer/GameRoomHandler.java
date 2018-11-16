@@ -21,6 +21,7 @@ public class GameRoomHandler {
         for (GameRoom gameRoom : gameRooms) {
             if(gameRoom.getIsNotFull()){
                 gameRoom.addPlayer(player);
+                return;
             }
         }
         GameRoom gr=new GameRoom(player);

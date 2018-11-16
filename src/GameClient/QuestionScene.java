@@ -82,7 +82,7 @@ public class QuestionScene {
     EventHandler setScene = new EventHandler() {
         @Override
         public void handle(Event event) {
-            main.setQuestionScene(main.sc);
+            main.setQuestionScene(main.sc.getScene());
         }
     };
     

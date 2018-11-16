@@ -9,11 +9,6 @@ public class GameRoom {
     private boolean isNotFull; // false när 2 spelare är inne
     Player player1;
     Player player2;
-//    public Dao qa = new Dao();
-//    Question q1 = qa.getByNum(1);
-//    Question q2 = qa.getByNum(2);
-//    Question q3 = qa.getByNum(3);
-//    Question q4 = qa.getByNum(4);
     Player currentPlayer;
     
 
@@ -41,7 +36,5 @@ public class GameRoom {
         player2 = player;
         isNotFull = false;
         //kod som startar spelet
-
     }
-
 }
