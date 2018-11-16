@@ -13,12 +13,12 @@ public class Server {
             while(true){
                 Game game = new Game();
                 Player playerX = new Player(listener.accept(), "X", game);
-                Player playerO = new Player(listener.accept(), "O", game);
-                playerX.setOpponent(playerO);
-                playerO.setOpponent(playerX);
-                game.currentPlayer = playerX;
+//                Player playerO = new Player(listener.accept(), "O", game);
+//                playerX.setOpponent(playerO);
+//                playerO.setOpponent(playerX);
+//                game.currentPlayer = playerX;
                 playerX.start();
-                playerO.start();
+//                playerO.start();
             }
         }
         finally{
