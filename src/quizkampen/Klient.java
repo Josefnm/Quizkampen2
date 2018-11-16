@@ -82,6 +82,7 @@ public class Klient implements ActionListener{
         panelAll.add(next, BorderLayout.SOUTH);
         panelExtra.add(butColor, BorderLayout.WEST);
         panelExtra.add(panelAll, BorderLayout.CENTER);
+        panelAll.setVisible(false);
         frame.add(panelExtra);
         frame.pack();
         
