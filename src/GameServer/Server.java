@@ -8,28 +8,27 @@ import java.util.logging.Logger;
 
 public class Server {
 
+    ServerSocket listener;
+
     public Server() {
         try {
-            ServerSocket listener = new ServerSocket(12345);
+            listener = new ServerSocket(12345);
             System.out.println("Quiz Server is Running");
-            try {
-                while (true) {
-                    //Game game = new Game();
-                    final Socket socket = listener.accept();
-                    Player player = new Player(socket);
-                    //Player playerO = new Player(listener.accept(), "O", game);
-                    //playerX.setOpponent(playerO);
-                    //playerO.setOpponent(playerX);
-                    //game.currentPlayer = playerX;
-                    player.start();
-                    //playerO.start();
-                }
-            } finally {
-                listener.close();
+            while (true) {
+                final Socket socket = listener.accept();
+                Player player = new Player(socket);
+                player.start();
+                //Game game = new Game();
+                //Player playerO = new Player(listener.accept(), "O", game);
+                //playerX.setOpponent(playerO);
+                //playerO.setOpponent(playerX);
+                //game.currentPlayer = playerX;
+                //playerO.start();
             }
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
 }

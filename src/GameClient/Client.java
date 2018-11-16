@@ -9,22 +9,17 @@ public class Client {
 
     int portNr = 12345;
     String hostIPAddress = "127.0.0.1";
-    ObjectInputStream in;
-    ObjectOutputStream out;
+    ObjectInputStream input;
+    ObjectOutputStream output;
     
-
     public Client() {
-
         try {
             Socket adressSocket = new Socket(hostIPAddress, portNr);
-            out = new ObjectOutputStream(adressSocket.getOutputStream());
-            in = new ObjectInputStream(adressSocket.getInputStream());
+            output = new ObjectOutputStream(adressSocket.getOutputStream());
+            input = new ObjectInputStream(adressSocket.getInputStream());
         } catch (IOException ex) {
-
             System.out.println("fel");
             System.exit(1);
         }
-
     }
-
 }

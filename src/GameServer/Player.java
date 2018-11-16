@@ -9,7 +9,6 @@ import java.net.Socket;
 public class Player extends Thread {
 
     Socket socket;
-
     ObjectInputStream input;
     ObjectOutputStream output;
     int portNummer = 12345;
