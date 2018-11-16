@@ -3,34 +3,33 @@ package GameServer;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Server {
 
-    public static void main(String[] args) throws IOException {
-        ServerSocket listener = new ServerSocket(8901);
-        System.out.println("Quiz Server is Running");
+    public Server() {
         try {
-            while (true) {
-                try {
-                    final Socket clientSocket = listener.accept();
-                    Player player = new Player(clientSocket);
+            ServerSocket listener = new ServerSocket(12345);
+            System.out.println("Quiz Server is Running");
+            try {
+                while (true) {
+                    //Game game = new Game();
+                    final Socket socket = listener.accept();
+                    Player player = new Player(socket);
+                    //Player playerO = new Player(listener.accept(), "O", game);
+                    //playerX.setOpponent(playerO);
+                    //playerO.setOpponent(playerX);
+                    //game.currentPlayer = playerX;
                     player.start();
-                } catch (IOException ex) {
-                    System.out.println("error1");
+                    //playerO.start();
                 }
-
-//                GameRoom game = new GameRoom();
-//                Player playerX = new Player(listener.accept(), "X", game);
-//                Player playerO = new Player(listener.accept(), "O", game);
-//                playerX.setOpponent(playerO);
-//                playerO.setOpponent(playerX);
-//                game.currentPlayer = playerX;
-//                playerX.start();
-//                playerO.start();
+            } finally {
+                listener.close();
             }
-        } finally {
-            listener.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
 }
