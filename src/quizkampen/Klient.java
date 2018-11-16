@@ -65,8 +65,6 @@ public class Klient implements ActionListener{
             butC.setBackground(null);
             butD.setBackground(null);
             if(butCount==2 || butCount==4){
-//                out.println("Your turn ,"+butCount );
-//                System.out.println(butCount);
                 panelAll.setVisible(false);
             }
         });
@@ -96,6 +94,9 @@ public class Klient implements ActionListener{
         return false;
     }
     public void play() throws Exception{
+        Object lasin;
+        
+        
         String response;
         String[] choice;
 
@@ -123,10 +124,6 @@ public class Klient implements ActionListener{
                         }
                     }                    
                 }
-//                else if((response.startsWith("your"))){
-//                    System.out.println("your");
-//                    panelAll.setVisible(true);
-//                }
                 else{
                     choice = response.split(",");
                     question.setText(choice[0]);
