@@ -48,8 +48,6 @@ public class Main extends Application {
     {
         stage.setScene(activeScene);
     }
-
-
         
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");

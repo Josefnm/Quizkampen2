@@ -16,7 +16,7 @@ public class StartScene { //fixar abstrakt senare
     Scene startScene;
     Main main;
     Client client;
-    QuestionScene qs;
+    QuestionScene qs = new QuestionScene(main);
     
     public StartScene(Main main) {
         this.main=main;
@@ -35,7 +35,7 @@ public class StartScene { //fixar abstrakt senare
 
             public void handle(ActionEvent event) {
                 
-                main.setQuestionScene(/*client,*/ qs.setScene());
+                main.setQuestionScene(qs.getScene());
                 System.out.println("hhehe");
             }
             
