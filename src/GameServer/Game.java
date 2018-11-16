@@ -1,30 +1,33 @@
+/*
+ * Java
+ */
 package GameServer;
-
 
 
 /**
  *
- * @author Josef
+ * @author Julia
  */
-public class Game{
+public class Game {
     public Dao qa = new Dao();
-    Questions q1 = qa.getByNum(1);
-    Questions q2 = qa.getByNum(2);
-    Questions q3 = qa.getByNum(3);
-    Questions q4 = qa.getByNum(4);
+    Question q1 = qa.getByNum(0);
+    Question q2 = qa.getByNum(1);
+    Question q3 = qa.getByNum(2);
+    Question q4 = qa.getByNum(3);
     Player currentPlayer;
     
     public synchronized boolean legalMove(Player player, int num){
-        if(player==currentPlayer && num==2){
-            player = currentPlayer.opponent;
-            return true;
-        }        
         if(player==currentPlayer && num==1){
             return true;
         }
+        if(player==currentPlayer && num==2){
+            currentPlayer = currentPlayer.opponent;
+            return true;
+        }        
         return false;
     }
 
 
-}
 
+    
+}

@@ -2,28 +2,24 @@ package GameServer;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Josef
- */
-public class Questions implements Serializable{
+public class Question implements Serializable{
     private String amne;
     private String fraga;
     private String[] valjningar;
-    String result;
+    //private String result;
     private String svar;
     
-    public Questions(String amne, String fraga, String[] valjningar, String result, String svar){
+    public Question(String amne, String fraga, String[] valjningar, /*String result,*/ String svar, String str){
         this.amne=amne;
         this.fraga=fraga;
         this.valjningar=valjningar;
-        this.result=result;
+        //this.result=result;
         this.svar=svar;
     }
     
-    public String getResult(){
-        return result;
-    }
+//    public String getResult(){
+//        return result;
+//    }
 
     public String getAmne() {
         return amne;
@@ -40,6 +36,5 @@ public class Questions implements Serializable{
     public String getSvar() {
         return svar;
     }
-    
     
 }
