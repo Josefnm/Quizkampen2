@@ -22,6 +22,9 @@ public class Main extends Application {
     protected static Stage stage;
     StartScene sc;
     Client client;
+    Scene tempScene;
+    QuestionScene qs;
+    Scene mainScene;
     
     @Override
     public void start(Stage primaryStage) {
@@ -29,31 +32,54 @@ public class Main extends Application {
 //        Scene scene = logInScene();
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-
         
         stage = primaryStage;
         sc = new StartScene(this);
+        qs = new QuestionScene(this);
         primaryStage.setTitle("Quiz!");
         primaryStage.setScene(sc.getScene());
         //setMain();
         primaryStage.show();
+        
+        Button btn = new Button("lol");
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        
+        mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
+        btn.setOnAction(e -> setStartScene());
     }  
+    public void setQuestionScene()
+    {
+        tempScene = qs.getScene();
+        stage.setScene(tempScene);
+        //allt kan egentligen göras med en metod som tar in scenen de ska bytas till
+        //med nackdelen att metoden skulle vara aningens mer otydlig då namnet
+        //skulle bli "setScene" istället för vilken scen
+    }
+    public void setMainScene()
+    {
+        tempScene = mainScene;
+        stage.setScene(tempScene);
+    }
+    public void setScoreScene()
+    {
+        //tempScene = scoreScene;
+        //stage.setScene(tempScene);
+    }
+    public void setStartScene()
+    {
+        tempScene = sc.getScene();
+        stage.setScene(tempScene);
+    }
+    public int getBoardHeight()
+    {
+        return 300;
+    }
+    public int getBoardThicc()
+    {
+        return 506;
+    }
     
-        public int femmman()
-    {
-        int fem = 5;
-        return fem;
-    }
-    public void setQuestionScene(Scene activeScene)
-    {
-        stage.setScene(activeScene);
-    }
-    
-    public Scene setStartScene()
-    {
-        StartScene start = new StartScene(this);
-        return start.getScene();
-    }
         
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
@@ -68,7 +94,7 @@ public class Main extends Application {
 //        StackPane root = new StackPane();
 //        root.getChildren().add(btn);
 //        
-//        Scene scene = new Scene(root, 300, 250);
+//        Scene tempScene = new Scene(root, 300, 250);
 //        
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);

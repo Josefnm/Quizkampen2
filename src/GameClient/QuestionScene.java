@@ -1,5 +1,4 @@
 package GameClient;
-
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javax.swing.JButton;
 
 
@@ -56,6 +54,7 @@ public class QuestionScene {
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         border.setBottom(hbox);
+     //   border.setMinSize(main.getBoardThicc(), main.getBoardHeight());
         
         this.scene = new Scene(border);
     }
@@ -67,15 +66,9 @@ public class QuestionScene {
             Button btn = (Button)event.getSource();
             if(btn.getText().equals(svar[0])){
                 btn.setStyle("-fx-background-color: Green");
-                for(Button b : buttons){
-                    b.setDisable(true);
-                }
             }
             else{
                 btn.setStyle("-fx-background-color: Red");
-                for(Button b : buttons){
-                    b.setDisable(true);
-                }
             }
         }
     };
@@ -92,8 +85,5 @@ public class QuestionScene {
     
     public Scene getScene(){
         return scene;
-    }
-    public ArrayList<Button> getButtons(){
-        return buttons;
     }
 }
