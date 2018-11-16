@@ -22,6 +22,9 @@ public class Main extends Application {
     private Stage stage;
     StartScene sc;
     Client client;
+    Scene tempScene;
+    QuestionScene qs;
+    Scene mainScene;
     
     @Override
     public void start(Stage primaryStage) {
@@ -33,20 +36,49 @@ public class Main extends Application {
         
         stage = primaryStage;
         sc = new StartScene(this);
+        qs = new QuestionScene();
         primaryStage.setTitle("Quiz!");
         primaryStage.setScene(sc.getScene());
         //setMain();
         primaryStage.show();
+        
+        Button btn = new Button("lol");
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        
+        mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
+        btn.setOnAction(e -> setStartScene());
     }  
-    
-        public int femmman()
+    public void setQuestionScene()
     {
-        int fem = 5;
-        return fem;
+        tempScene = qs.getScene();
+        stage.setScene(tempScene);
+        //allt kan egentligen göras med en metod som tar in scenen de ska bytas till
+        //med nackdelen att metoden skulle vara aningens mer otydlig då namnet
+        //skulle bli "setScene" istället för vilken scen
     }
-    public void setQuestionScene(Scene activeScene)
+    public void setMainScene()
     {
-        stage.setScene(activeScene);
+        tempScene = mainScene;
+        stage.setScene(tempScene);
+    }
+    public void setScoreScene()
+    {
+        //tempScene = scoreScene;
+        //stage.setScene(tempScene);
+    }
+    public void setStartScene()
+    {
+        tempScene = sc.getScene();
+        stage.setScene(tempScene);
+    }
+    public int getBoardHeight()
+    {
+        return 300;
+    }
+    public int getBoardThicc()
+    {
+        return 506;
     }
         
 //        Button btn = new Button();
@@ -62,7 +94,7 @@ public class Main extends Application {
 //        StackPane root = new StackPane();
 //        root.getChildren().add(btn);
 //        
-//        Scene scene = new Scene(root, 300, 250);
+//        Scene tempScene = new Scene(root, 300, 250);
 //        
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);
