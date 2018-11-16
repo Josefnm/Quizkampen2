@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
-    private Stage stage;
+    protected static Stage stage;
     StartScene sc;
     Client client;
     
@@ -47,6 +47,12 @@ public class Main extends Application {
     public void setQuestionScene(Scene activeScene)
     {
         stage.setScene(activeScene);
+    }
+    
+    public Scene setStartScene()
+    {
+        StartScene start = new StartScene(this);
+        return start.getScene();
     }
         
 //        Button btn = new Button();

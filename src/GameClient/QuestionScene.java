@@ -22,11 +22,11 @@ public class QuestionScene {
     private Scene scene;
     String[] svar = new String[]{"Svar:","hej","sa","nej"};  //Questions ska in här istället
     ArrayList<Button> buttons = new ArrayList();
-        
+    HBox hbox = new HBox();
     
     QuestionScene(Main main){   
         this.main = main;
-        
+  
         BorderPane border = new BorderPane();
         GridPane grid = new GridPane(); 
         
@@ -45,15 +45,17 @@ public class QuestionScene {
         grid.add((buttons.get(3)),1,1);
         
         Button next = new Button("Next");
-        next.setAlignment(Pos.CENTER);
+        next.setMinSize(50,25);
         next.setOnAction(setScene);
+        hbox.getChildren().add(next);
+        hbox.setAlignment(Pos.CENTER);
         Label label = new Label("Fråga");
         label.setMinSize(600, 200);
         label.setAlignment(Pos.CENTER);
         border.setTop(label);
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
-        border.setBottom(next);
+        border.setBottom(hbox);
         
         this.scene = new Scene(border);
     }
@@ -82,7 +84,7 @@ public class QuestionScene {
     EventHandler setScene = new EventHandler() {
         @Override
         public void handle(Event event) {
-            main.setQuestionScene(main.sc.getScene());
+            
         }
     };
     
