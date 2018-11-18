@@ -23,6 +23,7 @@ public class Dao {
     Questions naturalQ2 = new Questions("natural", "what is the water?", 
             new String[]{"hot", "cold", "iced", "steam"}, "iced", "");
     List<Questions> qAndAn = new ArrayList<>();
+    Questions[] two = new Questions[]{histryQ1, histryQ2};
     public Dao(){
         qAndAn.add(histryQ1);
         qAndAn.add(histryQ2);
@@ -31,11 +32,15 @@ public class Dao {
     }
     public Questions getByNum(int num){
         for(int i=0; i<4; i++ ){
-            if(i+1 == num){
-                return qAndAn.get(i);
-            }
+            return qAndAn.get(num);
         }
         return null;
+    }
+    public Questions[] getTwo(){
+        return two;
+    }
+    public List<Questions> getAllQ(){
+        return qAndAn;
     }
     
     
