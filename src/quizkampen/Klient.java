@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -35,6 +35,9 @@ public class Klient implements ActionListener{
     private JPanel panelExtra = new JPanel();
     private static int PORT = 8901;
     private Socket socket;
+    
+
+    
     private PrintWriter out;
     private BufferedReader in;
     JButton[] buttons = new JButton[]{butA, butB, butC, butD};
@@ -46,6 +49,9 @@ public class Klient implements ActionListener{
 
     public Klient(String serverAddress) throws IOException{
         socket = new Socket(serverAddress, PORT);
+        
+
+        
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
         panelBtu.setLayout(new GridLayout(2,2));
@@ -56,6 +62,7 @@ public class Klient implements ActionListener{
         panelBtu.add(butC);
         panelBtu.add(butD);
         next.addActionListener(nextQ ->{ 
+            
             out.println("next, "+ nextNum);
             nextNum = nextNum+1;
             butNum=1;
@@ -96,11 +103,11 @@ public class Klient implements ActionListener{
     public void play() throws Exception{
         Object lasin;
         
-        
         String response;
         String[] choice;
 
         try{
+
             while((response = in.readLine()) != null){
                 if((response.startsWith("yes"))){
                     choice = response.split(",");

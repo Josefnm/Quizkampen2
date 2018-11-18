@@ -6,8 +6,7 @@ package quizkampen;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -20,6 +19,8 @@ public class ServerSidePlayer extends Thread{
     ServerSidePlayer opponent;
     Socket socket;
     ServerSideGame game;
+
+    
     BufferedReader input;
     PrintWriter output;
     
@@ -28,6 +29,7 @@ public class ServerSidePlayer extends Thread{
         this.mark=mark;
         this.game=game;
         try{
+
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             output = new PrintWriter(socket.getOutputStream(), true);
         }
