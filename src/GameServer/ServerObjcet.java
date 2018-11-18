@@ -9,7 +9,7 @@ import java.net.ServerSocket;
 /**
  *
  * @author Julia
- */
+ *///
 public class ServerObjcet {
     public static void main(String[] args) throws IOException{
         ServerSocket server = new ServerSocket(12345);
