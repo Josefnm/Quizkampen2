@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ import javax.swing.JPanel;
  */
 public class Client implements ActionListener{
     private JFrame frame = new JFrame("Quiz Nu");
+    private JLabel condition = new JLabel("");
     private JLabel question = new JLabel("");
     private JButton butA = new JButton("");
     private JButton butB = new JButton("");
@@ -41,7 +43,11 @@ public class Client implements ActionListener{
     private int butNum=1;
     private int questionNum=0;
     private String result;
+    private String[] opponentInfo=null;
     private int butCount=0;
+    private int poang=0;
+    private int poang1;
+    private int poang2;
     
     ObjectInputStream in;
     ObjectOutputStream out;
@@ -52,7 +58,6 @@ public class Client implements ActionListener{
     
     public Client(String adress) throws IOException{
         socket = new Socket(adress, PORT);
-
         panelBtu.setLayout(new GridLayout(2,2));
         panelAll.setLayout(new BorderLayout());
         panelExtra.setLayout(new BorderLayout());
@@ -73,8 +78,10 @@ public class Client implements ActionListener{
             butCount++;
             if(butCount == 2){
                 try {
+                    poang1 = poang;
+                    poang=0;
                     out.writeObject("change");
-                    question.setText("change to opponent...");
+                    condition.setText("change to opponent...Rond1 poang: "+ poang1);
                     panelAll.setVisible(false);
                 } catch (IOException ex) {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,8 +89,13 @@ public class Client implements ActionListener{
             }
             if(butCount == 4){
                 try {
-                    out.writeObject("end");
-                    question.setText("your poang...");
+                    poang2 = poang;
+                    out.writeObject("end" + "Rond1 poang: " + poang1 +
+                                       "...Rond2 poang: " + poang2 +
+                                       "...Total poang: " + (poang1+poang2));
+                    condition.setText("Rond1 poang: " + poang1 +
+                                       "...Rond2 poang: " + poang2 +
+                                       "...Total poang: " + (poang1+poang2));
                     panelAll.setVisible(false);
                 } catch (IOException ex) {
                     Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,10 +104,11 @@ public class Client implements ActionListener{
             butNum=1;
         });        
 
-        question.setText("waiting for p2...");
+        condition.setText("waiting for opponent...");
+        panelAll.add(question, BorderLayout.NORTH);
         panelAll.add(panelBtu, BorderLayout.CENTER);
         panelAll.add(next, BorderLayout.SOUTH);
-        panelExtra.add(question, BorderLayout.NORTH);
+        panelExtra.add(condition, BorderLayout.NORTH);
         panelExtra.add(panelAll, BorderLayout.CENTER);
         panelAll.setVisible(false);
         frame.add(panelExtra);
@@ -113,16 +126,31 @@ public class Client implements ActionListener{
             while(true){
                 if((input=in.readObject())!=null){
                     if(input instanceof List){
+                        condition.setText("Now start...");
+                        condition.repaint();
                         inputList = input;
                         setQuestion(inputList, questionNum++);
                     }
                     else if(((String) input).equals("wait")){
-                        question.setText("p1 answer now, wait!!!");
-                        question.repaint();
+                        condition.setText("opponent answer now, wait!!!");
+                        condition.repaint();
                     }
-                    else if(((String) input).startsWith("begin")){
+                    else if(((String) input).startsWith("begin")){  //p2rond2
+                        condition.setText("Now start...");
+                        condition.repaint();
                         setQuestion(inputList, ++questionNum);
                         questionNum++;
+                    }
+                    else if(((String) input).startsWith("p1rond2")){    //p1rond2
+                        condition.setText("Now start...");
+                        condition.repaint();
+                        setQuestion(inputList, ++questionNum);
+                        questionNum++;
+                    }
+                    else if(((String) input).startsWith("p2end")){
+                        opponentInfo = ((String) input).split(",");   
+                        condition.setText(opponentInfo[1]+"..."+opponentInfo[2]);
+                        condition.repaint();
                     }
                 }
             }            
@@ -137,7 +165,20 @@ public class Client implements ActionListener{
             return true;
         }
         return false;
-    }    
+    }
+    public JButton[] blandaBut(JButton[] buts){
+        JButton temp = new JButton("");
+        Random rani = new Random();
+        for(int i=0; i<buts.length; i++){
+            int raninum = rani.nextInt(buts.length);
+            if(i==raninum)
+                continue;
+            temp.setText(buts[i].getText());
+            buts[i].setText(buts[raninum].getText());
+            buts[raninum].setText(temp.getText());
+        }
+        return buts;              
+    }
     public void setQuestion(Object obj, int index){
         result = ((List<QandA>) obj).get(index).getResult();
         question.setText(((List<QandA>) obj).get(index).getFraga());
@@ -145,6 +186,7 @@ public class Client implements ActionListener{
         butB.setText(((List<QandA>) obj).get(index).getValjningar()[1]);
         butC.setText(((List<QandA>) obj).get(index).getValjningar()[2]);
         butD.setText(((List<QandA>) obj).get(index).getValjningar()[3]);
+        buttons = blandaBut(buttons);
         question.repaint();
         butA.repaint();
         butB.repaint();
@@ -163,6 +205,9 @@ public class Client implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JButton answer = (JButton)e.getSource();
         if(butControll(butNum)){
+            if(answer.getText().equals(result)){
+                poang++;
+            }
             for(int i=0; i<4; i++){
                 if(buttons[i].getText().equals(result)){
                     buttons[i].setBackground(Color.GREEN);
