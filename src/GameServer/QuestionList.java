@@ -1,10 +1,12 @@
 package GameServer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionList {
 
     ArrayList<Question> questions = new ArrayList<>();
+    List<Question> fourQuestions = new ArrayList<>();
 
     public QuestionList() {
         questions.add(new Question("Matte", "Vad är 1+1",
@@ -23,5 +25,17 @@ public class QuestionList {
                 new String[]{"winter", "summer", "autom", "spring"}, "winter"));
         questions.add(new Question("natural", "what is the water?",
                 new String[]{"hot", "cold", "iced", "steam"}, "iced"));
+        fourQuestions.add(questions.get(0));
+        fourQuestions.add(questions.get(1));
+        fourQuestions.add(questions.get(2));
+        fourQuestions.add(questions.get(3));
+    }
+
+    public Question getByNum(int num) {
+        return questions.get(num);
+    }
+
+    public List<Question> getFour() {
+        return fourQuestions;
     }
 }
