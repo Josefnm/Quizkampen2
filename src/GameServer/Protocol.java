@@ -25,11 +25,13 @@ public class Protocol {
         for (Player player2 : playerHandler.playerList) {
             if (player2.getIsIsAvailable()) {
                 player2.setOpponent(player1);
+                player1.setOpponent(player2);
                 player1.startGame();
                 player2.startGame();
                 return player2;
             }
         }
+        player1.setIsAvailable();
         return null;
     }
 }
