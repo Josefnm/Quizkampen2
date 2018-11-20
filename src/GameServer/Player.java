@@ -34,10 +34,8 @@ public class Player extends Thread {
             //outStream.writeObject(protocol.questionList.getFour()); //testkod
             while (true) {
                 input = inStream.readObject();
-                System.out.println(input.toString());
-                if (input.toString().equals("start")) {
-                    protocol.getOpponent(this);
-                }
+                //System.out.println(input.toString());
+                protocol.getResponse(this, input.toString());
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
