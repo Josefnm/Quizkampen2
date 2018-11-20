@@ -7,19 +7,15 @@ public class Question implements Serializable {
     private String amne;
     private String fraga;
     private String[] valjningar;
-    private String result;
+    
     private String svar;
     
-    public Question(String amne, String fraga, String[] valjningar, String result, String svar){
+    public Question(String amne, String fraga, String[] valjningar, String svar){
         this.amne=amne;
         this.fraga=fraga;
         this.valjningar=valjningar;
-        this.result=result;
+
         this.svar=svar;
-    }
-    
-    public String getResult(){
-        return result;
     }
 
     public String getAmne() {
