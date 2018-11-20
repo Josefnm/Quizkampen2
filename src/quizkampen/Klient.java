@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
