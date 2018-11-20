@@ -19,11 +19,11 @@ import javax.swing.JPanel;
 
 public class Client {
 
-    int portNr = 12345;
-    String hostIPAddress = "127.0.0.1";
-    ObjectInputStream input;
-    ObjectOutputStream output;
-    
+    private final String address;
+    private final int port;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
+
 //    private JFrame frame = new JFrame("Quiz Nu");
 //    private JLabel question = new JLabel("");
 //    private JButton butA = new JButton("");
@@ -43,21 +43,21 @@ public class Client {
 //    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
 //    private int num =0;
 //    private int nextNum =100;
+    public Client() throws IOException {
+        this.address = "127.0.0.1";
+        this.port = 12345;
 
-    public Client(String adress) throws IOException{
-        
-        
-        socket = new Socket(adress, PORT);
-        in = new ObjectInputStream(socket.getInputStream());
-        out = new ObjectOutputStream(socket.getOutputStream());
+        Socket socket = new Socket(address, port);
+        inStream = new ObjectInputStream(socket.getInputStream());
+        outStream = new ObjectOutputStream(socket.getOutputStream());
         Object input;
 //        List<Object> input;
-        try{
+        try {
 //            while(true){
-                if((input=in.readObject())!=null){
-                    System.out.println("yes");
-                    System.out.println(((List<Question>) input).get(0).getQuestion());
-                    System.out.println(((List<Question>) input).get(1).getQuestion());
+            while ((input = inStream.readObject()) != null) {
+                System.out.println("yes");
+                System.out.println(((List<Question>) input).get(0).getQuestion());
+                System.out.println(((List<Question>) input).get(1).getQuestion());
 //                        System.out.println(((Question[]) input)[0].getFraga());
 //                        System.out.println(((Question[]) input)[1].getFraga());
 //                    
@@ -71,14 +71,12 @@ public class Client {
 //                        System.out.println(((GameServer.Question)input).getSvar());
 //                        System.out.println(((GameServer.Question)input).getResult());
 //                    }
-                }
-        }
-        catch(Exception e){
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }        
-        
-        
+    }
+
 //        socket = new Socket(serverAddress, PORT);
 //        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 //        out = new PrintWriter(socket.getOutputStream(), true);
@@ -121,7 +119,8 @@ public class Client {
 //                            buttons[i].repaint();
 //                        }
 //                    }
-                }
-        }
-    }
+//}
+
+//}
+    //}
 }

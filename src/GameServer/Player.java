@@ -12,7 +12,7 @@ public class Player extends Thread {
     ObjectInputStream input;
     ObjectOutputStream output;
     int portNummer = 12345;
-
+    QuestionList questionList=new QuestionList();//för att testa
 
     public Player(Socket socket) {
         System.out.println("player ");
@@ -24,7 +24,7 @@ public class Player extends Thread {
         try{
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            output.writeObject(d.getALL());
+            output.writeObject(questionList.getFour());
 //            output.writeObject(d.getFirst());
 //            output.writeObject(d.getByNum(0));
         }
