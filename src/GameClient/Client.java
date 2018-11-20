@@ -73,5 +73,55 @@ public class Client {
 //                    }
                 }
         }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }        
+        
+        
+//        socket = new Socket(serverAddress, PORT);
+//        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//        out = new PrintWriter(socket.getOutputStream(), true);
+//        panelBtu.setLayout(new GridLayout(2,2));
+//        panelAll.setLayout(new BorderLayout());
+//        panelBtu.add(butA);
+//        panelBtu.add(butB);
+//        panelBtu.add(butC);
+//        panelBtu.add(butD);
+//        next.addActionListener(nextQ ->{   //Lamda
+//            out.println("next , " + nextNum);
+//            nextNum = nextNum+1;
+//            butA.setBackground(null);
+//            butB.setBackground(null);
+//            butC.setBackground(null);
+//            butD.setBackground(null);
+//        });
+//        butA.addActionListener(this);
+//        butB.addActionListener(this);
+//        butC.addActionListener(this);
+//        butD.addActionListener(this);
+//        panelAll.add(question, BorderLayout.NORTH);
+//        panelAll.add(panelBtu, BorderLayout.CENTER);
+////        panelAll.add(butColor, BorderLayout.WEST);
+//        panelAll.add(next, BorderLayout.SOUTH);
+//        frame.add(panelAll);
+//        frame.pack();
+//        
+//    }
+//    public void play() throws Exception{
+//        String response;
+//        String[] choice;
+//        try{
+//            while((response = in.readLine()) != null){
+//                if((response.startsWith("yes"))){
+//                    choice = response.split(",");
+//                    for(int i=0; i<4; i++){
+//                        if(buttons[i].getText().equals(choice[1])){
+//                            buttons[i].setBackground(Color.green);
+//                            buttons[i].repaint();
+//                        }
+//                    }
+                }
+        }
     }
 }
