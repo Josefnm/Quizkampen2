@@ -5,6 +5,7 @@
  */
 package GameClient;
 
+import java.io.IOException;
 import java.util.HashSet;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -35,13 +36,13 @@ public class Main extends Application {
     Stage stagepop;
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 //        stage = primaryStage;
 //        Scene scene = logInScene();
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
 
-        
+        client = new Client();
         stage = primaryStage;
         stagepop = new Stage();
         sc = new StartScene(this);

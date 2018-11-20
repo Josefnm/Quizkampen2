@@ -1,5 +1,6 @@
 package GameClient;
 
+import java.io.IOException;
 import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,7 +37,7 @@ public class StartScene { //fixar abstrakt senare
 
     public StartScene(Main main) {
         this.main = main;
-
+        client = main.client;
         //label 1 "användarnamn"
         //label 2 "actual användarnamn"-betydligt större font
         //Avatarbild, den ska även gå att ändra
@@ -58,6 +59,7 @@ public class StartScene { //fixar abstrakt senare
         //lambda
         //tanken att vi genom start engagear servern
         startbtn.setOnAction(e -> {
+        client.sendObject("start");
         //main.setMainScene();
         //main.setScoreScene();
         popUp(main); 
@@ -104,7 +106,7 @@ public class StartScene { //fixar abstrakt senare
     public Scene getScene() {
         return startScene;
     }
-    public void popUp(Main main)
+    public void popUp(Main main) throws IOException, ClassNotFoundException
     {
         BorderPane bp = new BorderPane();
         bp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
@@ -135,6 +137,8 @@ public class StartScene { //fixar abstrakt senare
         System.out.println("nukörvi");
         });
         
+        Object input=client.getInStream().readObject();
+        main.setQuestionScene();
         
         
         //skapa popupruta
