@@ -4,33 +4,32 @@ import java.io.Serializable;
 
 public class Question implements Serializable {
 
-    private String amne;
-    private String fraga;
-    private String[] valjningar;
+    private String category;
+    private String question;
+    private String[] answers;
     
-    private String svar;
+    private String correctAnswer;
     
-    public Question(String amne, String fraga, String[] valjningar, String svar){
-        this.amne=amne;
-        this.fraga=fraga;
-        this.valjningar=valjningar;
-
-        this.svar=svar;
+    public Question(String category, String question, String[] answers, String correctAnswer){
+        this.category=category;
+        this.question=question;
+        this.answers=answers;
+        this.correctAnswer=correctAnswer;
     }
 
-    public String getAmne() {
-        return amne;
+    public String getCategory() {
+        return category;
     }
 
-    public String getFraga() {
-        return fraga;
+    public String getQuestion() {
+        return question;
     }
 
-    public String getValjningar(int i) {
-        return valjningar[i];
+    public String getAnswer(int i) {
+        return answers[i];
     }
 
-    public String getSvar() {
-        return svar;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 }

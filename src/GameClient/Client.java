@@ -56,18 +56,18 @@ public class Client {
 //            while(true){
                 if((input=in.readObject())!=null){
                     System.out.println("yes");
-                    System.out.println(((List<Question>) input).get(0).getFraga());
-                    System.out.println(((List<Question>) input).get(1).getFraga());
+                    System.out.println(((List<Question>) input).get(0).getQuestion());
+                    System.out.println(((List<Question>) input).get(1).getQuestion());
 //                        System.out.println(((Question[]) input)[0].getFraga());
 //                        System.out.println(((Question[]) input)[1].getFraga());
 //                    
 //                    if(input instanceof GameServer.Question){
 //                        System.out.println(((GameServer.Question)input).getFraga());
 //                        System.out.println(((GameServer.Question)input).getAmne());
-//                        System.out.println(((GameServer.Question)input).getValjningar(0));
-//                        System.out.println(((GameServer.Question)input).getValjningar(1));
-//                        System.out.println(((GameServer.Question)input).getValjningar(2));
-//                        System.out.println(((GameServer.Question)input).getValjningar(3));
+//                        System.out.println(((GameServer.Question)input).getAnswer(0));
+//                        System.out.println(((GameServer.Question)input).getAnswer(1));
+//                        System.out.println(((GameServer.Question)input).getAnswer(2));
+//                        System.out.println(((GameServer.Question)input).getAnswer(3));
 //                        System.out.println(((GameServer.Question)input).getSvar());
 //                        System.out.println(((GameServer.Question)input).getResult());
 //                    }
