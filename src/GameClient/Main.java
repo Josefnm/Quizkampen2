@@ -5,12 +5,17 @@
  */
 package GameClient;
 
+import java.util.HashSet;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +30,9 @@ public class Main extends Application {
     Scene tempScene;
     QuestionScene qs;
     Scene mainScene;
+    ScoreScene scoresc;
+    //popuptest
+    Stage stagepop;
     
     @Override
     public void start(Stage primaryStage) {
@@ -35,9 +43,11 @@ public class Main extends Application {
 
         
         stage = primaryStage;
+        stagepop = new Stage();
         sc = new StartScene(this);
         qs = new QuestionScene(this);
-        primaryStage.setTitle("Quiz!");
+        scoresc = new ScoreScene(this);
+        primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(sc.getScene());
         //setMain();
         primaryStage.show();
@@ -47,7 +57,15 @@ public class Main extends Application {
         root.getChildren().add(btn);
         
         mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        btn.setOnAction(e -> setQuestionScene());
+        btn.setOnAction(e -> setScoreScene());
+        //btn.setOnAction(e -> popUp());
+        //test
+        stagepop.setOnCloseRequest(event -> {
+        System.out.println("Stage is closing"); 
+        stagepop.hide();
+        stagepop.close();
+        System.out.println("closed");
+        });
     }  
     public void setQuestionScene()
     {
@@ -61,16 +79,34 @@ public class Main extends Application {
     {
         tempScene = mainScene;
         stage.setScene(tempScene);
+        //stage.initModality(Modality.WINDOW_MODAL);
     }
     public void setScoreScene()
     {
-        //tempScene = scoreScene;
-        //stage.setScene(tempScene);
+        tempScene = scoresc.getScene();
+        stage.setScene(tempScene);
+        //stage.initModality(Modality.WINDOW_MODAL);
     }
     public void setStartScene()
     {
         tempScene = sc.getScene();
         stage.setScene(tempScene);
+    }
+    public void setPopupScene(Scene scene)
+    {
+        System.out.println("kom in i main");
+        tempScene = scene;
+                //sc.getPopupScene();
+        stagepop.setScene(tempScene);
+        stagepop.initModality(Modality.APPLICATION_MODAL); //ger popupkänslan
+        stagepop.show(); //måste dock fixa visible-shizzle genom close()
+        
+    }
+    public void closePopupStage()
+    {
+        System.out.println("tjenalolol");
+        stagepop.close();
+        System.out.println("tvåtvå");
     }
     public int getBoardHeight()
     {
@@ -79,6 +115,23 @@ public class Main extends Application {
     public int getBoardThicc()
     {
         return 506;
+    }
+    public void popUp()
+    {
+        final Popup popup = new Popup();
+        popup.setX(300);
+        popup.setY(200);
+        //popup.show(primaryStage);
+        Button show = new Button("Cancel");
+        
+        popup.getContent().addAll(show);
+        popup.show(stage);
+        show.setOnAction(e -> {popup.hide(); System.out.println("hejdå");});
+        
+        //skapa popupruta
+        //innehåller progressbar
+        //samt knapp cancel
+        //kopplad till boolean
     }
         
 //        Button btn = new Button();
