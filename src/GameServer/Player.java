@@ -20,13 +20,15 @@ public class Player extends Thread {
     }
 
     @Override
-    public void run() {
-        System.out.println("run");
-        try {
+    public void run(){
+        try{
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-            output.writeObject("Hello from server");
-        } catch (IOException e) {
+            output.writeObject(d.getALL());
+//            output.writeObject(d.getFirst());
+//            output.writeObject(d.getByNum(0));
+        }
+        catch(Exception e){
             e.printStackTrace();
         } finally {
             try {
