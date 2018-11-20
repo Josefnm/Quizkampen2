@@ -27,6 +27,7 @@ public class Player {
          
         try{
             output = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("player out");
             input = new ObjectInputStream(socket.getInputStream());
         }
         catch(Exception e){
