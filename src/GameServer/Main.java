@@ -2,8 +2,15 @@ package GameServer;
 
 public class Main {
 
-    public static void main(String[] args) {
-       
+    Server server;
+
+   
+    public Main() {
+        server = new Server();
+        
     }
 
+    public static void main(String[] args) {
+        Main main = new Main();
+    }
 }
