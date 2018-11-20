@@ -53,6 +53,8 @@ public class Dao {
         }
         return result;
     }
-    
+    public List<QandA> getAllQ(){   //
+        return qAndAn;  //
+    }   //    
     
 }

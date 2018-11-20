@@ -1,183 +1,39 @@
 package GameClient;
 
-import GameServer.Question;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class Client {
 
-public class Client{
-    ObjectInputStream in;
-    ObjectOutputStream out;
-    int PORT = 12345;
-    Socket socket;    
-    
-//    private JFrame frame = new JFrame("Quiz Nu");
-//    private JLabel question = new JLabel("");
-//    private JButton butA = new JButton("");
-//    private JButton butB = new JButton("");
-//    private JButton butC = new JButton("");
-//    private JButton butD = new JButton("");
-////    private JButton butColor = new JButton();
-//    private JButton next = new JButton("next");
-//    private JPanel panelBtu = new JPanel();
-//    private JPanel panelAll = new JPanel();
-//    private static int PORT = 8901;
-//    private Socket socket;
-////    private PrintWriter out;
-////    private BufferedReader in;
-//    private ObjectOutputStream out;
-//    private ObjectInputStream in;
-//    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
-//    private int num =0;
-//    private int nextNum =100;
+    private final String address;
+    private final int port;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
 
-    public Client(String adress) throws IOException{
-        
-        
-        socket = new Socket(adress, PORT);
-        in = new ObjectInputStream(socket.getInputStream());
-        out = new ObjectOutputStream(socket.getOutputStream());
+    public Client() throws IOException {
+        this.address = "127.0.0.1";
+        this.port = 12345;
+
+        Socket socket = new Socket(address, port);
+        inStream = new ObjectInputStream(socket.getInputStream());
+        outStream = new ObjectOutputStream(socket.getOutputStream());
         Object input;
-//        List<Object> input;
-        try{
-//            while(true){
-                if((input=in.readObject())!=null){
-                    System.out.println("yes");
-                    System.out.println(((List<Question>) input).get(0).getFraga());
-                    System.out.println(((List<Question>) input).get(1).getFraga());
-//                        System.out.println(((Question[]) input)[0].getFraga());
-//                        System.out.println(((Question[]) input)[1].getFraga());
-//                    
-//                    if(input instanceof GameServer.Question){
-//                        System.out.println(((GameServer.Question)input).getFraga());
-//                        System.out.println(((GameServer.Question)input).getAmne());
-//                        System.out.println(((GameServer.Question)input).getValjningar(0));
-//                        System.out.println(((GameServer.Question)input).getValjningar(1));
-//                        System.out.println(((GameServer.Question)input).getValjningar(2));
-//                        System.out.println(((GameServer.Question)input).getValjningar(3));
-//                        System.out.println(((GameServer.Question)input).getSvar());
-//                        System.out.println(((GameServer.Question)input).getResult());
-//                    }
-                }
+    }
+
+    public ObjectInputStream getInStream() {
+        return inStream;
+    }
+
+    public void sendObject(Object object) {
+        try {
+            outStream.writeObject(object);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }        
-        
-        
-//        socket = new Socket(serverAddress, PORT);
-//        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//        out = new PrintWriter(socket.getOutputStream(), true);
-//        panelBtu.setLayout(new GridLayout(2,2));
-//        panelAll.setLayout(new BorderLayout());
-//        panelBtu.add(butA);
-//        panelBtu.add(butB);
-//        panelBtu.add(butC);
-//        panelBtu.add(butD);
-//        next.addActionListener(nextQ ->{   //Lamda
-//            out.println("next , " + nextNum);
-//            nextNum = nextNum+1;
-//            butA.setBackground(null);
-//            butB.setBackground(null);
-//            butC.setBackground(null);
-//            butD.setBackground(null);
-//        });
-//        butA.addActionListener(this);
-//        butB.addActionListener(this);
-//        butC.addActionListener(this);
-//        butD.addActionListener(this);
-//        panelAll.add(question, BorderLayout.NORTH);
-//        panelAll.add(panelBtu, BorderLayout.CENTER);
-////        panelAll.add(butColor, BorderLayout.WEST);
-//        panelAll.add(next, BorderLayout.SOUTH);
-//        frame.add(panelAll);
-//        frame.pack();
-//        
-//    }
-//    public void play() throws Exception{
-//        String response;
-//        String[] choice;
-//        try{
-//            while((response = in.readLine()) != null){
-//                if((response.startsWith("yes"))){
-//                    choice = response.split(",");
-//                    for(int i=0; i<4; i++){
-//                        if(buttons[i].getText().equals(choice[1])){
-//                            buttons[i].setBackground(Color.green);
-//                            buttons[i].repaint();
-//                        }
-//                    }
-//                }
-//                else if((response.startsWith("no"))){
-//                    choice = response.split(",");
-//                    for(int i=0; i<4; i++){
-//                        if(buttons[i].getText().equals(choice[1])){
-//                            buttons[i].setBackground(Color.green);
-//                            buttons[i].repaint();
-//                        }
-//                        if(buttons[i].getText().equals(choice[2])){
-//                            buttons[i].setBackground(Color.red);
-//                            buttons[i].repaint();
-//                        }
-//                    }                    
-//                }
-//                else{
-//                    choice = response.split(",");
-//                    question.setText(choice[0]);
-//                    butA.setText(choice[1]);
-//                    butA.repaint();
-//                    butB.setText(choice[2]);
-//                    butB.repaint();
-//                    butC.setText(choice[3]);
-//                    butC.repaint();
-//                    butD.setText(choice[4]);
-//                    butD.repaint();
-//                }
-//            }
-//        }
-//        finally{
-//            socket.close();
-//        }
-//    } 
-// 
-//    public static void main(String[] args) throws Exception{
-//        while(true){
-//            String serverAddress = (args.length == 0)? "localhost" : args[1];
-//            Client client = new Client(serverAddress);
-//            client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            client.frame.setSize(240, 160);
-//            client.frame.setLocation(200, 200);
-//            client.frame.setVisible(true);
-//            client.play();
-//        }
-//    }    
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        JButton answer = (JButton)e.getSource();
-//        num = num + 1;
-//        out.println(answer.getText()+","+num);
-//        if(num==2) num=0;
-//    }
-    public static void main(String[] args) throws IOException{
-        String serverAddress = (args.length == 0)? "localhost" : args[1];
-        Client client = new Client(serverAddress);            
     }
     
 }
