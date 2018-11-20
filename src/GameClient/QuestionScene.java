@@ -45,6 +45,7 @@ public class QuestionScene {
        grid.add((buttons.get(3)),1,1);
 
        Button next = new Button("Next");
+       next.setOnAction(e -> main.setStartScene());
        next.setMinSize(50,25);
        next.setOnAction(setScene);
        hbox.getChildren().add(next);
