@@ -46,7 +46,7 @@ public class Main extends Application {
         root.getChildren().add(btn);
         
         mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        btn.setOnAction(e -> setStartScene());
+        btn.setOnAction(e -> setQuestionScene());
     }  
     public void setQuestionScene()
     {

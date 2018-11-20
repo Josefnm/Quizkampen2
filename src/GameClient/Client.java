@@ -1,5 +1,6 @@
 package GameClient;
 
+import GameServer.Question;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -7,23 +8,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+public class Client {
 
-public class Client{
-    ObjectInputStream in;
-    ObjectOutputStream out;
-    int PORT = 12345;
-    Socket socket;    
-    
+    private final String address;
+    private final int port;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
+
 //    private JFrame frame = new JFrame("Quiz Nu");
 //    private JLabel question = new JLabel("");
 //    private JButton butA = new JButton("");
@@ -43,29 +43,40 @@ public class Client{
 //    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
 //    private int num =0;
 //    private int nextNum =100;
+    public Client() throws IOException {
+        this.address = "127.0.0.1";
+        this.port = 12345;
 
-    public Client(String adress) throws IOException{
-        
-        
-        socket = new Socket(adress, PORT);
-        in = new ObjectInputStream(socket.getInputStream());
-        out = new ObjectOutputStream(socket.getOutputStream());
+        Socket socket = new Socket(address, port);
+        inStream = new ObjectInputStream(socket.getInputStream());
+        outStream = new ObjectOutputStream(socket.getOutputStream());
         Object input;
-        try{
+//        List<Object> input;
+        try {
 //            while(true){
-                if((input=in.readObject())!=null){
-                    System.out.println("yes");
-                    if(input instanceof GameServer.Question)
-                        System.out.println(((GameServer.Question)input).getFraga());
-                }
-//            }
-        }
-        catch(Exception e){
+            while ((input = inStream.readObject()) != null) {
+                System.out.println("yes");
+                System.out.println(((List<Question>) input).get(0).getQuestion());
+                System.out.println(((List<Question>) input).get(1).getQuestion());
+//                        System.out.println(((Question[]) input)[0].getFraga());
+//                        System.out.println(((Question[]) input)[1].getFraga());
+//                    
+//                    if(input instanceof GameServer.Question){
+//                        System.out.println(((GameServer.Question)input).getFraga());
+//                        System.out.println(((GameServer.Question)input).getAmne());
+//                        System.out.println(((GameServer.Question)input).getAnswer(0));
+//                        System.out.println(((GameServer.Question)input).getAnswer(1));
+//                        System.out.println(((GameServer.Question)input).getAnswer(2));
+//                        System.out.println(((GameServer.Question)input).getAnswer(3));
+//                        System.out.println(((GameServer.Question)input).getSvar());
+//                        System.out.println(((GameServer.Question)input).getResult());
+//                    }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }        
-        
-        
+    }
+
 //        socket = new Socket(serverAddress, PORT);
 //        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 //        out = new PrintWriter(socket.getOutputStream(), true);
@@ -108,61 +119,8 @@ public class Client{
 //                            buttons[i].repaint();
 //                        }
 //                    }
-//                }
-//                else if((response.startsWith("no"))){
-//                    choice = response.split(",");
-//                    for(int i=0; i<4; i++){
-//                        if(buttons[i].getText().equals(choice[1])){
-//                            buttons[i].setBackground(Color.green);
-//                            buttons[i].repaint();
-//                        }
-//                        if(buttons[i].getText().equals(choice[2])){
-//                            buttons[i].setBackground(Color.red);
-//                            buttons[i].repaint();
-//                        }
-//                    }                    
-//                }
-//                else{
-//                    choice = response.split(",");
-//                    question.setText(choice[0]);
-//                    butA.setText(choice[1]);
-//                    butA.repaint();
-//                    butB.setText(choice[2]);
-//                    butB.repaint();
-//                    butC.setText(choice[3]);
-//                    butC.repaint();
-//                    butD.setText(choice[4]);
-//                    butD.repaint();
-//                }
-//            }
-//        }
-//        finally{
-//            socket.close();
-//        }
-//    } 
-// 
-//    public static void main(String[] args) throws Exception{
-//        while(true){
-//            String serverAddress = (args.length == 0)? "localhost" : args[1];
-//            Client client = new Client(serverAddress);
-//            client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            client.frame.setSize(240, 160);
-//            client.frame.setLocation(200, 200);
-//            client.frame.setVisible(true);
-//            client.play();
-//        }
-//    }    
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        JButton answer = (JButton)e.getSource();
-//        num = num + 1;
-//        out.println(answer.getText()+","+num);
-//        if(num==2) num=0;
-//    }
-    public static void main(String[] args) throws IOException{
-        String serverAddress = (args.length == 0)? "localhost" : args[1];
-        Client client = new Client(serverAddress);            
-    }
-    
+//}
+
+//}
+    //}
 }

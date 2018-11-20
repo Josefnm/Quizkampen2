@@ -2,39 +2,34 @@ package GameServer;
 
 import java.io.Serializable;
 
-public class Question implements Serializable{
-    private String amne;
-    private String fraga;
-    private String[] valjningar;
-    //private String result;
-    private String svar;
+public class Question implements Serializable {
+
+    private String category;
+    private String question;
+    private String[] answers;
     
-    public Question(String amne, String fraga, String[] valjningar, /*String result,*/ String svar, String str){
-        this.amne=amne;
-        this.fraga=fraga;
-        this.valjningar=valjningar;
-        //this.result=result;
-        this.svar=svar;
-    }
+    private String correctAnswer;
     
-//    public String getResult(){
-//        return result;
-//    }
-
-    public String getAmne() {
-        return amne;
+    public Question(String category, String question, String[] answers, String correctAnswer){
+        this.category=category;
+        this.question=question;
+        this.answers=answers;
+        this.correctAnswer=correctAnswer;
     }
 
-    public String getFraga() {
-        return fraga;
+    public String getCategory() {
+        return category;
     }
 
-    public String getValjningar(int i) {
-        return valjningar[i];
+    public String getQuestion() {
+        return question;
     }
 
-    public String getSvar() {
-        return svar;
+    public String getAnswer(int i) {
+        return answers[i];
     }
-    
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
 }
