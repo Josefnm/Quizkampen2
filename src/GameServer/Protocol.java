@@ -30,6 +30,7 @@ public class Protocol {
                 return player2;
             }
         }
+        player1.setIsAvailable();
         return null;
     }
 }
