@@ -22,6 +22,7 @@ public class GameRoom extends Thread{
             String p1info="";
             String p2info="";
             p1.output.writeObject(d.getAllQ());
+            System.out.println("p1out");
             p2.output.writeObject("wait");
             while(true){
                 if((in = p1.input.readObject()) != null){
