@@ -21,28 +21,9 @@ public class Client {
 
     private final String address;
     private final int port;
-    private ObjectInputStream inStream;
-    private ObjectOutputStream outStream;
+    protected ObjectInputStream inStream;
+    protected ObjectOutputStream outStream;
 
-//    private JFrame frame = new JFrame("Quiz Nu");
-//    private JLabel question = new JLabel("");
-//    private JButton butA = new JButton("");
-//    private JButton butB = new JButton("");
-//    private JButton butC = new JButton("");
-//    private JButton butD = new JButton("");
-////    private JButton butColor = new JButton();
-//    private JButton next = new JButton("next");
-//    private JPanel panelBtu = new JPanel();
-//    private JPanel panelAll = new JPanel();
-//    private static int PORT = 8901;
-//    private Socket socket;
-////    private PrintWriter out;
-////    private BufferedReader in;
-//    private ObjectOutputStream out;
-//    private ObjectInputStream in;
-//    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
-//    private int num =0;
-//    private int nextNum =100;
     public Client() throws IOException {
         this.address = "127.0.0.1";
         this.port = 12345;
@@ -53,7 +34,6 @@ public class Client {
         Object input;
 //        List<Object> input;
         try {
-//            while(true){
             while ((input = inStream.readObject()) != null) {
                 System.out.println("yes");
                 System.out.println(((List<Question>) input).get(0).getQuestion());

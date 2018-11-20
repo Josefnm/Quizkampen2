@@ -1,5 +1,6 @@
 package GameClient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -24,9 +25,9 @@ public class QuestionScene {
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
 
-   QuestionScene(Main main){
+   QuestionScene(Main main) throws IOException{
        this.main = main;
-
+       main.client.outStream.writeObject("");
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
 
