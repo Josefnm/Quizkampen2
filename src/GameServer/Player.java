@@ -21,7 +21,7 @@ public class Player extends Thread {
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
-        protocol.playerHandler.addPlayer(this);
+        protocol.playerList.addPlayer(this);
     }
 
     @Override
