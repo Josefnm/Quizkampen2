@@ -35,7 +35,7 @@ public class QuestionList {
         return questions.get(num);
     }
 
-    public List<Question> getFour() { //för att testa
+    public List<Question> getFour() {//för att testa
         return fourQuestions;
     }
 }
