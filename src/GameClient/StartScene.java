@@ -121,7 +121,7 @@ public class StartScene { //fixar abstrakt senare
 
         //adda progressbar 
         //popup.show(primaryStage);
-        Button show = new Button("Cancel");
+        show = new Button("Cancel");
         Text searching = new Text("Letar efter spelare...");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, show);
@@ -141,23 +141,27 @@ public class StartScene { //fixar abstrakt senare
             System.out.println("nukörvi");
         });
         System.out.println("before thread");
+
         new Thread(() -> { //annars hängde sig popupen
             System.out.println("thread start");
+
             try {
+
                 ArrayList<Question> input = (ArrayList) client.getInStream().readObject();
                 System.out.println("input");
+
             } catch (IOException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                main.setQuestionScene();
-                //TODO
-                //
-                //qs.setQuestion(input);
-                main.closePopupStage();
-            });
+                    //qs.setQuestions(input);
+                    // qs.setNextQuestion();
+                   main.setQuestionScene();
+                    main.closePopupStage();
+                });
+
         }).start();
 //        Object input=client.getInStream().readObject();
 //        main.setQuestionScene();

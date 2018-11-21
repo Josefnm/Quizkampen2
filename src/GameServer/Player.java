@@ -15,6 +15,7 @@ public class Player extends Thread {
     ObjectInputStream inStream;
     ObjectOutputStream outStream;
     Protocol protocol;
+    GameRoom gameRoom;
     Player opponent;
     private boolean isAvailable = false; //kan starta nytt spel
 
@@ -22,7 +23,7 @@ public class Player extends Thread {
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
-        protocol.playerHandler.addPlayer(this);
+        protocol.playerList.addPlayer(this);
     }
 
     @Override
@@ -31,33 +32,21 @@ public class Player extends Thread {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            //outStream.writeObject(protocol.questionList.getFour()); //testkod
             while (true) {
                 input = inStream.readObject();
-                //System.out.println(input.toString());
                 protocol.getResponse(this, input.toString());
             }
-//            while (true) {
-//                input = inStream.readObject();
-//                System.out.println(input.toString());
-//                if (input.toString().equals("start")) {
-//                    protocol.getOpponent(this);
-//                }
+
             }
-        catch (IOException e) {
+        catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
                 socket.close();
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void setOpponent(Player opponent) {
-        this.opponent = opponent;
-        isAvailable = false;
     }
 
     public void startGame() {
@@ -73,7 +62,7 @@ public class Player extends Thread {
         return isAvailable;
     }
 
-    public void setIsAvailable() {
-        isAvailable = true;
+    public void setIsAvailable(Boolean bool) {
+        isAvailable = bool;
     }
 }

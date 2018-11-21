@@ -17,9 +17,7 @@ public class Client{
     public Client() throws IOException {
         this.address = "127.0.0.1";
         this.port = 12345;
-     //   Question questionFromServer;
-        String quest;
-        String[] answers= new String[4];
+
         Socket socket = new Socket(address, port);
         inStream = new ObjectInputStream(socket.getInputStream());
         outStream = new ObjectOutputStream(socket.getOutputStream());
