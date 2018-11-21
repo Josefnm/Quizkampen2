@@ -29,15 +29,15 @@ public class QuestionScene {
    QuestionScene(Main main){
        System.out.println("test");
        this.main = main;
-       try{
-            if((inline = main.client.getInStream().readObject()) != null){
-                svar[0] = ((ArrayList<Question>) inline).get(0).getAnswer(0);
-                System.out.println(svar[0]);
-            }
-       }
-       catch(Exception e){
-           e.printStackTrace();
-       }
+//       try{
+//            if((inline = main.client.getInStream().readObject()) != null){
+//                svar[0] = ((ArrayList<Question>) inline).get(0).getAnswer(0);
+//                System.out.println(svar[0]);
+//            }
+//       }
+//       catch(Exception e){
+//           e.printStackTrace();
+//       }
 
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
