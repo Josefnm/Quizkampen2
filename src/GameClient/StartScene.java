@@ -143,12 +143,13 @@ public class StartScene { //fixar abstrakt senare
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                   main.qs.setQuestions(input.getQuestions());
-                   main.qs.setNextQuestion();
-                   main.setQuestionScene();
-                   main.closePopupStage();
-                });
-
+                main.setQuestionScene();
+                //visa
+                //TODO
+                //
+                //qs.setQuestion(input);
+                main.closePopupStage();
+            });
         }).start();
 //        Object input=client.getInStream().readObject();
 //        main.setQuestionScene();
