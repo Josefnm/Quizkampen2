@@ -40,7 +40,6 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
-    StartPacket input;
 
     public StartScene(Main main) {
         this.main = main;
@@ -123,7 +122,7 @@ public class StartScene { //fixar abstrakt senare
 
         //adda progressbar 
         //popup.show(primaryStage);
-        show = new Button("Cancel");
+        Button show = new Button("Cancel");
         Text searching = new Text("Letar efter spelare...");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, show);
@@ -143,13 +142,12 @@ public class StartScene { //fixar abstrakt senare
             System.out.println("nukörvi");
         });
         System.out.println("before thread");
-        
-        
+
         new Thread(() -> { //annars hängde sig popupen
             System.out.println("thread start");
             try {
-                
-                 input = (StartPacket) client.getInStream().readObject();
+
+                StartPacket input = (StartPacket) client.getInStream().readObject();
                 System.out.println("input recieved");
             } catch (IOException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,9 +155,9 @@ public class StartScene { //fixar abstrakt senare
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                
+
                 main.setQuestionScene();
-                
+
                 //TODO
                 //
                 //qs.setQuestion(input.getQuestions());

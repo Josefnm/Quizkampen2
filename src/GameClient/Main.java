@@ -99,10 +99,13 @@ public class Main extends Application {
         tempScene = scene;
         //sc.getPopupScene();
         stagepop.setScene(tempScene);
+        
         if (stagepop.getModality() == Modality.NONE) {
             stagepop.initModality(Modality.APPLICATION_MODAL);
-        } //ger popupkänslan
-         //måste dock fixa visible-shizzle genom close()
+
+        }
+        stagepop.show();//ger popupkänslan
+        //måste dock fixa visible-shizzle genom close()
 
     }
 
