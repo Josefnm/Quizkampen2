@@ -156,7 +156,7 @@ public class StartScene { //fixar abstrakt senare
             }
             Platform.runLater(() -> {
                 main.setQuestionScene();
-                
+                //visa
                 //TODO
                 //
                 //qs.setQuestion(input);
