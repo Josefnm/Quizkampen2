@@ -18,22 +18,27 @@ public class Protocol {
         switch (s) {
             case "start":
                 getOpponent(player);
+                break;
+            case "cancel":
+                player.setIsAvailable(false);
 
         }
     }
 
-    public Player getOpponent(Player player1) {
+    public void getOpponent(Player player1) {
         for (Player player2 : playerList.playerList) {
-            if (player2.getIsIsAvailable()) {
-                player2.setOpponent(player1);
-                player1.setOpponent(player2);
+            if (player2.getIsIsAvailable()&&player1!=player2) {
+                GameRoom gr=new GameRoom(player2, player1);
+ 
+                player2.setIsAvailable(false);
+                player1.setIsAvailable(false);
                 player1.startGame();
                 player2.startGame();
-                return player2;
+                return;
             }
         }
-        player1.setIsAvailable();
-        return null;
+        player1.setIsAvailable(true);
+       
     }
 
     public void changeCurrentPlayer() {
