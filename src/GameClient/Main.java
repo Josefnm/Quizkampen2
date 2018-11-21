@@ -97,7 +97,7 @@ public class Main extends Application {
     public void setPopupScene(Scene scene) {
         System.out.println("kom in i main");
         tempScene = scene;
-        //sc.getPopupScene();
+        sc.getPopupScene();
         stagepop.setScene(tempScene);
         if (stagepop.getModality() == Modality.NONE) {
             stagepop.initModality(Modality.APPLICATION_MODAL);

@@ -92,11 +92,13 @@ public class QuestionScene {
         Button btn = new Button();
         int i=0;
         for(Button b : buttons){
+            correctAnswer = questions.get(nextQuestion).getCorrectAnswer();
             b.setDisable(false);
             b.setStyle(btn.getStyle());
             b.setText(questions.get(nextQuestion).getAnswer(i));
             label.setText(questions.get(nextQuestion).getQuestion());
             i++;
+            
             }
         nextQuestion++;
 

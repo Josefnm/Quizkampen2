@@ -39,6 +39,8 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
+    ArrayList<Question> input;
+
 
     public StartScene(Main main) {
         this.main = main;
@@ -144,10 +146,9 @@ public class StartScene { //fixar abstrakt senare
 
         new Thread(() -> { //annars hängde sig popupen
             System.out.println("thread start");
-
             try {
 
-                ArrayList<Question> input = (ArrayList) client.getInStream().readObject();
+                this.input = (ArrayList) client.getInStream().readObject();
                 System.out.println("input");
 
             } catch (IOException ex) {
@@ -156,10 +157,10 @@ public class StartScene { //fixar abstrakt senare
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                    //qs.setQuestions(input);
-                    // qs.setNextQuestion();
+                   main.qs.setQuestions(input);
+                   main.qs.setNextQuestion();
                    main.setQuestionScene();
-                    main.closePopupStage();
+                   main.closePopupStage();
                 });
 
         }).start();
