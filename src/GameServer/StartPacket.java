@@ -3,10 +3,6 @@ package GameServer;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author Josef
- */
 public class StartPacket implements Serializable{
 
     private ArrayList<Question> questions;
