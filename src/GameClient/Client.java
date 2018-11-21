@@ -11,116 +11,56 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Collections;
 import java.util.List;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Client {
+public class Client{
 
     private final String address;
     private final int port;
-    private ObjectInputStream inStream;
-    private ObjectOutputStream outStream;
-
-//    private JFrame frame = new JFrame("Quiz Nu");
-//    private JLabel question = new JLabel("");
-//    private JButton butA = new JButton("");
-//    private JButton butB = new JButton("");
-//    private JButton butC = new JButton("");
-//    private JButton butD = new JButton("");
-////    private JButton butColor = new JButton();
-//    private JButton next = new JButton("next");
-//    private JPanel panelBtu = new JPanel();
-//    private JPanel panelAll = new JPanel();
-//    private static int PORT = 8901;
-//    private Socket socket;
-////    private PrintWriter out;
-////    private BufferedReader in;
-//    private ObjectOutputStream out;
-//    private ObjectInputStream in;
-//    JButton[] buttons = new JButton[]{butA, butB, butC, butD};
-//    private int num =0;
-//    private int nextNum =100;
-    public Client() throws IOException {
+    protected ObjectInputStream inStream;
+    protected ObjectOutputStream outStream;
+    Main main;
+    QuestionScene qs;
+    Object input;
+    
+    public Client() throws IOException, ClassNotFoundException {
+        qs = new QuestionScene();
         this.address = "127.0.0.1";
         this.port = 12345;
-
+        Question questionFromServer;
+        String quest;
+        String[] answers= new String[4];
         Socket socket = new Socket(address, port);
         inStream = new ObjectInputStream(socket.getInputStream());
         outStream = new ObjectOutputStream(socket.getOutputStream());
-        Object input;
 //        List<Object> input;
         try {
-//            while(true){
-            while ((input = inStream.readObject()) != null) {
-                System.out.println("yes");
-                System.out.println(((List<Question>) input).get(0).getQuestion());
-                System.out.println(((List<Question>) input).get(1).getQuestion());
-//                        System.out.println(((Question[]) input)[0].getFraga());
-//                        System.out.println(((Question[]) input)[1].getFraga());
-//                    
-//                    if(input instanceof GameServer.Question){
-//                        System.out.println(((GameServer.Question)input).getFraga());
-//                        System.out.println(((GameServer.Question)input).getAmne());
-//                        System.out.println(((GameServer.Question)input).getAnswer(0));
-//                        System.out.println(((GameServer.Question)input).getAnswer(1));
-//                        System.out.println(((GameServer.Question)input).getAnswer(2));
-//                        System.out.println(((GameServer.Question)input).getAnswer(3));
-//                        System.out.println(((GameServer.Question)input).getSvar());
-//                        System.out.println(((GameServer.Question)input).getResult());
-//                    }
+            input =inStream.readObject();
+                if(input instanceof Question){
+                    questionFromServer = (Question)input;
+                    System.out.println("hej" + questionFromServer.getCorrectAnswer()+ "hej");
+                    qs.label.setText(questionFromServer.getQuestion());
+                    for(int i = 0; i<4; i++){
+                        qs.svar.add(questionFromServer.getAnswer(i));
+                    }
+                    qs.correctAnswer = questionFromServer.getCorrectAnswer();
+                    Collections.shuffle(qs.svar);
+                    qs.setButtonText(qs.svar);
+                
+                
             }
-        } catch (Exception e) {
+        }
+         catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-//        socket = new Socket(serverAddress, PORT);
-//        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//        out = new PrintWriter(socket.getOutputStream(), true);
-//        panelBtu.setLayout(new GridLayout(2,2));
-//        panelAll.setLayout(new BorderLayout());
-//        panelBtu.add(butA);
-//        panelBtu.add(butB);
-//        panelBtu.add(butC);
-//        panelBtu.add(butD);
-//        next.addActionListener(nextQ ->{   //Lamda
-//            out.println("next , " + nextNum);
-//            nextNum = nextNum+1;
-//            butA.setBackground(null);
-//            butB.setBackground(null);
-//            butC.setBackground(null);
-//            butD.setBackground(null);
-//        });
-//        butA.addActionListener(this);
-//        butB.addActionListener(this);
-//        butC.addActionListener(this);
-//        butD.addActionListener(this);
-//        panelAll.add(question, BorderLayout.NORTH);
-//        panelAll.add(panelBtu, BorderLayout.CENTER);
-////        panelAll.add(butColor, BorderLayout.WEST);
-//        panelAll.add(next, BorderLayout.SOUTH);
-//        frame.add(panelAll);
-//        frame.pack();
-//        
-//    }
-//    public void play() throws Exception{
-//        String response;
-//        String[] choice;
-//        try{
-//            while((response = in.readLine()) != null){
-//                if((response.startsWith("yes"))){
-//                    choice = response.split(",");
-//                    for(int i=0; i<4; i++){
-//                        if(buttons[i].getText().equals(choice[1])){
-//                            buttons[i].setBackground(Color.green);
-//                            buttons[i].repaint();
-//                        }
-//                    }
-//}
-
-//}
-    //}
 }

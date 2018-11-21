@@ -15,7 +15,7 @@ class PlayerObject extends Thread{
     ObjectOutputStream output;
     ObjectInputStream input;
     Socket socket;
-    Dao d = new Dao();
+    //Dao d = new Dao();
     public PlayerObject(Socket socket){
         this.socket=socket;
     }
@@ -24,8 +24,8 @@ class PlayerObject extends Thread{
         try{
             output = new ObjectOutputStream(socket.getOutputStream());
             input = new ObjectInputStream(socket.getInputStream());
-//            output.writeObject(d.getAllQ());
-            output.writeObject(d.getTwo());
+//            output.writeObject(getAllQ());
+            //output.writeObject(d.getTwo());
 //            output.writeObject(d.getByNum(0));
             
         }

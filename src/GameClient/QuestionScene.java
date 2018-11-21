@@ -1,5 +1,7 @@
 package GameClient;
 
+import GameServer.Question;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -10,23 +12,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javax.swing.JButton;
+
 
 
 public class QuestionScene {
 
    Main main;
    private Scene scene;
-   String[] svar = new String[]{"Svar:","hej","sa","nej"};  //Questions ska in här istället
+   ArrayList<Question> questions;
+   ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
-
-   QuestionScene(Main main){
-       this.main = main;
-
+   Label label = new Label();
+   String correctAnswer;
+   QuestionScene() throws IOException, ClassNotFoundException{
+       
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
 
@@ -35,7 +35,6 @@ public class QuestionScene {
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
-           button.setText(svar[i]);
            buttons.add(button);
        }
 
@@ -49,7 +48,6 @@ public class QuestionScene {
        next.setOnAction(setScene);
        hbox.getChildren().add(next);
        hbox.setAlignment(Pos.CENTER);
-       Label label = new Label("Fråga");
        label.setMinSize(600, 200);
        label.setAlignment(Pos.CENTER);
        border.setTop(label);
@@ -65,7 +63,7 @@ public class QuestionScene {
        @Override
        public void handle(Event event) {
            Button btn = (Button)event.getSource();
-           if(btn.getText().equals(svar[0])){
+           if(btn.getText().equals(correctAnswer)){
                btn.setStyle("-fx-background-color: Green");
                for(Button b : buttons){
                    b.setDisable(true);
@@ -95,5 +93,13 @@ public class QuestionScene {
    }
    public ArrayList<Button> getButtons(){
        return buttons;
+   }
+   public void setButtonText(ArrayList <String> a){
+       for(int i=0; i<4; i++){
+           buttons.get(i).setText(a.get(i));
+       }
+   }
+   public void setQuestions(ArrayList <Question> questions){
+       this.questions = questions;
    }
 }

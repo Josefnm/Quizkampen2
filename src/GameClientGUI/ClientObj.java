@@ -3,7 +3,7 @@
  */
 package GameClientGUI;
 
-import GameServer.Questions;
+import GameServer.QuestionList;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +30,7 @@ public class ClientObj {
             if((input=in.readObject()) != null){
                 System.out.println("oo");
 //                System.out.println(((List<Questions>) input).get(0).getFraga());
-                System.out.println(((Questions[]) input)[0].getFraga());
+//                System.out.println(((Questions[]) input)[0].getFraga());
 //                System.out.println(((Questions) input).getFraga());
             }
         }

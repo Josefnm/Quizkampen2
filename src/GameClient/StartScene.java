@@ -51,7 +51,7 @@ public class StartScene { //fixar abstrakt senare
         startbtn.setMinSize(150, 25);
 
         //lambda
-        startbtn.setOnAction(e -> {main.setMainScene(); System.out.println("hejdå");}); //hej funkar 100%
+       // startbtn.setOnAction(e -> {main.setMainScene(); System.out.println("hejdå");}); //hej funkar 100%
         //bonus, onclick, popop med spinning wheel + cancelknapp vars funktion stänger popupen
         
         
@@ -79,7 +79,7 @@ public class StartScene { //fixar abstrakt senare
         
         
 
-        this.startScene = new Scene(BP, main.getBoardHeight(), main.getBoardThicc());
+      //  this.startScene = new Scene(BP, main.getBoardHeight(), main.getBoardThicc());
         
         startScene.getStylesheets()
                 .add(StartScene.class
