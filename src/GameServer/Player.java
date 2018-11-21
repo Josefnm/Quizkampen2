@@ -57,6 +57,7 @@ public class Player extends Thread {
                     .writeObject(new StartPacket(protocol.questionList
                             .getFour(), gameRoom
                                     .isCurrentPlayer(this)));
+            System.out.println("out");
 
         } catch (IOException ex) {
             Logger

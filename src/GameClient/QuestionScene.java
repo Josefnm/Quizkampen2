@@ -1,5 +1,6 @@
 package GameClient;
 
+import GameServer.Question;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -20,12 +21,23 @@ public class QuestionScene {
 
    Main main;
    private Scene scene;
-   String[] svar = new String[]{"Svar:","hej","sa","nej"};  //Questions ska in här istället
+   String[] svar; //= new String[]{"Svar:","hej","sa","nej"};  //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
+   Object inline;
 
    QuestionScene(Main main){
+       System.out.println("test");
        this.main = main;
+       try{
+            if((inline = main.client.getInStream().readObject()) != null){
+                svar[0] = ((ArrayList<Question>) inline).get(0).getAnswer(0);
+                System.out.println(svar[0]);
+            }
+       }
+       catch(Exception e){
+           e.printStackTrace();
+       }
 
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
@@ -35,7 +47,7 @@ public class QuestionScene {
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
-           button.setText(svar[i]);
+           button.setText(svar[0]);
            buttons.add(button);
        }
 

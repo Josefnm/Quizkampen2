@@ -19,6 +19,7 @@ public class Server {
             while (true) {
                 final Socket socket = listener.accept();
                 Player player = new Player(socket, protocol);
+                player.startGame();
                 player.start();
             }
         } catch (IOException ex) {

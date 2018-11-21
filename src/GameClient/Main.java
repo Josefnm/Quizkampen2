@@ -28,7 +28,7 @@ public class Main extends Application {
     private Stage stage;
     StartScene sc;
     Client client;
-    Scene tempScene;
+    Scene tempScene; 
     QuestionScene qs;
     Scene mainScene;
     ScoreScene scoresc;

@@ -24,6 +24,16 @@ public class Protocol {
 
         }
     }
+    public void getResponse(Player player, int s) {
+//        switch (s) {
+//            case "start":
+//                getOpponent(player);
+//                break;
+//            case "cancel":
+//                player.setIsAvailable(false);
+//
+//        }
+    }
 
     public void getOpponent(Player player1) {
         for (Player player2 : playerList.playerList) {
