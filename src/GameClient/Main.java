@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,21 +37,20 @@ public class Main extends Application {
     Stage stagepop;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
 //        stage = primaryStage;
-//        Scene scene = logInScene();
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
+//      //  sc = new StartScene(this);
+////        qs = new QuestionScene(this);
+        primaryStage.setTitle("Quiz!");
 
         client = new Client();
         stage = primaryStage;
         stagepop = new Stage();
         sc = new StartScene(this);
-        qs = new QuestionScene(this);
+        qs = new QuestionScene();
         scoresc = new ScoreScene(this);
         primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(sc.getScene());
-        //setMain();
         primaryStage.show();
 
         Button btn = new Button("lol");
@@ -97,7 +97,7 @@ public class Main extends Application {
     public void setPopupScene(Scene scene) {
         System.out.println("kom in i main");
         tempScene = scene;
-        //sc.getPopupScene();
+        sc.getPopupScene();
         stagepop.setScene(tempScene);
         
         if (stagepop.getModality() == Modality.NONE) {

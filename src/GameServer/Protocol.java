@@ -27,7 +27,8 @@ public class Protocol {
     }
 
     public void getResponse(Player player, int s) {
-        if (player.gameRoom.currentPlayer != player) {
+        System.out.println("wrong response");
+        if (player.getGameRoom().currentPlayer != player) {
 
         }
     }
@@ -36,8 +37,8 @@ public class Protocol {
         for (Player player2 : playerList.playerList) {
             if (player2.getIsIsAvailable() && player1 != player2) {
                 GameRoom gr = new GameRoom(player2, player1);
-                player2.setIsAvailable(false);
-                player1.setIsAvailable(false);
+                player2.setGameRoom(gr);
+                player1.setGameRoom(gr);
                 player1.startGame();
                 player2.startGame();
                 return;

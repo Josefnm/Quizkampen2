@@ -7,12 +7,12 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Client {
+public class Client{
 
     private final String address;
     private final int port;
-    private ObjectInputStream inStream;
-    private ObjectOutputStream outStream;
+    protected ObjectInputStream inStream;
+    protected ObjectOutputStream outStream;
 
     public Client() throws IOException {
         this.address = "127.0.0.1";

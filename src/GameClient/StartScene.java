@@ -4,12 +4,9 @@ import GameServer.Question;
 import GameServer.StartPacket;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,20 +15,11 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
 
-/**
- *
- * @author Josef
- */
+
 public class StartScene { //fixar abstrakt senare
 
     Scene startScene;
@@ -40,6 +28,8 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
+    StartPacket input;
+
 
     public StartScene(Main main) {
         this.main = main;
@@ -147,22 +137,18 @@ public class StartScene { //fixar abstrakt senare
             System.out.println("thread start");
             try {
 
-                StartPacket input = (StartPacket) client.getInStream().readObject();
+                input = (StartPacket) client.getInStream().readObject();
                 System.out.println("input recieved");
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
+                   main.qs.setQuestions(input.getQuestions());
+                   main.qs.setNextQuestion();
+                   main.setQuestionScene();
+                   main.closePopupStage();
+                });
 
-                main.setQuestionScene();
-
-                //TODO
-                //
-                //qs.setQuestion(input.getQuestions());
-                main.closePopupStage();
-            });
         }).start();
 //        Object input=client.getInStream().readObject();
 //        main.setQuestionScene();

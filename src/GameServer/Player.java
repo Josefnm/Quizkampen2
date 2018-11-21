@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ public class Player extends Thread {
     ObjectInputStream inStream;
     ObjectOutputStream outStream;
     Protocol protocol;
-    GameRoom gameRoom;
+    private GameRoom gameRoom;
     Player opponent;
     private boolean isAvailable = false; //kan starta nytt spel
 
@@ -36,10 +37,13 @@ public class Player extends Thread {
                 try {
                     int score = Integer.parseInt(input.toString());
                     protocol.getResponse(this, score);
+                    System.out.println("1");
                 } catch (Exception e) {
                     protocol.getResponse(this, input.toString());
+                    System.out.println("2");
                 }
             }
+
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -77,4 +81,14 @@ public class Player extends Thread {
                 = bool;
 
     }
+
+    public GameRoom getGameRoom() {
+        return gameRoom;
+    }
+
+    public void setGameRoom(GameRoom gameRoom) {
+        this.gameRoom = gameRoom;
+    }
+
+    
 }
