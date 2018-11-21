@@ -6,7 +6,7 @@ import java.util.List;
 public class QuestionList {
 
     ArrayList<Question> questions = new ArrayList<>();
-    List<Question> fourQuestions = new ArrayList<>();
+    ArrayList<Question> fourQuestions = new ArrayList<>();
 
     public QuestionList() {
         questions.add(new Question("Matte", "Vad är 1+1",
@@ -35,7 +35,7 @@ public class QuestionList {
         return questions.get(num);
     }
 
-    public List<Question> getFour() {//för att testa
+    public ArrayList<Question> getFour() {//för att testa
         return fourQuestions;
     }
     

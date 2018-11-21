@@ -13,5 +13,7 @@ public class GameRoom {
         this.player1 = player2;
         currentPlayer = player1;
     }
-
+    public boolean isCurrentPlayer(Player player){
+        return (currentPlayer==player);
+    }
 }

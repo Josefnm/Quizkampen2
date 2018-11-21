@@ -1,4 +1,4 @@
- package GameServer;
+package GameServer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,7 +33,12 @@ public class Player extends Thread {
             Object input;
             while (true) {
                 input = inStream.readObject();
-                protocol.getResponse(this, input.toString());
+                try {
+                    int score = Integer.parseInt(input.toString());
+                    protocol.getResponse(this, score);
+                } catch (Exception e) {
+                    protocol.getResponse(this, input.toString());
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -48,18 +53,28 @@ public class Player extends Thread {
 
     public void startGame() {
         try {
-            outStream.writeObject(protocol.questionList.getFour());
+            outStream
+                    .writeObject(new StartPacket(protocol.questionList
+                            .getFour(), gameRoom
+                                    .isCurrentPlayer(this)));
+
         } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            Logger
+                    .getLogger(Player.class
+                            .getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     public boolean getIsIsAvailable() {
         return isAvailable;
+
     }
 
-    public void setIsAvailable(Boolean bool) {
-        isAvailable = bool;
+    public void setIsAvailable(Boolean bool
+    ) {
+        isAvailable
+                = bool;
+
     }
 }
