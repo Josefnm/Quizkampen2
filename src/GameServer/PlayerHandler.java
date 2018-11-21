@@ -1,7 +1,6 @@
 package GameServer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerHandler {
 //lista på inloggade spelare, senare kan vi fixa så att de tas bort ifall de loggar ut
@@ -13,5 +12,8 @@ public class PlayerHandler {
 
     public void addPlayer(Player player) {
         playerList.add(player);
+    }
+    public void removePlayer(Player player){
+        playerList.remove(player);
     }
 }

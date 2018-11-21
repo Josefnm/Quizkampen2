@@ -6,7 +6,7 @@ public class Protocol {
     Ska kunna skicka tillbaka frågor, hitta motspelare, se om svar på 
     frågor är rätt osv*/
     PlayerHandler playerList;
-    QuestionList questionList;
+    private QuestionList questionList;
 
     public Protocol() {
         questionList = new QuestionList();
@@ -53,5 +53,9 @@ public class Protocol {
      */
     public void changeCurrentPlayer() {
 
+    }
+
+    public QuestionList getQuestionList() {
+        return questionList;
     }
 }
