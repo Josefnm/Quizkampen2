@@ -1,6 +1,7 @@
 package GameClient;
 
 import GameServer.Question;
+import GameServer.StartPacket;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -39,6 +40,7 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
+    StartPacket input;
 
     public StartScene(Main main) {
         this.main = main;
@@ -147,19 +149,20 @@ public class StartScene { //fixar abstrakt senare
             System.out.println("thread start");
             try {
                 
-                ArrayList<Question> input = (ArrayList) client.getInStream().readObject();
-                System.out.println("input");
+                 input = (StartPacket) client.getInStream().readObject();
+                System.out.println("input recieved");
             } catch (IOException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
+                
                 main.setQuestionScene();
                 
                 //TODO
                 //
-                //qs.setQuestion(input);
+                //qs.setQuestion(input.getQuestions());
                 main.closePopupStage();
             });
         }).start();
