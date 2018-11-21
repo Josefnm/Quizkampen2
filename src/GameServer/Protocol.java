@@ -21,15 +21,21 @@ public class Protocol {
                 break;
             case "cancel":
                 player.setIsAvailable(false);
+                break;
+
+        }
+    }
+
+    public void getResponse(Player player, int s) {
+        if (player.gameRoom.currentPlayer != player) {
 
         }
     }
 
     public void getOpponent(Player player1) {
         for (Player player2 : playerList.playerList) {
-            if (player2.getIsIsAvailable()&&player1!=player2) {
-                GameRoom gr=new GameRoom(player2, player1);
- 
+            if (player2.getIsIsAvailable() && player1 != player2) {
+                GameRoom gr = new GameRoom(player2, player1);
                 player2.setIsAvailable(false);
                 player1.setIsAvailable(false);
                 player1.startGame();
@@ -38,9 +44,12 @@ public class Protocol {
             }
         }
         player1.setIsAvailable(true);
-       
+
     }
 
+    /*
+    
+     */
     public void changeCurrentPlayer() {
 
     }
