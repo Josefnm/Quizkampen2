@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PlayerHandler {
 //lista på inloggade spelare, senare kan vi fixa så att de tas bort ifall de loggar ut
-    List<Player> playerList; 
+    ArrayList<Player> playerList; 
 
     public PlayerHandler() {
         this.playerList = new ArrayList<>();
@@ -14,5 +14,4 @@ public class PlayerHandler {
     public void addPlayer(Player player) {
         playerList.add(player);
     }
-
 }

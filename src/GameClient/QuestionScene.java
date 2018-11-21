@@ -25,7 +25,8 @@ public class QuestionScene {
    HBox hbox = new HBox();
    Label label = new Label();
    String correctAnswer;
-   QuestionScene() throws IOException, ClassNotFoundException{
+   int nextQuestion = 0;
+   QuestionScene() {
        
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
@@ -44,6 +45,7 @@ public class QuestionScene {
        grid.add((buttons.get(3)),1,1);
 
        Button next = new Button("Next");
+       next.setOnAction(e -> main.setStartScene());
        next.setMinSize(50,25);
        next.setOnAction(setScene);
        hbox.getChildren().add(next);
@@ -77,14 +79,28 @@ public class QuestionScene {
            }
        }
    };
-
+   
 
    EventHandler setScene = new EventHandler() {
        @Override
        public void handle(Event event) {
-
+           setNextQuestion();
        }
    };
+   
+   public void setNextQuestion(){
+        Button btn = new Button();
+        int i=0;
+        for(Button b : buttons){
+            b.setDisable(false);
+            b.setStyle(btn.getStyle());
+            b.setText(questions.get(nextQuestion).getAnswer(i));
+            label.setText(questions.get(nextQuestion).getQuestion());
+            i++;
+            }
+        nextQuestion++;
+
+   }
 
 
 

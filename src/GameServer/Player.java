@@ -14,7 +14,6 @@ public class Player extends Thread {
     Socket socket;
     ObjectInputStream inStream;
     ObjectOutputStream outStream;
-    ArrayList<Question> lista = new ArrayList<>();
     Protocol protocol;
     Player opponent;
     private boolean isAvailable = false; //kan starta nytt spel
@@ -32,12 +31,12 @@ public class Player extends Thread {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            Object output;
-
-            for(int i=0; i<4; i++){
-                lista.add(protocol.questionList.getByNum(i));
+            //outStream.writeObject(protocol.questionList.getFour()); //testkod
+            while (true) {
+                input = inStream.readObject();
+                //System.out.println(input.toString());
+                protocol.getResponse(this, input.toString());
             }
-            outStream.writeObject(lista.get(0));
 //            while (true) {
 //                input = inStream.readObject();
 //                System.out.println(input.toString());
@@ -74,5 +73,7 @@ public class Player extends Thread {
         return isAvailable;
     }
 
-
+    public void setIsAvailable() {
+        isAvailable = true;
+    }
 }
