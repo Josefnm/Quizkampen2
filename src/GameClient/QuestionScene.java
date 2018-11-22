@@ -16,12 +16,12 @@ import javafx.scene.layout.HBox;
 
 
 public class QuestionScene {
-   
+   ArrayList<ArrayList<Question>> twoQuestions = new ArrayList<>();
    ArrayList<String> points = new ArrayList<>();
    Button next = new Button("Next");
    Main main;
    private Scene scene;
-   ArrayList<Question> questions;
+   ArrayList<Question> question;
    ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
@@ -105,11 +105,11 @@ public class QuestionScene {
         Button btn = new Button();
         int i=0;
         for(Button b : buttons){
-            correctAnswer = questions.get(nextQuestion).getCorrectAnswer();
+            correctAnswer = question.get(nextQuestion).getCorrectAnswer();
             b.setDisable(false);
             b.setStyle(btn.getStyle());
-            b.setText(questions.get(nextQuestion).getAnswer(i));
-            label.setText(questions.get(nextQuestion).getQuestion());
+            b.setText(question.get(nextQuestion).getAnswer(i));
+            label.setText(question.get(nextQuestion).getQuestion());
             i++;
             
             }
@@ -130,7 +130,11 @@ public class QuestionScene {
            buttons.get(i).setText(a.get(i));
        }
    }
-   public void setQuestions(ArrayList <Question> questions){
-       this.questions = questions;
+   
+   public void getTwoQuestions(ArrayList<ArrayList<Question>> twoQuestions){
+       this.twoQuestions = twoQuestions;
+   }
+   public void setQuestion(ArrayList <Question> question){
+       this.question = question;
    }
 }

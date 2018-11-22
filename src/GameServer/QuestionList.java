@@ -2,12 +2,11 @@ package GameServer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class QuestionList {
 
-    ArrayList<Question> questions = new ArrayList<>();
-    List<Question> fourQuestions = new ArrayList<>();
-    ArrayList<List<Question>> questionLista = new ArrayList<>();
+    ArrayList<ArrayList<Question>> questionLista = new ArrayList<>();
     ArrayList<Question> matte = new ArrayList<>();
     ArrayList<Question> sport = new ArrayList<>();
     ArrayList<Question> historia = new ArrayList<>();
@@ -37,13 +36,39 @@ public class QuestionList {
         questionLista.add(natur);
         
     }
-
-    public Question getByNum(int num) {
-        return questions.get(num);
+    
+    // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan
+    public ArrayList<Question> setTwoQuestions(ArrayList<Question> a){
+        Random rand = new Random();
+        ArrayList <Question> twoQuestions = new ArrayList<>();
+        int temp= -1;
+        int i =0;
+        while(i<2){
+            int j = rand.nextInt(a.size());
+            if(temp!=j){
+                twoQuestions.add(a.get(j));
+                i++;
+            temp = j;
+            }
+        }   
+        return twoQuestions ;
     }
 
-    public List<Question> getFour(int i) {//för att testa
-        return questionLista.get(i);
+    public ArrayList<ArrayList<Question>> getTwoCategories() {//för att testa
+        Random rand = new Random();        
+        ArrayList<ArrayList<Question>> twoCategories = new ArrayList<>();
+        int temp= -1;
+        int i =0;
+        while(i<2){
+            int j = rand.nextInt(questionLista.size());
+            if(temp!=j){
+                twoCategories.add(setTwoQuestions(questionLista.get(j)));
+                i++;
+            temp = j;
+            }
+        }
+        return twoCategories;
     }
+    
     
 }
