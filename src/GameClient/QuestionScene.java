@@ -20,7 +20,7 @@ public class QuestionScene {
    Main main;
    private Scene scene;
 
-   ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
+   ArrayList<Question> questions = new ArrayList<>(); //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
    Label label = new Label();
