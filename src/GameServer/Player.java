@@ -4,7 +4,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +22,7 @@ public class Player extends Thread {
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
-        protocol.playerList.addPlayer(this);
+        protocol.getPlayerList().add(this);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class Player extends Thread {
                     int score = Integer.parseInt(input.toString());
                     protocol.getResponse(this, score);
                     System.out.println("1");
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     protocol.getResponse(this, input.toString());
                     System.out.println("2");
                 }
@@ -52,7 +51,7 @@ public class Player extends Thread {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                protocol.playerList.removePlayer(this);
+                protocol.getPlayerList().remove(this);
                 outStream.close();
                 inStream.close();
                 socket.close();
@@ -66,24 +65,19 @@ public class Player extends Thread {
     public void startGame() {
         try {
             outStream.writeObject(new StartPacket(protocol.getQuestionList()
-                            .getFour(), gameRoom.isCurrentPlayer(this)));
+                    .getFour(), gameRoom.isCurrentPlayer(this)));
 
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public boolean getIsIsAvailable() {
         return isAvailable;
-
     }
 
-    public void setIsAvailable(Boolean bool
-    ) {
-        isAvailable
-                = bool;
-
+    public void setIsAvailable(Boolean bool) {
+        isAvailable = bool;
     }
 
     public GameRoom getGameRoom() {
@@ -93,5 +87,4 @@ public class Player extends Thread {
     public void setGameRoom(GameRoom gameRoom) {
         this.gameRoom = gameRoom;
     }
-
 }
