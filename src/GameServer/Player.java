@@ -51,7 +51,8 @@ public class Player extends Thread {
 
     public void startGame() {
         try {
-            outStream.writeObject(protocol.questionList.getFour(0)); // 0 för att testa
+            outStream.writeObject(protocol.questionList.getTwoCategories()); // 0 för att testa
+            System.out.println("sent questions");
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
