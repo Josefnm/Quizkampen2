@@ -1,6 +1,7 @@
 package GameClient;
 
 import GameServer.Question;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -11,33 +12,27 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javax.swing.JButton;
+
 
 
 public class QuestionScene {
 
    Main main;
    private Scene scene;
-   String[] svar; //= new String[]{"Svar:","hej","sa","nej"};  //Questions ska in här istället
+ArrayList<Question> questions;
+   ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
+   Label label = new Label();
+   String correctAnswer;
+   int nextQuestion = 0;
+       
    Object inline;
 
-   QuestionScene(Main main){
+   QuestionScene(){
        System.out.println("test");
-       this.main = main;
-//       try{
-//            if((inline = main.client.getInStream().readObject()) != null){
-//                svar[0] = ((ArrayList<Question>) inline).get(0).getAnswer(0);
-//                System.out.println(svar[0]);
-//            }
-//       }
-//       catch(Exception e){
-//           e.printStackTrace();
-//       }
+       
+
 
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
@@ -47,7 +42,7 @@ public class QuestionScene {
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
-           button.setText(svar[0]);
+
            buttons.add(button);
        }
 
@@ -62,7 +57,6 @@ public class QuestionScene {
        next.setOnAction(setScene);
        hbox.getChildren().add(next);
        hbox.setAlignment(Pos.CENTER);
-       Label label = new Label("Fråga");
        label.setMinSize(600, 200);
        label.setAlignment(Pos.CENTER);
        border.setTop(label);
@@ -78,7 +72,7 @@ public class QuestionScene {
        @Override
        public void handle(Event event) {
            Button btn = (Button)event.getSource();
-           if(btn.getText().equals(svar[0])){
+           if(btn.getText().equals(correctAnswer)){
                btn.setStyle("-fx-background-color: Green");
                for(Button b : buttons){
                    b.setDisable(true);
@@ -97,9 +91,23 @@ public class QuestionScene {
    EventHandler setScene = new EventHandler() {
        @Override
        public void handle(Event event) {
-
+           setNextQuestion();
        }
    };
+   
+   public void setNextQuestion(){
+        Button btn = new Button();
+        int i=0;
+        for(Button b : buttons){
+            correctAnswer = questions.get(nextQuestion).getCorrectAnswer();
+            b.setDisable(false);
+            b.setStyle(btn.getStyle());
+            b.setText(questions.get(nextQuestion).getAnswer(i));
+            label.setText(questions.get(nextQuestion).getQuestion());
+            i++;
+            }
+        nextQuestion++;
+   }
 
 
 
@@ -108,5 +116,13 @@ public class QuestionScene {
    }
    public ArrayList<Button> getButtons(){
        return buttons;
+   }
+   public void setButtonText(ArrayList <String> a){
+       for(int i=0; i<4; i++){
+           buttons.get(i).setText(a.get(i));
+       }
+   }
+   public void setQuestions(ArrayList <Question> questions){
+       this.questions = questions;
    }
 }

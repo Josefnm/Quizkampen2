@@ -1,5 +1,6 @@
 package GameServer;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,7 +15,7 @@ public class Player extends Thread {
     ObjectInputStream inStream;
     ObjectOutputStream outStream;
     Protocol protocol;
-    GameRoom gameRoom;
+    private GameRoom gameRoom;
     Player opponent;
     private boolean isAvailable = false; //kan starta nytt spel
 
@@ -36,20 +37,31 @@ public class Player extends Thread {
     public void run() {
         try {
             Object input;
-            while (true) {
-                input = inStream.readObject();
+            while (!socket.isClosed()) {
+                try {
+                    input = inStream.readObject();
+                } catch (EOFException eofe) {
+                    break; //ifall klienten stängs
+                }
                 try {
                     int score = Integer.parseInt(input.toString());
                     protocol.getResponse(this, score);
+                    System.out.println("1");
                 } catch (Exception e) {
                     protocol.getResponse(this, input.toString());
+                    System.out.println("2");
                 }
+
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
+                protocol.playerList.removePlayer(this);
+                outStream.close();
+                inStream.close();
                 socket.close();
+                System.out.println("closed");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,15 +72,13 @@ public class Player extends Thread {
         try {
             System.out.println("try startgame");
             outStream
-                    .writeObject(new StartPacket(protocol.questionList
+                    .writeObject(new StartPacket(protocol.getQuestionList()
                             .getFour(), gameRoom
                                     .isCurrentPlayer(this)));
             System.out.println("out");
 
         } catch (IOException ex) {
-            Logger
-                    .getLogger(Player.class
-                            .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -84,4 +94,13 @@ public class Player extends Thread {
                 = bool;
 
     }
+
+    public GameRoom getGameRoom() {
+        return gameRoom;
+    }
+
+    public void setGameRoom(GameRoom gameRoom) {
+        this.gameRoom = gameRoom;
+    }
+
 }

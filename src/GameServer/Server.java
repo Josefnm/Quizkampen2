@@ -20,7 +20,7 @@ public class Server {
                 final Socket socket = listener.accept();
                 Player player = new Player(socket, protocol);
                 System.out.println("new player");
-                player.startGame();
+               
                 player.start();
             }
         } catch (IOException ex) {
