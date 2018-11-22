@@ -36,7 +36,7 @@ public class Client {
                     socket.close();
                     System.out.println("The server is shut down!");
                 } catch (IOException e) {
-                    /* failed */ }
+                    System.out.println("closing socket failed"); }
             }
         });
     }

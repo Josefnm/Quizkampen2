@@ -28,7 +28,7 @@ public class StartScene { //fixar abstrakt senare
     Scene popupScene;
     Button cancelPopupBtn;
     InfoPacket input;
-
+    Thread listener = null;
 
     public StartScene(GameMain main) {
         this.main = main;
@@ -123,30 +123,36 @@ public class StartScene { //fixar abstrakt senare
         main.setPopupScene(popupScene);
 
         //lambdaknappaction
-        cancelPopupBtn.setOnAction(e -> {
-            System.out.println("hejdu");
-            main.closePopupStage();
-            System.out.println("nukörvi");
-        });
         System.out.println("before thread");
 
-        new Thread(() -> { //annars hängde sig popupen
-            System.out.println("thread start");
-            try {
-                this.input = (InfoPacket) client.getInStream().readObject();
-                System.out.println("input");
-            } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (listener == null) { //annars blir det två trådar om man trycker cancel och sen start igen
+            listener = new Thread(() -> { //annars hängde sig popupen
+                System.out.println("thread start");
+                try {
+                    this.input = (InfoPacket) client.getInStream().readObject();
+                    System.out.println("input");
+                } catch (IOException | ClassNotFoundException ex) {
+                    Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
+                }
 //Platform.runlater anropar Application-tråden. Detta görs för att i javafx så kan bara scener köras från den tråden.
-            Platform.runLater(() -> { 
-                   main.questionScene.setQuestions(input.getQuestions());
-                   main.questionScene.setNextQuestion();
-                   main.setQuestionScene();
-                   main.closePopupStage();
+                Platform.runLater(() -> {
+                    main.questionScene.setQuestions(input.getQuestions());
+                    main.questionScene.setNextQuestion();
+                    main.setQuestionScene();
+                    main.closePopupStage();
                 });
 
-        }).start();
+            });
+            listener.start();
+        }
+        
+        cancelPopupBtn.setOnAction(e -> {
+            System.out.println("hejdu");
+            client.sendObject("cancel");
+            main.closePopupStage();
+
+            System.out.println("nukörvi");
+        });
 
         //skapa popupruta
         //innehåller progressbar

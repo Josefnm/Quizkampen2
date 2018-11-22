@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 
 public class Player extends Thread {
 
-    Socket socket;
-    ObjectInputStream inStream;
-    ObjectOutputStream outStream;
-    Protocol protocol;
+    private Socket socket;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
+    private Protocol protocol;
     private GameRoom gameRoom;
-    
+
     private boolean isAvailable = false; //kan starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {

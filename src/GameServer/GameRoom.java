@@ -10,14 +10,15 @@ public class GameRoom {
     ArrayList<boolean[]> player1Score = new ArrayList<>();
     ArrayList<boolean[]> player2Score = new ArrayList<>();
 
-    int currentRound = 0;
+    int currentRound = 0; 
+    
     private ArrayList<ArrayList<Question>> allQuestions;
 
     public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> allQuestions) {
         this.player1 = player1;
         this.player2 = player2;
 
-        this.allQuestions = allQuestions;
+        this.allQuestions = allQuestions; //de utvalda frågorna för spelomgången
     }
 
     public boolean isFirstPlayer(Player player) {
