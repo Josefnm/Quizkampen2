@@ -13,13 +13,13 @@ import javafx.scene.text.Text;
 public class ScoreScene {
 
     Scene scoreScene;
-    Main main;
+    GameMain main;
     Client client;
     QuestionScene qs;
     StartScene sc;
     Scene popUp;
 
-    public ScoreScene(Main main) {
+    public ScoreScene(GameMain main) {
         this.main = main;
 
         //label 1 "användarnamn"

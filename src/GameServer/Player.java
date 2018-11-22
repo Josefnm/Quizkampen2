@@ -15,7 +15,7 @@ public class Player extends Thread {
     ObjectOutputStream outStream;
     Protocol protocol;
     private GameRoom gameRoom;
-    Player opponent;
+    
     private boolean isAvailable = false; //kan starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
@@ -37,14 +37,7 @@ public class Player extends Thread {
                 } catch (EOFException eofe) {
                     break; //ifall klienten stängs
                 }
-                try {
-                    int score = Integer.parseInt(input.toString());
-                    protocol.getResponse(this, score);
-                    System.out.println("getResponse1");
-                } catch (NumberFormatException e) {
-                    protocol.getResponse(this, input.toString());
-                    System.out.println("getResponse2");
-                }
+                protocol.getResponse(this, input);
 
             }
         } catch (IOException | ClassNotFoundException ex) {
@@ -55,19 +48,16 @@ public class Player extends Thread {
                 outStream.close();
                 inStream.close();
                 socket.close();
-                System.out.println("closed");
+                System.out.println("closed and removed player");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void startGame() {
-        System.out.println("startGame");
+    public void Send(Object o) {
         try {
-              
-            outStream.writeObject(new StartPacket(gameRoom.getCurrentQuestions(), gameRoom.isCurrentPlayer(this)));
-            System.out.println("sent questions");
+            outStream.writeObject(o);
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -11,8 +11,8 @@ public class Client {
 
     private final String address;
     private final int port;
-    protected ObjectInputStream inStream;
-    protected ObjectOutputStream outStream;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
     private Socket socket;
 
     public Client() {
