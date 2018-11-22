@@ -44,8 +44,8 @@ public class Player extends Thread {
                     break; //ifall klienten stängs
                 }
                 try {
-                    int score = Integer.parseInt(input.toString());
-                    protocol.getResponse(this, score);
+//                    int score = Integer.parseInt(input.toString());
+//                    protocol.getResponse(this, score);
                     System.out.println("1");
                 } catch (Exception e) {
                     protocol.getResponse(this, input.toString());

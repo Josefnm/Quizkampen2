@@ -1,5 +1,10 @@
 package GameServer;
 
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 public class Protocol {
 
     /* Från den här klassen ska klientens föerfrågningar till servern hanteras.
@@ -7,10 +12,24 @@ public class Protocol {
     frågor är rätt osv*/
     PlayerHandler playerList;
     private QuestionList questionList;
+    Properties p;
+    String rondN;
+    String questionN;
+    
 
     public Protocol() {
         questionList = new QuestionList();
         playerList = new PlayerHandler();
+        p = new Properties();
+        try{
+            p.load(new FileInputStream("src\\gamesercer\\ronds.properites"));
+            System.out.println("properties");
+        }
+        catch(Exception e){
+            System.out.println("Filen kunde inte hittas");
+        }
+        p.getProperty("rond");
+        p.getProperty("questionsForeach");
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten
@@ -26,10 +45,10 @@ public class Protocol {
         }
     }
 
-    public void getResponse(Player player, int s) {
+    public void getResponse(Player player, boolean[] s) {
         System.out.println("wrong response");
         if (player.getGameRoom().currentPlayer != player) {
-
+            
         }
     }
 
@@ -55,8 +74,18 @@ public class Protocol {
     public void changeCurrentPlayer() {
 
     }
-
-    public QuestionList getQuestionList() {
+    
+    public QuestionList getQuestionList(){
         return questionList;
     }
+
+//    public ArrayList<Question> getQuestionList() {
+//        String rondN = p.getProperty("rond");
+//        String questionN = p.getProperty("questionsForeach");
+//        int rn = Integer.parseInt(rondN);
+//        int qn = Integer.parseInt(questionN);
+//        int total = rn * qn;
+//        
+//        return questionList.getQuestionList(total);
+//    }
 }

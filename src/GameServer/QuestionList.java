@@ -7,6 +7,7 @@ public class QuestionList {
 
     ArrayList<Question> questions = new ArrayList<>();
     ArrayList<Question> fourQuestions = new ArrayList<>();
+    ArrayList<Question> getQuestions = new ArrayList<>();
 
     public QuestionList() {
         questions.add(new Question("Matte", "Vad är 1+1",
@@ -38,5 +39,11 @@ public class QuestionList {
     public ArrayList<Question> getFour() {//för att testa
         return fourQuestions;
     }
+//    public ArrayList<Question> getQuestionList(int n) {
+//        for(int i=0; i<n; i++){
+//            getQuestions.add(questions.get(n));
+//        }
+//        return getQuestions;
+//    }
 
 }
