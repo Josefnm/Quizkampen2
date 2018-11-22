@@ -30,7 +30,7 @@ public class Main extends Application {
     StartScene sc;
     Client client;
     Scene tempScene;
-    QuestionScene qs;
+    QuestionScene questionScene;
     Scene mainScene;
     ScoreScene scoresc;
     //popuptest
@@ -40,14 +40,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
 //        stage = primaryStage;
 //      //  sc = new StartScene(this);
-////        qs = new QuestionScene(this);
+////        questionScene = new QuestionScene(this);
         primaryStage.setTitle("Quiz!");
 
         client = new Client();
         stage = primaryStage;
         stagepop = new Stage();
         sc = new StartScene(this);
-        qs = new QuestionScene();
+        questionScene = new QuestionScene();
         scoresc = new ScoreScene(this);
         primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(sc.getScene());
@@ -70,7 +70,7 @@ public class Main extends Application {
     }
 
     public void setQuestionScene() {
-        tempScene = qs.getScene();
+        tempScene = questionScene.getScene();
         stage.setScene(tempScene);
         //allt kan egentligen göras med en metod som tar in scenen de ska bytas till
         //med nackdelen att metoden skulle vara aningens mer otydlig då namnet

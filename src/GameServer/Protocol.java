@@ -38,7 +38,9 @@ public class Protocol {
     public void getOpponent(Player player1) {
         for (Player player2 : playerList) {
             if (player2.getIsIsAvailable() && player1 != player2) {
-                GameRoom gr = new GameRoom(player2, player1);
+                System.out.println(questionList.questionList.size());
+                ArrayList<ArrayList<Question>> tempQuestions=questionList.getTwoCategories();
+                GameRoom gr = new GameRoom(player2, player1,tempQuestions);
                 player2.setGameRoom(gr);
                 player1.setGameRoom(gr);
                 player1.startGame();

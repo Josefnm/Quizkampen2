@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-
 public class StartScene { //fixar abstrakt senare
 
     Scene startScene;
@@ -28,6 +27,7 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
+    //ArrayList<ArrayList<Question>> input;
     StartPacket input;
 
 
@@ -137,14 +137,18 @@ public class StartScene { //fixar abstrakt senare
             System.out.println("thread start");
             try {
 
-                input = (StartPacket) client.getInStream().readObject();
-                System.out.println("input recieved");
-            } catch (IOException | ClassNotFoundException ex) {
+                this.input = (StartPacket) client.getInStream().readObject();
+                System.out.println("input");
+
+            } catch (IOException ex) {
+                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                   main.qs.setQuestions(input.getQuestions());
-                   main.qs.setNextQuestion();
+                   
+                   main.questionScene.setQuestions(input.getQuestions());
+                   main.questionScene.setNextQuestion();
                    main.setQuestionScene();
                    main.closePopupStage();
                 });
