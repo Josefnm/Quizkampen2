@@ -123,11 +123,11 @@ public class QuestionScene {
    public ArrayList<Button> getButtons(){
        return buttons;
    }
-   public void setButtonText(ArrayList <String> a){
-       for(int i=0; i<4; i++){
-           buttons.get(i).setText(a.get(i));
-       }
-   }
+//   public void setButtonText(ArrayList <String> a){
+//       for(int i=0; i<4; i++){
+//           buttons.get(i).setText(a.get(i));
+//       }
+//   }
    
    public void setQuestions(ArrayList <Question> questions){
        this.questions = questions;

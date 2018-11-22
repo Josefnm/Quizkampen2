@@ -14,6 +14,10 @@ public class StartPacket implements Serializable{
         this.firstPlayer = firstPlayer;
         //this.opponentScore=opponentScore;
     }
+    public StartPacket(ArrayList<Question> questions) {
+        this.questions = questions;
+       
+    }
 
     public ArrayList<Question> getQuestions() {
         return questions;

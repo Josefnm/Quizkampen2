@@ -27,7 +27,6 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button show;
-    //ArrayList<ArrayList<Question>> input;
     StartPacket input;
 
 
@@ -60,9 +59,7 @@ public class StartScene { //fixar abstrakt senare
                 //main.setMainScene();
                 //main.setScoreScene();
                 popUp(main);
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             //main.setScoreScene();
@@ -140,9 +137,7 @@ public class StartScene { //fixar abstrakt senare
                 this.input = (StartPacket) client.getInStream().readObject();
                 System.out.println("input");
 
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {

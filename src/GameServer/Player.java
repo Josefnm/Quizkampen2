@@ -40,10 +40,10 @@ public class Player extends Thread {
                 try {
                     int score = Integer.parseInt(input.toString());
                     protocol.getResponse(this, score);
-                    System.out.println("1");
+                    System.out.println("getResponse1");
                 } catch (NumberFormatException e) {
                     protocol.getResponse(this, input.toString());
-                    System.out.println("2");
+                    System.out.println("getResponse2");
                 }
 
             }
