@@ -65,8 +65,11 @@ public class Player extends Thread {
 
     public void startGame() {
         try {
-            outStream.writeObject(new StartPacket(protocol.getQuestionList()
-                            .getFour(), gameRoom.isCurrentPlayer(this)));
+            outStream
+                    .writeObject(new StartPacket(protocol.getQuestionList()
+                            .getFour(), gameRoom
+                                    .isCurrentPlayer(this)));
+            System.out.println("out");
 
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);

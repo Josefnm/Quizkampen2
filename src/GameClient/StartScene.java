@@ -29,7 +29,7 @@ public class StartScene { //fixar abstrakt senare
     Scene popupScene;
     Button show;
     StartPacket input;
-
+//
 
     public StartScene(Main main) {
         this.main = main;

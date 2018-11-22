@@ -19,15 +19,21 @@ public class QuestionScene {
 
    Main main;
    private Scene scene;
-   ArrayList<Question> questions;
+
    ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
    ArrayList<Button> buttons = new ArrayList();
    HBox hbox = new HBox();
    Label label = new Label();
    String correctAnswer;
    int nextQuestion = 0;
-   QuestionScene() {
        
+   Object inline;
+
+   QuestionScene(){
+       System.out.println("test");
+       
+
+
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
 
@@ -36,6 +42,7 @@ public class QuestionScene {
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
+
            buttons.add(button);
        }
 
