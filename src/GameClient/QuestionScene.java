@@ -98,10 +98,8 @@ public class QuestionScene {
             b.setText(questions.get(nextQuestion).getAnswer(i));
             label.setText(questions.get(nextQuestion).getQuestion());
             i++;
-            
             }
         nextQuestion++;
-
    }
 
 

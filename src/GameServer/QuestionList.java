@@ -38,5 +38,5 @@ public class QuestionList {
     public ArrayList<Question> getFour() {//för att testa
         return fourQuestions;
     }
-    
+
 }
