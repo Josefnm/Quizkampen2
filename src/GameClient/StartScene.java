@@ -27,10 +27,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
-/**
- *
- * @author Josef
- */
 public class StartScene { //fixar abstrakt senare
 
     Scene startScene;
