@@ -20,7 +20,6 @@ public class QuestionList {
                 new String[]{"2", "5", "4", "20"}, "4"));
         matte.add(new Question("Vad är 1+1",
                 new String[]{"2", "5", "10", "20"}, "2"));
-
         sport.add(new Question("Vilken form har en boll",
                 new String[]{"fyrkantig", "trekantig", "pentagon", "rund"}, "rund"));
         sport.add(new Question("Vilken sport Sysslar Zlatan med",
@@ -57,19 +56,9 @@ public class QuestionList {
 
     // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan
     public ArrayList<Question> getTwoQuestions(ArrayList<Question> a, int questionsForeach) {
-        Random rand = new Random();
-        ArrayList<Question> twoQuestions = new ArrayList<>();
-//        int temp = -1;
-//        int i = 0;
         Collections.shuffle(a);
-//        System.out.println(a.get(0).getQuestion());
-        for(int r=0; r<questionsForeach; r++){
-            twoQuestions.add(a.get(r));
-        }
-        
-//         twoQuestions=(ArrayList<Question>)a.subList(0, questionsForeach);
-        
-        return twoQuestions;
+        List<Question> questions=a.subList(0, questionsForeach);
+        return (ArrayList<Question>)questions;
     }
 
     public ArrayList<ArrayList<Question>> getTwoCategories(int rond, int questionsForeach) {
