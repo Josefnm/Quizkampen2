@@ -103,7 +103,7 @@ public class QuestionScene {
             }
             else
                 setNextQuestion();
-                
+            next.setDisable(true);
         }
     };
 
@@ -137,5 +137,9 @@ public class QuestionScene {
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
         this.pointsrunda = new boolean[questions.size()];
+    }
+    
+    public boolean[] setSvar(){
+        return pointsrunda;
     }
 }
