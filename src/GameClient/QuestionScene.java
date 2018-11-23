@@ -17,9 +17,8 @@ public class QuestionScene {
     //egenskaper för frågor:
     ArrayList<String> points = new ArrayList<>();
     ArrayList<Question> questions;
-    boolean[] pointsrunda = new boolean[2];
+    boolean[] pointsrunda;
     String correctAnswer;
-    int nextQuestion = 0;
     int svar = 0;
 
     //egenskaper för scenen:
@@ -98,11 +97,13 @@ public class QuestionScene {
             if(svar==questions.size()){
                 main.client.sendObject(pointsrunda);
                 svar=0;
+                
                 main.setScoreScene();
+                main.scoresc.boolPoints(pointsrunda);
             }
             else
                 setNextQuestion();
-                
+            next.setDisable(true);
         }
     };
 
@@ -135,5 +136,10 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+        this.pointsrunda = new boolean[questions.size()];
+    }
+    
+    public boolean[] setSvar(){
+        return pointsrunda;
     }
 }

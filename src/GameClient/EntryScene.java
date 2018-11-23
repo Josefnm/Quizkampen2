@@ -31,11 +31,13 @@ public class EntryScene {
     //logoNamn.setStyle("-fx-fill: white; -fx-font-size: 40; -fx-font-family: comic sans ms;");
     logoNamn.setId("logonamn");
     Text userName = new Text("Ange användarnamn:");
+    userName.setId("textsvart");
     TextField userNameInputField = new TextField();
     userNameInputField.setMaxSize(100,25);
     
     //fixa choicebox
     Text whatGender = new Text("Jag identifierar mig som:");
+    whatGender.setId("textsvart");
     MenuButton genderMenu = new MenuButton("Välj könsidentifikation");
     MenuItem pickedMan = new MenuItem("Pojke");
     MenuItem pickedWoman = new MenuItem("Flicka");

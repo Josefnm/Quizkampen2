@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -55,7 +57,7 @@ public class StartScene { //fixar abstrakt senare
         Label username = new Label("Username:");
         System.out.println(main.userName);
         Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
-        realUser.setStyle("-fx-font-size: 40; -fx-fill: white;");
+        realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
       //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
@@ -66,6 +68,16 @@ public class StartScene { //fixar abstrakt senare
         startbtn.setOnAction(e -> {
             //TODO försöka få popupen att dyka upp på muspekarens position (kanske +- x, y)
             client.sendObject("start");
+//            startbtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent t) 
+//            {
+//                //txt=(TextBox)t.getSource();
+//                if(t.getButton()==MouseButton.SECONDARY )
+//                {
+//                    popup.show(txt,t.getScreenX(),t.getScreenY());                   
+//                }
+//            }
             try {
                 //main.setMainScene();
                 //main.setScoreScene();
@@ -121,16 +133,21 @@ public class StartScene { //fixar abstrakt senare
         //bp.setId("score-test");
         popupScene = new Scene(bp, (main.getBoardHeight() / 2), (main.getBoardThicc() / 2));
 
+        popupScene.getStylesheets()
+                .add(StartScene.class
+                        .getResource("stylingCSS.css").toExternalForm());
         //adda progressbar 
         //popup.cancelPopupBtn(primaryStage);
         cancelPopupBtn = new Button("Cancel");
+        cancelPopupBtn.setId("button-test3");
         Text searching = new Text("Letar efter spelare...");
+        searching.setId("textvit");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, cancelPopupBtn);
-        pop.setStyle("-fx-margin: 20");
+        //pop.setStyle("-fx-margin: 20");
 
         pop.setAlignment(Pos.CENTER);
-        pop.setSpacing(5);
+        pop.setSpacing(10);
         bp.setCenter(pop);
 
         System.out.println("HEHEHEHEH");
