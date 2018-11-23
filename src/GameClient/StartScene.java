@@ -1,9 +1,9 @@
 package GameClient;
 
 import GameServer.Question;
+import GameServer.StartPacket;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -18,20 +18,10 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Popup;
 
-/**
- *
- * @author Josef
- */
 public class StartScene { //fixar abstrakt senare
 
     Scene startScene;
@@ -41,6 +31,8 @@ public class StartScene { //fixar abstrakt senare
     Scene popupScene;
     Button show;
     EntryScene entryScene;
+    StartPacket input;
+//
 
     public StartScene(Main main) {
         this.main = main;
@@ -64,6 +56,7 @@ public class StartScene { //fixar abstrakt senare
         Label username = new Label("Username:");
         System.out.println(main.userName);
         Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
+        realUser.setStyle("-fx-font-size: 40; -fx-fill: white;");
       //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
@@ -78,9 +71,7 @@ public class StartScene { //fixar abstrakt senare
                 //main.setMainScene();
                 //main.setScoreScene();
                 popUp(main);
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             //main.setScoreScene();
@@ -96,6 +87,7 @@ public class StartScene { //fixar abstrakt senare
         HBox hbox = new HBox(avatar, vbox);
         HBox hboxKnapp = new HBox(startbtn);
         VBox vboxAllt = new VBox(hbox, hboxKnapp);
+        vboxAllt.setSpacing(8);
 
         hbox.setAlignment(Pos.CENTER);
         vbox.setAlignment(Pos.CENTER);
@@ -154,22 +146,24 @@ public class StartScene { //fixar abstrakt senare
             client.sendObject("cancel");
         });
         System.out.println("before thread");
+
         new Thread(() -> { //annars hängde sig popupen
             System.out.println("thread start");
             try {
-                ArrayList<Question> input = (ArrayList) client.getInStream().readObject();
+
+                this.input = (StartPacket) client.getInStream().readObject();
                 System.out.println("input");
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             Platform.runLater(() -> {
-                main.setQuestionScene();
-                //TODO
-                //
-                //qs.setQuestion(input);
-                main.closePopupStage();
+                   
+                   main.questionScene.setQuestions(input.getQuestions());
+                   main.questionScene.setNextQuestion();
+                   main.setQuestionScene();
+                   main.closePopupStage();
+                
             });
         }).start();
 //        Object input=client.getInStream().readObject();

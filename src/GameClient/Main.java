@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -24,12 +25,12 @@ import javafx.stage.Stage;
  * @author Josef
  */
 public class Main extends Application {
-    
+
     private Stage stage;
     StartScene sc;
     Client client;
     Scene tempScene;
-    QuestionScene qs;
+    QuestionScene questionScene;
     Scene mainScene;
     ScoreScene scoresc;
     EntryScene entryScene ; //= new EntryScene(this);;
@@ -38,7 +39,7 @@ public class Main extends Application {
     String userName;
     
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
 //        stage = primaryStage;
 //        Scene scene = logInScene();
 //        primaryStage.setScene(scene);
@@ -50,7 +51,7 @@ public class Main extends Application {
         
         stagepop = new Stage();
         sc = new StartScene(this);
-        qs = new QuestionScene(this);
+        questionScene = new QuestionScene();
         scoresc = new ScoreScene(this);
         
         
@@ -90,20 +91,20 @@ public class Main extends Application {
     }
     public void setQuestionScene()
     {
-        tempScene = qs.getScene();
+        tempScene = questionScene.getScene();
         stage.setScene(tempScene);
         //allt kan egentligen göras med en metod som tar in scenen de ska bytas till
         //med nackdelen att metoden skulle vara aningens mer otydlig då namnet
         //skulle bli "setScene" istället för vilken scen
     }
-    public void setMainScene()
-    {
+
+    public void setMainScene() {
         tempScene = mainScene;
         stage.setScene(tempScene);
         //stage.initModality(Modality.WINDOW_MODAL);
     }
-    public void setScoreScene()
-    {
+
+    public void setScoreScene() {
         tempScene = scoresc.getScene();
         stage.setScene(tempScene);
         //stage.initModality(Modality.WINDOW_MODAL);
@@ -118,48 +119,56 @@ public class Main extends Application {
         tempScene = sc.getScene();
         stage.setScene(tempScene);
     }
-    public void setPopupScene(Scene scene)
-    {
+
+    public void setPopupScene(Scene scene) {
         System.out.println("kom in i main");
         tempScene = scene;
-                //sc.getPopupScene();
+        sc.getPopupScene();
         stagepop.setScene(tempScene);
-        stagepop.initModality(Modality.APPLICATION_MODAL); //ger popupkänslan
-        stagepop.show(); //måste dock fixa visible-shizzle genom close()
         
+        if (stagepop.getModality() == Modality.NONE) {
+            stagepop.initModality(Modality.APPLICATION_MODAL);
+
+        }
+        stagepop.show();//ger popupkänslan
+        //måste dock fixa visible-shizzle genom close()
+
     }
-    public void closePopupStage()
-    {
+
+    public void closePopupStage() {
         System.out.println("tjenalolol");
         stagepop.close();
         System.out.println("tvåtvå");
     }
-    public int getBoardHeight()
-    {
+
+    public int getBoardHeight() {
         return 300;
     }
-    public int getBoardThicc()
-    {
+
+    public int getBoardThicc() {
         return 506;
     }
-    public void popUp()
-    {
+
+    public void popUp() {
         final Popup popup = new Popup();
         popup.setX(300);
         popup.setY(200);
         //popup.show(primaryStage);
         Button show = new Button("Cancel");
-        
+
         popup.getContent().addAll(show);
         popup.show(stage);
-        show.setOnAction(e -> {popup.hide(); System.out.println("hejdå");});
-        
+        show.setOnAction(e -> {
+            popup.hide();
+            System.out.println("hejdå");
+        });
+
         //skapa popupruta
         //innehåller progressbar
         //samt knapp cancel
         //kopplad till boolean
     }
-        
+
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
 //        btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -178,15 +187,12 @@ public class Main extends Application {
 //        primaryStage.setTitle("Hello World!");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-        
-        //instans av scorescene och retunerar sin respektive panel
-    
-
+    //instans av scorescene och retunerar sin respektive panel
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
-        
+
     }
 }
