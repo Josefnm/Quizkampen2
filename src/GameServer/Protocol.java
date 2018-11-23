@@ -1,6 +1,8 @@
 package GameServer;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class Protocol {
 
@@ -9,10 +11,23 @@ public class Protocol {
     frågor är rätt osv*/
     private ArrayList<Player> playerList;
     private QuestionList questionList;
+    Properties p;
+    int ronds;
+    int questionPerRond;
 
     public Protocol() {
         questionList = new QuestionList();
         playerList = new ArrayList<>();
+        p = new Properties();
+        try{
+            p.load(new FileInputStream("src/GameServer/ronds.properties"));
+        }
+        catch(Exception e){
+            System.out.println("Filen inte hittas");
+        }
+        ronds = Integer.parseInt(p.getProperty("rond"));
+        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
+        System.out.println(ronds + "-" + questionPerRond);
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten

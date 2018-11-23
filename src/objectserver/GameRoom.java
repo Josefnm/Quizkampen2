@@ -27,6 +27,7 @@ public class GameRoom extends Thread{
             while(true){
                 if((in = p1.input.readObject()) != null){
                     if(((String) in).equals("change")){
+                        System.out.println("test");
                         p2.output.writeObject(d.getAllQ());
                     }
                     if(((String) in).startsWith("end")){

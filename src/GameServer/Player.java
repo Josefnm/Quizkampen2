@@ -19,6 +19,13 @@ public class Player extends Thread {
     private boolean isAvailable = false; //vill (inte) starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
+        try{
+            outStream = new ObjectOutputStream(socket.getOutputStream());
+            inStream = new ObjectInputStream(socket.getInputStream());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
@@ -28,8 +35,6 @@ public class Player extends Thread {
     @Override
     public void run() {
         try {
-            outStream = new ObjectOutputStream(socket.getOutputStream());
-            inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
             while (!socket.isClosed()) {
                 try {
