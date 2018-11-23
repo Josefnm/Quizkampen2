@@ -126,5 +126,6 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+        questions.get(nextQuestion);
     }
 }
