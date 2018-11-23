@@ -58,7 +58,6 @@ public class QuestionScene {
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         border.setBottom(hbox);
-
         this.scene = new Scene(border);
     }
 
@@ -83,7 +82,6 @@ public class QuestionScene {
                     }
                     b.setDisable(true);
                 }
-
             }
             //Next knappen kan bara användas om man har svarat på fårgan
             next.setDisable(false);

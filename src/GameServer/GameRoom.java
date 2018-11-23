@@ -7,11 +7,11 @@ public class GameRoom {
     private Player player1; //spelar först
     private Player player2;
 
-    ArrayList<boolean[]> player1Score = new ArrayList<>();
-    ArrayList<boolean[]> player2Score = new ArrayList<>();
+    private ArrayList<boolean[]> player1Score = new ArrayList<>();
+    private ArrayList<boolean[]> player2Score = new ArrayList<>();
 
-    int currentRound = 0; 
-    
+    int currentRound = 0;
+
     private ArrayList<ArrayList<Question>> allQuestions;
 
     public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> allQuestions) {
@@ -19,6 +19,18 @@ public class GameRoom {
         this.player2 = player2;
 
         this.allQuestions = allQuestions; //de utvalda frågorna för spelomgången
+    }
+
+    public boolean bothAnswered() {
+        return player1Score.size() == player2Score.size();
+    }
+
+    public void addScore(Player player, boolean[] score) {
+        if (player == player1) {
+            player1Score.add(score);
+        } else {
+            player2Score.add(score);
+        }
     }
 
     public boolean isFirstPlayer(Player player) {
