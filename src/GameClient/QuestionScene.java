@@ -1,7 +1,6 @@
 package GameClient;
 
 import GameServer.Question;
-import java.io.IOException;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
