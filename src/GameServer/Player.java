@@ -19,13 +19,6 @@ public class Player extends Thread {
     private boolean isAvailable = false; //vill (inte) starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
-        try{
-            outStream = new ObjectOutputStream(socket.getOutputStream());
-            inStream = new ObjectInputStream(socket.getInputStream());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
@@ -34,20 +27,23 @@ public class Player extends Thread {
 
     @Override
     public void run() {
-        try {
+        try{
+            outStream = new ObjectOutputStream(socket.getOutputStream());
+            inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            while (!socket.isClosed()) {
-                try {
+            while(! socket.isClosed()){
+                try{
                     input = inStream.readObject();
-                } catch (EOFException eofe) {
-                    break; //ifall klienten stängs
+                } catch(EOFException eofe){
+                    break;  //ifall klienten stängs
                 }
                 protocol.getResponse(this, input);
-
             }
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }
+        catch(IOException | ClassNotFoundException ex){
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        finally {
             try {
                 protocol.getPlayerList().remove(this);
                 outStream.close();

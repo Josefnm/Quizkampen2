@@ -25,6 +25,10 @@ public class GameMain extends Application {
     ScoreScene scoresc;
     //popuptest
     Stage stagepop;
+   
+    EntryScene entryScene ; //= new EntryScene(this);;
+    
+    String userName;
 
     @Override
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
@@ -36,27 +40,42 @@ public class GameMain extends Application {
         client = new Client();
         stage = primaryStage;
         stagepop = new Stage();
+        entryScene = new EntryScene(this);
         sc = new StartScene(this);
         questionScene = new QuestionScene();
         scoresc = new ScoreScene(this);
         primaryStage.setTitle("QUIZKAMPEN!");
-        primaryStage.setScene(sc.getScene());
+        primaryStage.setScene(entryScene.getScene());
         primaryStage.show();
 
-        Button btn = new Button("lol");
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-        mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        btn.setOnAction(e -> setScoreScene());
+        //Button btn = new Button("lol");
+        //StackPane root = new StackPane();
+        //root.getChildren().add(btn);
+        //användes vid tidigare tester
+        //mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
+        //btn.setOnAction(e -> setScoreScene());
         //btn.setOnAction(e -> popUp());
         //test
+        
+        //detta handlar om second stage (aka popups) x-funktion, tack vare josef överflödig?
         stagepop.setOnCloseRequest(event -> {
-            System.out.println("Stage is closing");
-            stagepop.hide();
-            stagepop.close();
-            System.out.println("closed");
+        System.out.println("Stage is closing"); 
+        stagepop.hide();
+        stagepop.close();
+        System.out.println("closed");
+        System.out.println(entryScene.getUsername()); //ger null
         });
+        
+    }
+    public String tempUsername()
+    {
+        String hej = "";
+        System.out.println("tempUserName "+entryScene);
+        return entryScene.getUsername();
+    }
+    public void tempGenderChoice()
+    {
+        //en setter kanske vore något
     }
 
     public void setQuestionScene() {
@@ -79,6 +98,11 @@ public class GameMain extends Application {
         tempScene = scoresc.getScene();
         stage.setScene(tempScene);
         //stage.initModality(Modality.WINDOW_MODAL);
+    }
+    public void setEntryScene()
+    {
+        tempScene = entryScene.getScene();
+        stage.setScene(tempScene);
     }
 
     public void setStartScene() {

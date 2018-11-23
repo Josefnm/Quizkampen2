@@ -4,6 +4,7 @@
     -fx-background-size: 300 506;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
+    /*-fx-paddig: 20;*/
 }
 
 .score-test {
@@ -15,3 +16,54 @@
 /**#pane {
     -fx-background-color: YELLOW;
 }*/
+#button-test {
+    -fx-background-color: 
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+#transparent { /*.transparent*/
+  background:rgba(255,255,255,0.5);
+}
+#button-test2 {
+    -fx-text-fill: white;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#4ba614, #008c00);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#button-test3 {
+    -fx-text-fill: white;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#f62b2b, #d20202);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#button-test4 {
+    -fx-text-fill: white;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#a7cfdf, #23538a);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+/*
+#texttest {
+    -fx-font: 100px comic sans ms;
+    -fx-fill: white;
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}*/
+#button-test5 {
+    
+}
+#logonamn {
+    -fx-font-size: 40;
+    -fx-font-family: "comic sans ms";
+    -fx-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}

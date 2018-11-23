@@ -26,7 +26,7 @@ public class Protocol {
             System.out.println("Filen inte hittas");
         }
         ronds = Integer.parseInt(p.getProperty("rond"));
-        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
+        questionPerRond = Integer.parseInt(p.getProperty("questionsForeach"));
         System.out.println(ronds + "-" + questionPerRond);
     }
 
@@ -59,6 +59,16 @@ public class Protocol {
             sendStartPacket(gr);
         }//inte färdig
     }
+    
+    
+
+//    public void getResponse(Player player, boolean[] s) {
+//        System.out.println("wrong response");
+//        if (player.getGameRoom().currentPlayer != player) {
+//            
+//        }
+//    }
+
 
     public void getOpponent(Player player2) {
         for (Player player1 : playerList) {
@@ -87,8 +97,8 @@ public class Protocol {
         gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
         System.out.println("round two sent");
     }
-
-    public QuestionList getQuestionList() {
+    
+    public QuestionList getQuestionList(){
         return questionList;
     }
 
