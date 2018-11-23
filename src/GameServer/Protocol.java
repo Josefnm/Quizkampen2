@@ -26,10 +26,9 @@ public class Protocol {
         catch(Exception e){
             System.out.println("Filen inte hittas");
         }
-        String s = p.getProperty("rond");
-        System.out.println(s);
-//        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
-//        System.out.println(ronds + "-" + questionPerRond);
+        ronds = Integer.parseInt(p.getProperty("rond"));
+        questionPerRond = Integer.parseInt(p.getProperty("questionsForeach"));
+        System.out.println(ronds + "-" + questionPerRond);
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten

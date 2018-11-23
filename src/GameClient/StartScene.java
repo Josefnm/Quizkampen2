@@ -54,7 +54,7 @@ public class StartScene { //fixar abstrakt senare
         //lambda
         //tanken att vi genom start engagear servern
         startbtn.setOnAction(e -> {
-            client.sendObject("start");     //发得出去吗？？
+            client.sendObject("start");  
             System.out.println("send start");
             try {
                 //main.setMainScene();
