@@ -42,7 +42,7 @@ public class GameMain extends Application {
         stagepop = new Stage();
         entryScene = new EntryScene(this);
         sc = new StartScene(this);
-        questionScene = new QuestionScene();
+        questionScene = new QuestionScene(this);
         scoresc = new ScoreScene(this);
         primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(entryScene.getScene());
