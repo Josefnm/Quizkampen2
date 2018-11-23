@@ -1,11 +1,12 @@
 package GameServer;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class QuestionList {
 
-    ArrayList<ArrayList<Question>> questionList = new ArrayList<>();
+    List<ArrayList<Question>> questionList = new ArrayList<>();
     ArrayList<Question> matte = new ArrayList<>();
     ArrayList<Question> sport = new ArrayList<>();
     ArrayList<Question> historia = new ArrayList<>();
@@ -16,16 +17,24 @@ public class QuestionList {
                 new String[]{"2", "5", "10", "20"}, "2"));
         matte.add(new Question("Vad är 2+2",
                 new String[]{"2", "5", "4", "20"}, "4"));
+        matte.add(new Question("Vad är 10+10",
+                new String[]{"2", "5", "4", "20"}, "4"));
         sport.add(new Question("Vilken form har en boll",
                 new String[]{"fyrkantig", "trekantig", "pentagon", "rund"}, "rund"));
+        sport.add(new Question("Vilken sport Sysslar Zlatan med",
+                new String[]{"Ishockey", "Fotboll", "Balett", "Boxning"}, "Fotboll"));
         sport.add(new Question("Vilken sport Sysslar Zlatan med",
                 new String[]{"Ishockey", "Fotboll", "Balett", "Boxning"}, "Fotboll"));
         historia.add(new Question("what is the year?",
                 new String[]{"1999", "1990", "1992", "1998"}, "1998"));
         historia.add(new Question("what is the person?",
                 new String[]{"Linkon", "Fox", "Ranbon", "Franklin"}, "Fox"));
+        historia.add(new Question("what is the person?",
+                new String[]{"Linkon", "Fox", "Ranbon", "Franklin"}, "Fox"));
         natur.add(new Question("what is the weather?",
                 new String[]{"winter", "summer", "autom", "spring"}, "winter"));
+        natur.add(new Question("what is the water?",
+                new String[]{"hot", "cold", "iced", "steam"}, "iced"));
         natur.add(new Question("what is the water?",
                 new String[]{"hot", "cold", "iced", "steam"}, "iced"));
 
@@ -33,6 +42,7 @@ public class QuestionList {
         questionList.add(sport);
         questionList.add(historia);
         questionList.add(natur);
+
     }
 
     // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan
