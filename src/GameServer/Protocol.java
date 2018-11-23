@@ -21,14 +21,12 @@ public class Protocol {
         p = new Properties();
         try{
             p.load(new FileInputStream("src/GameServer/ronds.properties"));
-            System.out.println("ok");
         }
         catch(Exception e){
             System.out.println("Filen inte hittas");
         }
         ronds = Integer.parseInt(p.getProperty("rond"));
         questionPerRond = Integer.parseInt(p.getProperty("questionsForeach"));
-        System.out.println(ronds + "-" + questionPerRond);
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten
@@ -75,7 +73,7 @@ public class Protocol {
         for (Player player1 : playerList) {
             if (player1.getIsIsAvailable() && player2 != player1) {
                 //skapar upp ett gameroom som innehåller info för den specifika spelomgången
-                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories()); 
+                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories(ronds,questionPerRond)); 
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
                 sendStartPacket(gr);
