@@ -34,7 +34,7 @@ public class Protocol {
     public void getResponse(Player player, String s) {
         switch (s) {
             case "start":
-                getOpponent(player);    //走不到这一步嘛!??
+                getOpponent(player);  
                 System.out.println("start"+player.getName());
                 break;
             case "cancel":
@@ -60,7 +60,7 @@ public class Protocol {
 
 
     public void getOpponent(Player player1) {
-        for (Player player2 : playerList) { //从何定义player2???
+        for (Player player2 : playerList) { 
             if (player2.getIsIsAvailable() && player1 != player2) {
                 System.out.println(questionList.questionList.size() + "size of questionList");
                 ArrayList<ArrayList<Question>> tempQuestions = questionList.getTwoCategories();

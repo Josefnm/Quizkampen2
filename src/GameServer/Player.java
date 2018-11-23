@@ -68,7 +68,7 @@ public class Player extends Thread {
 
     public void startGame() {
         System.out.println("startGame");
-        try {       //为什么不是getAllQuestions? 现在的rond是零呃！
+        try {       
             outStream.writeObject(new StartPacket(gameRoom.getCurrentQuestions(), gameRoom.isCurrentPlayer(this)));
             System.out.println("send questions");
 

@@ -26,6 +26,6 @@ public class GameRoom {
         return allQuestions;
     }
     public ArrayList<Question> getCurrentQuestions(){
-        return allQuestions.get(currentRound);      //目前永远都是0
+        return allQuestions.get(currentRound);     
     }
 }
