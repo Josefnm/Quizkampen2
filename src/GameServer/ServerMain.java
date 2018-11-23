@@ -6,12 +6,12 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Server {
+public class ServerMain {
 
-    ServerSocket listener;
-    Protocol protocol; 
+    private ServerSocket listener;
+    private Protocol protocol;
 
-    public Server() {
+    public ServerMain() {
         protocol = new Protocol();
         try {
             listener = new ServerSocket(12345);
@@ -19,14 +19,15 @@ public class Server {
             while (true) {
                 final Socket socket = listener.accept();
                 Player player = new Player(socket, protocol);
-                System.out.println("new player");
-               
                 player.start();
             }
         } catch (IOException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
+    public static void main(String[] args) {
+        ServerMain main = new ServerMain();
+    }
 }
