@@ -55,14 +55,13 @@ public class StartScene { //fixar abstrakt senare
         //lambda
         //tanken att vi genom start engagear servern
         startbtn.setOnAction(e -> {
-            client.sendObject("start");
+            client.sendObject("start");     //发得出去吗？？
+            System.out.println("send start");
             try {
                 //main.setMainScene();
                 //main.setScoreScene();
                 popUp(main);
-            } catch (IOException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
             //main.setScoreScene();
@@ -144,10 +143,10 @@ public class StartScene { //fixar abstrakt senare
             }
             Platform.runLater(() -> {
                
-                main.qs.setQuestions(input.getQuestions());
-                   main.qs.setNextQuestion();
-                   main.setQuestionScene();
-                   main.closePopupStage();
+               main.questionScene.setQuestions(input.getQuestions());
+               main.questionScene.setNextQuestion();
+               main.setQuestionScene();
+               main.closePopupStage();
                 
             });
         }).start();

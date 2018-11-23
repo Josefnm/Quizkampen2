@@ -10,53 +10,61 @@ public class Protocol {
     /* Från den här klassen ska klientens föerfrågningar till servern hanteras.
     Ska kunna skicka tillbaka frågor, hitta motspelare, se om svar på 
     frågor är rätt osv*/
-    PlayerHandler playerList;
+    private ArrayList<Player> playerList;
     private QuestionList questionList;
     Properties p;
-    String rondN;
-    String questionN;
+//    String rondN;
+//    String questionN;
     
 
     public Protocol() {
         questionList = new QuestionList();
-        playerList = new PlayerHandler();
+        playerList = new ArrayList<>();
         p = new Properties();
         try{
-            p.load(new FileInputStream("src\\gamesercer\\ronds.properites"));
-            System.out.println("properties");
+            p.load(new FileInputStream("src/GameServer/ronds.properties"));
         }
         catch(Exception e){
             System.out.println("Filen kunde inte hittas");
         }
-        p.getProperty("rond");
-        p.getProperty("questionsForeach");
+        System.out.println(p.getProperty("rond"));
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten
     public void getResponse(Player player, String s) {
         switch (s) {
             case "start":
-                getOpponent(player);
+                getOpponent(player);    //走不到这一步嘛!??
+                System.out.println("start"+player.getName());
                 break;
             case "cancel":
                 player.setIsAvailable(false);
                 break;
-
         }
     }
-
-    public void getResponse(Player player, boolean[] s) {
+    public void getResponse(Player player, int s) {       
         System.out.println("wrong response");
-        if (player.getGameRoom().currentPlayer != player) {
+        if(player.getGameRoom().currentPlayer != player){
             
         }
     }
+    
+    
+
+//    public void getResponse(Player player, boolean[] s) {
+//        System.out.println("wrong response");
+//        if (player.getGameRoom().currentPlayer != player) {
+//            
+//        }
+//    }
 
 
     public void getOpponent(Player player1) {
-        for (Player player2 : playerList.playerList) {
+        for (Player player2 : playerList) { //从何定义player2???
             if (player2.getIsIsAvailable() && player1 != player2) {
-                GameRoom gr = new GameRoom(player2, player1);
+                System.out.println(questionList.questionList.size() + "size of questionList");
+                ArrayList<ArrayList<Question>> tempQuestions = questionList.getTwoCategories();
+                GameRoom gr = new GameRoom(player2, player1, tempQuestions);
                 player2.setGameRoom(gr);
                 player1.setGameRoom(gr);
                 player1.startGame();
@@ -78,6 +86,11 @@ public class Protocol {
     public QuestionList getQuestionList(){
         return questionList;
     }
+    
+    public ArrayList<Player> getPlayerList(){
+        return playerList;
+    }
+
 
 //    public ArrayList<Question> getQuestionList() {
 //        String rondN = p.getProperty("rond");

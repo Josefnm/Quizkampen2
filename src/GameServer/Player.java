@@ -20,44 +20,42 @@ public class Player extends Thread {
     private boolean isAvailable = false; //kan starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
-        try{
-            outStream = new ObjectOutputStream(socket.getOutputStream());
-            inStream = new ObjectInputStream(socket.getInputStream());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
-        protocol.playerList.addPlayer(this);
+        protocol.getPlayerList().add(this);
     }
 
     @Override
     public void run() {
-        try {
+        try{
+            outStream = new ObjectOutputStream(socket.getOutputStream());
+            inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            while (!socket.isClosed()) {
-                try {
+            while(! socket.isClosed()){
+                try{
                     input = inStream.readObject();
-                } catch (EOFException eofe) {
-                    break; //ifall klienten stängs
                 }
-                try {
-//                    int score = Integer.parseInt(input.toString());
-//                    protocol.getResponse(this, score);
-                    System.out.println("1");
-                } catch (Exception e) {
+                catch(EOFException eofe){
+                    break;  //ifall klienten stängs
+                }
+                try{
+                    int score= Integer.parseInt(input.toString());
+                    protocol.getResponse(this, score);
+                    System.out.println("getResponse1");
+                }
+                catch(NumberFormatException e){
                     protocol.getResponse(this, input.toString());
-                    System.out.println("2");
+                    System.out.println("getResponse2");
                 }
-
             }
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }
+        catch(IOException | ClassNotFoundException ex){
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        finally {
             try {
-                protocol.playerList.removePlayer(this);
+                protocol.getPlayerList().remove(this);
                 outStream.close();
                 inStream.close();
                 socket.close();
@@ -69,15 +67,13 @@ public class Player extends Thread {
     }
 
     public void startGame() {
-        try {
-            System.out.println("try startgame");
-            outStream
-                    .writeObject(new StartPacket(protocol.getQuestionList()
-                            .getFour(), gameRoom
-                                    .isCurrentPlayer(this)));
-            System.out.println("out");
+        System.out.println("startGame");
+        try {       //为什么不是getAllQuestions? 现在的rond是零呃！
+            outStream.writeObject(new StartPacket(gameRoom.getCurrentQuestions(), gameRoom.isCurrentPlayer(this)));
+            System.out.println("send questions");
 
-        } catch (IOException ex) {
+        } 
+        catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -85,14 +81,10 @@ public class Player extends Thread {
 
     public boolean getIsIsAvailable() {
         return isAvailable;
-
     }
 
-    public void setIsAvailable(Boolean bool
-    ) {
-        isAvailable
-                = bool;
-
+    public void setIsAvailable(Boolean bool) {
+        isAvailable = bool;
     }
 
     public GameRoom getGameRoom() {

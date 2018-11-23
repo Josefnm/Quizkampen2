@@ -16,24 +16,21 @@ import javafx.scene.layout.HBox;
 
 
 public class QuestionScene {
-
+   ArrayList<String> points = new ArrayList<>();
+   ArrayList<Question> questions;
+   ArrayList<String> svar ; //Questions ska in här istället
+   Button next = new Button("next");
    Main main;
    private Scene scene;
-ArrayList<Question> questions;
-   ArrayList<String> svar = new ArrayList<>(); //Questions ska in här istället
-   ArrayList<Button> buttons = new ArrayList();
+   
+   ArrayList<Button> buttons = new ArrayList<>();   //git上有出入！！
    HBox hbox = new HBox();
    Label label = new Label();
    String correctAnswer;
    int nextQuestion = 0;
        
-   Object inline;
-
    QuestionScene(){
-       System.out.println("test");
        
-
-
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
 
@@ -42,7 +39,6 @@ ArrayList<Question> questions;
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
-
            buttons.add(button);
        }
 
@@ -50,8 +46,8 @@ ArrayList<Question> questions;
        grid.add((buttons.get(1)),0,1);
        grid.add((buttons.get(2)),1,0);
        grid.add((buttons.get(3)),1,1);
-
-       Button next = new Button("Next");
+       
+       next.setDisable(true);
        next.setOnAction(e -> main.setStartScene());
        next.setMinSize(50,25);
        next.setOnAction(setScene);
@@ -74,16 +70,22 @@ ArrayList<Question> questions;
            Button btn = (Button)event.getSource();
            if(btn.getText().equals(correctAnswer)){
                btn.setStyle("-fx-background-color: Green");
+               points.add("1"); //skicka till servern för poäng
                for(Button b : buttons){
                    b.setDisable(true);
                }
            }
            else{
                btn.setStyle("-fx-background-color: Red");
+               points.add("0");
                for(Button b : buttons){
+                   if(b.getText().equals(correctAnswer))
+                       b.setStyle("fx-background-color: Green");
                    b.setDisable(true);
                }
            }
+           //next knappen kan bara användas om man har svarat på frågan
+           next.setDisable(false);
        }
    };
    
@@ -117,11 +119,11 @@ ArrayList<Question> questions;
    public ArrayList<Button> getButtons(){
        return buttons;
    }
-   public void setButtonText(ArrayList <String> a){
-       for(int i=0; i<4; i++){
-           buttons.get(i).setText(a.get(i));
-       }
-   }
+//   public void setButtonText(ArrayList <String> a){
+//       for(int i=0; i<4; i++){
+//           buttons.get(i).setText(a.get(i));
+//       }
+//   }
    public void setQuestions(ArrayList <Question> questions){
        this.questions = questions;
    }
