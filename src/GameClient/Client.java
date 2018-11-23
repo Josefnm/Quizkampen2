@@ -34,7 +34,7 @@ public class Client {
                     outStream.close();
                     inStream.close();
                     socket.close();
-                    System.out.println("The server is shut down!");
+                    System.out.println("Sockets closed!");
                 } catch (IOException e) {
                     System.out.println("closing socket failed"); }
             }

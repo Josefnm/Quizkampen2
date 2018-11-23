@@ -16,7 +16,7 @@ public class Player extends Thread {
     private Protocol protocol;
     private GameRoom gameRoom;
 
-    private boolean isAvailable = false; //kan starta nytt spel
+    private boolean isAvailable = false; //vill (inte) starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
         System.out.println("player connected");
