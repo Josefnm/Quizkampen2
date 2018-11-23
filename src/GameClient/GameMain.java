@@ -6,25 +6,15 @@
 package GameClient;
 
 import java.io.IOException;
-import java.util.HashSet;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Josef
- */
-public class Main extends Application {
+public class GameMain extends Application {
 
     private Stage stage;
     StartScene sc;
@@ -35,6 +25,10 @@ public class Main extends Application {
     ScoreScene scoresc;
     //popuptest
     Stage stagepop;
+   
+    EntryScene entryScene ; //= new EntryScene(this);;
+    
+    String userName;
 
     @Override
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
@@ -46,27 +40,42 @@ public class Main extends Application {
         client = new Client();
         stage = primaryStage;
         stagepop = new Stage();
+        entryScene = new EntryScene(this);
         sc = new StartScene(this);
         questionScene = new QuestionScene();
         scoresc = new ScoreScene(this);
         primaryStage.setTitle("QUIZKAMPEN!");
-        primaryStage.setScene(sc.getScene());
+        primaryStage.setScene(entryScene.getScene());
         primaryStage.show();
 
-        Button btn = new Button("lol");
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-
-        mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        btn.setOnAction(e -> setScoreScene());
+        //Button btn = new Button("lol");
+        //StackPane root = new StackPane();
+        //root.getChildren().add(btn);
+        //användes vid tidigare tester
+        //mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
+        //btn.setOnAction(e -> setScoreScene());
         //btn.setOnAction(e -> popUp());
         //test
+        
+        //detta handlar om second stage (aka popups) x-funktion, tack vare josef överflödig?
         stagepop.setOnCloseRequest(event -> {
-            System.out.println("Stage is closing");
-            stagepop.hide();
-            stagepop.close();
-            System.out.println("closed");
+        System.out.println("Stage is closing"); 
+        stagepop.hide();
+        stagepop.close();
+        System.out.println("closed");
+        System.out.println(entryScene.getUsername()); //ger null
         });
+        
+    }
+    public String tempUsername()
+    {
+        String hej = "";
+        System.out.println("tempUserName "+entryScene);
+        return entryScene.getUsername();
+    }
+    public void tempGenderChoice()
+    {
+        //en setter kanske vore något
     }
 
     public void setQuestionScene() {
@@ -75,6 +84,8 @@ public class Main extends Application {
         //allt kan egentligen göras med en metod som tar in scenen de ska bytas till
         //med nackdelen att metoden skulle vara aningens mer otydlig då namnet
         //skulle bli "setScene" istället för vilken scen
+
+        //^Bra med olika metoder som det är nu tycker jag /josef
     }
 
     public void setMainScene() {
@@ -88,25 +99,27 @@ public class Main extends Application {
         stage.setScene(tempScene);
         //stage.initModality(Modality.WINDOW_MODAL);
     }
+    public void setEntryScene()
+    {
+        tempScene = entryScene.getScene();
+        stage.setScene(tempScene);
+    }
 
     public void setStartScene() {
         tempScene = sc.getScene();
-        stage.setScene(tempScene);  
+        stage.setScene(tempScene);
     }
 
     public void setPopupScene(Scene scene) {
-        System.out.println("kom in i main");
         tempScene = scene;
         sc.getPopupScene();
         stagepop.setScene(tempScene);
-        
+
         if (stagepop.getModality() == Modality.NONE) {
             stagepop.initModality(Modality.APPLICATION_MODAL);
 
         }
         stagepop.show();//ger popupkänslan
-        //måste dock fixa visible-shizzle genom close()
-
     }
 
     public void closePopupStage() {
@@ -143,28 +156,6 @@ public class Main extends Application {
         //kopplad till boolean
     }
 
-//        Button btn = new Button();
-//        btn.setText("Say 'Hello World'");
-//        btn.setOnAction(new EventHandler<ActionEvent>() {
-//            
-//            @Override
-//            public void handle(ActionEvent event) {
-//                System.out.println("Hello World!");
-//            }
-//        });
-//        
-//        StackPane root = new StackPane();
-//        root.getChildren().add(btn);
-//        
-//        Scene tempScene = new Scene(root, 300, 250);
-//        
-//        primaryStage.setTitle("Hello World!");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-    //instans av scorescene och retunerar sin respektive panel
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
 

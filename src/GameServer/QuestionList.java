@@ -1,7 +1,6 @@
 package GameServer;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class QuestionList {
@@ -17,7 +16,7 @@ public class QuestionList {
                 new String[]{"2", "5", "10", "20"}, "2"));
         matte.add(new Question("Vad är 2+2",
                 new String[]{"2", "5", "4", "20"}, "4"));
-        matte.add(new Question("Vilken form har en boll",
+        sport.add(new Question("Vilken form har en boll",
                 new String[]{"fyrkantig", "trekantig", "pentagon", "rund"}, "rund"));
         sport.add(new Question("Vilken sport Sysslar Zlatan med",
                 new String[]{"Ishockey", "Fotboll", "Balett", "Boxning"}, "Fotboll"));
@@ -34,7 +33,6 @@ public class QuestionList {
         questionList.add(sport);
         questionList.add(historia);
         questionList.add(natur);
-
     }
 
     // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan

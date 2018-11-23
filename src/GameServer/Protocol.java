@@ -32,22 +32,33 @@ public class Protocol {
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten
-    public void getResponse(Player player, String s) {
-        switch (s) {
-            case "start":
-                getOpponent(player);  
-                System.out.println("start"+player.getName());
-                break;
-            case "cancel":
-                player.setIsAvailable(false);
-                break;
+    public void getResponse(Player player, Object o) {
+        if (o instanceof String) {
+            switch (o.toString()) {
+                case "start":
+                    getOpponent(player);
+                    break;
+                case "cancel":
+                    player.setIsAvailable(false);
+                    break;
+            }
+        } else if (o instanceof Boolean[]) {
+            getScore(player, (boolean[]) o);
+        } else {
+            System.out.println("response error");
         }
     }
-    public void getResponse(Player player, int s) {       
-        System.out.println("wrong response");
-        if(player.getGameRoom().currentPlayer != player){
-            
-        }
+
+    public void getScore(Player player, boolean[] score) {
+        System.out.println("score recieved");
+        GameRoom gr=player.getGameRoom();
+        if (gr.isFirstPlayer(player)) { 
+            gr.player1Score.add(score);
+        } else {
+            gr.player2Score.add(score);
+            gr.increaseCurrentRound();
+            sendStartPacket(gr);
+        }//inte färdig
     }
     
     
@@ -60,25 +71,32 @@ public class Protocol {
 //    }
 
 
-    public void getOpponent(Player player1) {
-        for (Player player2 : playerList) {
-            if (player2.getIsIsAvailable() && player1 != player2) {
-                System.out.println(questionList.questionList.size()+"size of questionList");
-                ArrayList<ArrayList<Question>> tempQuestions=questionList.getTwoCategories();
-                GameRoom gr = new GameRoom(player2, player1,tempQuestions);
-                player2.setGameRoom(gr);
+    public void getOpponent(Player player2) {
+        for (Player player1 : playerList) {
+            if (player1.getIsIsAvailable() && player2 != player1) {
+                //skapar upp ett gameroom som innehåller info för den specifika spelomgången
+                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories()); 
                 player1.setGameRoom(gr);
-                player1.startGame();
-                player2.startGame();
+                player2.setGameRoom(gr);
+                sendStartPacket(gr);
                 return;
             }
         }
-        player1.setIsAvailable(true);
-
+        player2.setIsAvailable(true);
     }
 
-    public void changeCurrentPlayer() {
-
+    
+    public void sendStartPacket(GameRoom gr) {
+        System.out.println("startGame");
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
+        System.out.println("sent questions");
+    }
+    public void sendRoundTwo(GameRoom gr) {
+        
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
+        System.out.println("round two sent");
     }
     
     public QuestionList getQuestionList(){
