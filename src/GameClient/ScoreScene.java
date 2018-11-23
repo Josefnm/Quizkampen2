@@ -20,7 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ScoreScene {
-int round=0;
+
+    int round = 0;
     Scene scoreScene;
     GameMain main;
     Client client;
@@ -35,7 +36,6 @@ int round=0;
         this.main = main;
 
         ThreadCalling();
-        
 
         //label 1 "användarnamn"
         //label 2 "actual användarnamn"-betydligt större font
@@ -139,11 +139,11 @@ int round=0;
         startbtn.setOnAction(e -> {
             main.setQuestionScene();
             //Platform.runLater(() -> { //är detta josefs tanke?
-                main.questionScene.setQuestions(input.getQuestions());
-                main.questionScene.setNextQuestion();
-                main.setQuestionScene();
+            main.questionScene.setQuestions(input.getQuestions());
+            main.questionScene.setNextQuestion();
+            main.setQuestionScene();
 
-            });
+        });
         //});//hej funkar 100%
         giveUpBtn.setOnAction(e -> main.setStartScene());
         //bonus, onclick, popop med spinning wheel + cancelknapp vars funktion stänger popupen
@@ -209,35 +209,36 @@ int round=0;
                 .add(StartScene.class
                         .getResource("stylingCSS.css").toExternalForm());
         boolean[] b = new boolean[3];
-        b[0]=true;
-        b[1]=false;
-        b[2]=true;
-        boolPoints(spelareOnePoints, b/*qs.getBooleans*/);
+        b[0] = true;
+        b[1] = false;
+        b[2] = true;
+        //boolPoints(spelareOnePoints, main.questionScene.setSvar()/*qs.getBooleans*/);
     }
 
     public Scene getScene() {
         return scoreScene;
     }
 
-    public void boolPoints(Button[][] spelare, boolean[] bool) {
-       
+    public void boolPoints(boolean[] bool) {
+        Button[][] spelare = null;
+        if (round % 2 == 0) {
+            spelare = spelareOnePoints;
+        } else {
+            spelare = spelareTwoPoints;
+        }
         for (int i = 0; i < 3; i++) {
-           
-                if (bool[i] == true)
-                {
-                    spelare[i][round/2].setId("button-test2"); //röd?
-                }
-                else
-                {
-                    spelare[i][round/2].setId("button-test3"); //grön?
-                }
-                
-            
+
+            if (bool[i] == true) {
+                spelare[i][round / 2].setId("button-test2"); //röd?
+            } else {
+                spelare[i][round / 2].setId("button-test3"); //grön?
+            }
+
         }
         round++;
     }
-    public void ThreadCalling()
-    {
+
+    public void ThreadCalling() {
         new Thread(() -> { //annars hängde sig popupen // strular
             System.out.println("thread start");
             try {

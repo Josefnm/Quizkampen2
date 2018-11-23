@@ -17,8 +17,9 @@ public class QuestionScene {
     //egenskaper för frågor:
     ArrayList<String> points = new ArrayList<>();
     ArrayList<Question> questions;
+    boolean[] pointsrunda;
     String correctAnswer;
-    int nextQuestion = 0;
+    int svar = 0;
 
     //egenskaper för scenen:
     GameMain main;
@@ -28,8 +29,8 @@ public class QuestionScene {
     HBox hbox = new HBox();
     Label label = new Label();
 
-    QuestionScene() {
-
+    QuestionScene(GameMain main) {
+        this.main = main;
         BorderPane border = new BorderPane();
         GridPane grid = new GridPane();
 
@@ -57,7 +58,6 @@ public class QuestionScene {
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         border.setBottom(hbox);
-
         this.scene = new Scene(border);
     }
 
@@ -67,7 +67,7 @@ public class QuestionScene {
             Button btn = (Button) event.getSource();
             if (btn.getText().equals(correctAnswer)) {
                 btn.setStyle("-fx-background-color: Green");
-                points.add("1"); //skickas till servern för poäng
+                pointsrunda[svar] = true; //skickas till servern för poäng
                 for (Button b : buttons) {
                     b.setDisable(true);
                 }
@@ -75,17 +75,17 @@ public class QuestionScene {
 
             } else {
                 btn.setStyle("-fx-background-color: Red");
-                points.add("0");         //skicka till servern för att sedan parseas och ge poäng
+                pointsrunda[svar] = false;     //skicka till servern för att sedan parseas och ge poäng
                 for (Button b : buttons) {
                     if (b.getText().equals(correctAnswer)) {
                         b.setStyle("-fx-background-color: Green");
                     }
                     b.setDisable(true);
                 }
-
             }
             //Next knappen kan bara användas om man har svarat på fårgan
             next.setDisable(false);
+            
 
         }
     };
@@ -93,7 +93,17 @@ public class QuestionScene {
     EventHandler setScene = new EventHandler() {
         @Override
         public void handle(Event event) {
-            setNextQuestion();
+            svar++;
+            if(svar==questions.size()){
+                main.client.sendObject(pointsrunda);
+                svar=0;
+                
+                main.setScoreScene();
+                main.scoresc.boolPoints(pointsrunda);
+            }
+            else
+                setNextQuestion();
+            next.setDisable(true);
         }
     };
 
@@ -101,14 +111,14 @@ public class QuestionScene {
         Button btn = new Button();
         int i = 0;
         for (Button b : buttons) {
-            correctAnswer = questions.get(nextQuestion).getCorrectAnswer();
+            correctAnswer = questions.get(svar).getCorrectAnswer();
             b.setDisable(false);
             b.setStyle(btn.getStyle());
-            b.setText(questions.get(nextQuestion).getAnswer(i));
-            label.setText(questions.get(nextQuestion).getQuestion());
+            b.setText(questions.get(svar).getAnswer(i));
+            label.setText(questions.get(svar).getQuestion());
             i++;
         }
-        nextQuestion++;
+        
     }
 
     public Scene getScene() {
@@ -126,6 +136,10 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
-        questions.get(nextQuestion);
+        this.pointsrunda = new boolean[questions.size()];
+    }
+    
+    public boolean[] setSvar(){
+        return pointsrunda;
     }
 }
