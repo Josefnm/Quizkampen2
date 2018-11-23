@@ -23,6 +23,7 @@ public class Protocol {
         p = new Properties();
         try{
             p.load(new FileInputStream("src/GameServer/ronds.properties"));
+            System.out.println("ok");
         }
         catch(Exception e){
             System.out.println("Filen kunde inte hittas");
