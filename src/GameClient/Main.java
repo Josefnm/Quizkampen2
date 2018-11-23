@@ -117,7 +117,7 @@ public class Main extends Application {
     public void setStartScene()
     {
         tempScene = sc.getScene();
-        stage.setScene(tempScene);
+        stage.setScene(tempScene);  
     }
 
     public void setPopupScene(Scene scene) {

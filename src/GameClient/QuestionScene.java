@@ -29,13 +29,8 @@ public class QuestionScene {
    String correctAnswer;
    int nextQuestion = 0;
        
-   Object inline;
-
    QuestionScene(){
-       System.out.println("test");
        
-
-
        BorderPane border = new BorderPane();
        GridPane grid = new GridPane();
 
@@ -44,7 +39,6 @@ public class QuestionScene {
            Button button = new Button();
            button.setMinSize(300,200);
            button.setOnAction(click);
-
            buttons.add(button);
        }
 
