@@ -26,7 +26,7 @@ public class Protocol {
             System.out.println("Filen inte hittas");
         }
         ronds = Integer.parseInt(p.getProperty("rond"));
-        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
+        questionPerRond = Integer.parseInt(p.getProperty("questionsForeach"));
         System.out.println(ronds + "-" + questionPerRond);
     }
 

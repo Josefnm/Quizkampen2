@@ -56,7 +56,7 @@ public class StartScene { //fixar abstrakt senare
         Label username = new Label("Username:");
         System.out.println(main.userName);
         Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
-        realUser.setStyle("-fx-font-size: 40; -fx-fill: white;");
+        realUser.setStyle("-fx-font-size: 14; -fx-fill: white;");
       //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
@@ -125,13 +125,15 @@ public class StartScene { //fixar abstrakt senare
         //adda progressbar 
         //popup.show(primaryStage);
         Button show = new Button("Cancel");
+        show.setId("button-test3");
         Text searching = new Text("Letar efter spelare...");
+        searching.setStyle("-fx-fill: white;");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, show);
-        pop.setStyle("-fx-margin: 20");
+        //pop.setStyle("-fx-margin: 20");
 
         pop.setAlignment(Pos.CENTER);
-        pop.setSpacing(5);
+        pop.setSpacing(10);
         bp.setCenter(pop);
 
         System.out.println("HEHEHEHEH");
