@@ -34,21 +34,30 @@ public class Protocol {
     public void getResponse(Player player, String s) {
         switch (s) {
             case "start":
-                getOpponent(player);
+                getOpponent(player);  
+                System.out.println("start"+player.getName());
                 break;
             case "cancel":
                 player.setIsAvailable(false);
                 break;
-
         }
     }
-
-    public void getResponse(Player player, int s) {
+    public void getResponse(Player player, int s) {       
         System.out.println("wrong response");
-        if (player.getGameRoom().currentPlayer != player) {
-
+        if(player.getGameRoom().currentPlayer != player){
+            
         }
     }
+    
+    
+
+//    public void getResponse(Player player, boolean[] s) {
+//        System.out.println("wrong response");
+//        if (player.getGameRoom().currentPlayer != player) {
+//            
+//        }
+//    }
+
 
     public void getOpponent(Player player1) {
         for (Player player2 : playerList) {
@@ -70,8 +79,8 @@ public class Protocol {
     public void changeCurrentPlayer() {
 
     }
-
-    public QuestionList getQuestionList() {
+    
+    public QuestionList getQuestionList(){
         return questionList;
     }
 

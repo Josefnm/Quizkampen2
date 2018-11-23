@@ -19,13 +19,6 @@ public class Player extends Thread {
     private boolean isAvailable = false; //kan starta nytt spel
 
     public Player(Socket socket, Protocol protocol) {
-        try{
-            outStream = new ObjectOutputStream(socket.getOutputStream());
-            inStream = new ObjectInputStream(socket.getInputStream());
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
@@ -34,16 +27,19 @@ public class Player extends Thread {
 
     @Override
     public void run() {
-        try {
+        try{
+            outStream = new ObjectOutputStream(socket.getOutputStream());
+            inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            while (!socket.isClosed()) {
-                try {
+            while(! socket.isClosed()){
+                try{
                     input = inStream.readObject();
-                } catch (EOFException eofe) {
-                    break; //ifall klienten stängs
                 }
-                try {
-                    int score = Integer.parseInt(input.toString());
+                catch(EOFException eofe){
+                    break;  //ifall klienten stängs
+                }
+                try{
+                    int score= Integer.parseInt(input.toString());
                     protocol.getResponse(this, score);
                     System.out.println("getResponse1");
                 } catch (NumberFormatException e) {
@@ -52,9 +48,11 @@ public class Player extends Thread {
                 }
 
             }
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }
+        catch(IOException | ClassNotFoundException ex){
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        finally {
             try {
                 protocol.getPlayerList().remove(this);
                 outStream.close();
