@@ -21,13 +21,15 @@ public class Protocol {
         p = new Properties();
         try{
             p.load(new FileInputStream("src/GameServer/ronds.properties"));
+            System.out.println("ok");
         }
         catch(Exception e){
             System.out.println("Filen inte hittas");
         }
-        ronds = Integer.parseInt(p.getProperty("rond"));
-        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
-        System.out.println(ronds + "-" + questionPerRond);
+        String s = p.getProperty("rond");
+        System.out.println(s);
+//        questionPerRond = Integer.parseInt(p.getProperty("questionForeach"));
+//        System.out.println(ronds + "-" + questionPerRond);
     }
 
     //String för att testa, sedan ska den kunna ta emot olika saker som skickas från klienten
