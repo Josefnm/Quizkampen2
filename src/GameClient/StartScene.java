@@ -1,7 +1,7 @@
 package GameClient;
 
 import GameServer.Question;
-import GameServer.StartPacket;
+import GameServer.InfoPacket;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,16 +27,15 @@ import javafx.scene.text.Text;
 public class StartScene { //fixar abstrakt senare
 
     Scene startScene;
-    Main main;
+    GameMain main;
     Client client;
     QuestionScene qs;
     Scene popupScene;
-    Button show;
-    EntryScene entryScene;
-    StartPacket input;
-//
+    Button cancelPopupBtn;
+    InfoPacket input;
+    Thread listener = null;
 
-    public StartScene(Main main) {
+    public StartScene(GameMain main) {
         this.main = main;
         client = main.client;
         //label 1 "användarnamn"
@@ -56,7 +57,7 @@ public class StartScene { //fixar abstrakt senare
         Label username = new Label("Username:");
         System.out.println(main.userName);
         Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
-        realUser.setStyle("-fx-font-size: 14; -fx-fill: white;");
+        realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
       //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
@@ -67,6 +68,16 @@ public class StartScene { //fixar abstrakt senare
         startbtn.setOnAction(e -> {
             //TODO försöka få popupen att dyka upp på muspekarens position (kanske +- x, y)
             client.sendObject("start");
+//            startbtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent t) 
+//            {
+//                //txt=(TextBox)t.getSource();
+//                if(t.getButton()==MouseButton.SECONDARY )
+//                {
+//                    popup.show(txt,t.getScreenX(),t.getScreenY());                   
+//                }
+//            }
             try {
                 //main.setMainScene();
                 //main.setScoreScene();
@@ -99,7 +110,7 @@ public class StartScene { //fixar abstrakt senare
 
         //BP.setTop(startbtn);
         //BP.setBottom(avatar);
-//        show.setOnAction(e -> {
+//        cancelPopupBtn.setOnAction(e -> {
 //        System.out.println("hejdu");
 //        main.closePopupStage();
 //        System.out.println("nukörvi");
@@ -115,21 +126,24 @@ public class StartScene { //fixar abstrakt senare
         return startScene;
     }
 
-    public void popUp(Main main) throws IOException, ClassNotFoundException {
+    public void popUp(GameMain main) throws IOException, ClassNotFoundException {
         BorderPane bp = new BorderPane();
         
         bp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
         //bp.setId("score-test");
         popupScene = new Scene(bp, (main.getBoardHeight() / 2), (main.getBoardThicc() / 2));
 
+        popupScene.getStylesheets()
+                .add(StartScene.class
+                        .getResource("stylingCSS.css").toExternalForm());
         //adda progressbar 
-        //popup.show(primaryStage);
-        Button show = new Button("Cancel");
-        show.setId("button-test3");
+        //popup.cancelPopupBtn(primaryStage);
+        cancelPopupBtn = new Button("Cancel");
+        cancelPopupBtn.setId("button-test3");
         Text searching = new Text("Letar efter spelare...");
-        searching.setStyle("-fx-fill: white;");
+        searching.setId("textvit");
         ProgressIndicator pi = new ProgressIndicator();
-        VBox pop = new VBox(searching, pi, show);
+        VBox pop = new VBox(searching, pi, cancelPopupBtn);
         //pop.setStyle("-fx-margin: 20");
 
         pop.setAlignment(Pos.CENTER);
@@ -140,36 +154,36 @@ public class StartScene { //fixar abstrakt senare
         main.setPopupScene(popupScene);
 
         //lambdaknappaction
-        show.setOnAction(e -> {
-            System.out.println("hejdu");
-            main.closePopupStage();
-            System.out.println("nukörvi");
-            //outstreama till servern att vi inte längre söker motståndare
-            client.sendObject("cancel");
-        });
         System.out.println("before thread");
 
-        new Thread(() -> { //annars hängde sig popupen
-            System.out.println("thread start");
-            try {
+        if (listener == null) { //annars blir det två trådar om man trycker cancel och sen start igen
+            listener = new Thread(() -> { //annars hängde sig popupen
+                System.out.println("thread start");
+                try {
+                    this.input = (InfoPacket) client.getInStream().readObject();
+                    System.out.println("input");
+                } catch (IOException | ClassNotFoundException ex) {
+                    Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
+                }
+//Platform.runlater anropar Application-tråden. Detta görs för att i javafx så kan bara scener köras från den tråden.
+                Platform.runLater(() -> {
+                    main.questionScene.setQuestions(input.getQuestions());
+                    main.questionScene.setNextQuestion();
+                    main.setQuestionScene();
+                    main.closePopupStage();
+                });
 
-                this.input = (StartPacket) client.getInStream().readObject();
-                System.out.println("input");
-
-            } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Platform.runLater(() -> {
-                   
-                   main.questionScene.setQuestions(input.getQuestions());
-                   main.questionScene.setNextQuestion();
-                   main.setQuestionScene();
-                   main.closePopupStage();
-                
             });
-        }).start();
-//        Object input=client.getInStream().readObject();
-//        main.setQuestionScene();
+            listener.start();
+        }
+        
+        cancelPopupBtn.setOnAction(e -> {
+            System.out.println("hejdu");
+            client.sendObject("cancel");
+            main.closePopupStage();
+
+            System.out.println("nukörvi");
+        });
 
         //skapa popupruta
         //innehåller progressbar
@@ -185,7 +199,7 @@ public class StartScene { //fixar abstrakt senare
 
     //primaryStage.setTitle("BMI Calculator");
     //primaryStage.setScene(startScene);
-    //primaryStage.show();
+    //primaryStage.cancelPopupBtn();
 }
 
 //    this.setName("QuizKampen");

@@ -11,8 +11,8 @@ public class Client {
 
     private final String address;
     private final int port;
-    protected ObjectInputStream inStream;
-    protected ObjectOutputStream outStream;
+    private ObjectInputStream inStream;
+    private ObjectOutputStream outStream;
     private Socket socket;
 
     public Client() {
@@ -34,9 +34,9 @@ public class Client {
                     outStream.close();
                     inStream.close();
                     socket.close();
-                    System.out.println("The server is shut down!");
+                    System.out.println("Sockets closed!");
                 } catch (IOException e) {
-                    /* failed */ }
+                    System.out.println("closing socket failed"); }
             }
         });
     }
