@@ -39,8 +39,10 @@ public class Protocol {
                 case "cancel":
                     player.setIsAvailable(false);
                     break;
+
             }
-        } else if (o instanceof Boolean[]) {
+        } else if (o instanceof boolean[]) {
+            System.out.println("boolean recieved");
             getScore(player, (boolean[]) o);
         } else {
             System.out.println("response error");
