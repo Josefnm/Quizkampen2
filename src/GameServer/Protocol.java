@@ -19,10 +19,9 @@ public class Protocol {
         questionList = new QuestionList();
         playerList = new ArrayList<>();
         p = new Properties();
-        try{
+        try {
             p.load(new FileInputStream("src/GameServer/ronds.properties"));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Filen inte hittas");
         }
         ronds = Integer.parseInt(p.getProperty("rond"));
@@ -50,8 +49,8 @@ public class Protocol {
 
     public void getScore(Player player, boolean[] score) {
         System.out.println("score recieved");
-        GameRoom gr=player.getGameRoom();
-        if (gr.isFirstPlayer(player)) { 
+        GameRoom gr = player.getGameRoom();
+        if (gr.isFirstPlayer(player)) {
             gr.player1Score.add(score);
         } else {
             gr.player2Score.add(score);
@@ -59,8 +58,6 @@ public class Protocol {
             sendStartPacket(gr);
         }//inte färdig
     }
-    
-    
 
 //    public void getResponse(Player player, boolean[] s) {
 //        System.out.println("wrong response");
@@ -68,13 +65,11 @@ public class Protocol {
 //            
 //        }
 //    }
-
-
     public void getOpponent(Player player2) {
         for (Player player1 : playerList) {
             if (player1.getIsIsAvailable() && player2 != player1) {
                 //skapar upp ett gameroom som innehåller info för den specifika spelomgången
-                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories()); 
+                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories());
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
                 sendStartPacket(gr);
@@ -84,21 +79,21 @@ public class Protocol {
         player2.setIsAvailable(true);
     }
 
-    
     public void sendStartPacket(GameRoom gr) {
         System.out.println("startGame");
-        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true));
         gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
         System.out.println("sent questions");
     }
+
     public void sendRoundTwo(GameRoom gr) {
-        
-        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true));
         gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
         System.out.println("round two sent");
     }
-    
-    public QuestionList getQuestionList(){
+
+    public QuestionList getQuestionList() {
         return questionList;
     }
 
