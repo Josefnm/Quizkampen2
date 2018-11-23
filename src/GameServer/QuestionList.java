@@ -33,7 +33,6 @@ public class QuestionList {
         questionList.add(sport);
         questionList.add(historia);
         questionList.add(natur);
-
     }
 
     // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan

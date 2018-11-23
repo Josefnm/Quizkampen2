@@ -21,6 +21,11 @@ public class InfoPacket implements Serializable {
         this.IsfirstPlayer = isFirstPlayer;
         this.opponentScore = opponentScore;
     }
+    public InfoPacket(ArrayList<Question> questions, boolean isFirstPlayer) {
+        this.questions = questions;
+        this.IsfirstPlayer = isFirstPlayer;
+
+    }
 
 //    public InfoPacket(ArrayList<Question> questions) {
 //        this.questions = questions;

@@ -56,7 +56,7 @@ public class Protocol {
         } else {
             gr.player2Score.add(score);
             gr.increaseCurrentRound();
-            sendInfoPacket(gr);
+            sendStartPacket(gr);
         }//inte färdig
     }
 
@@ -67,19 +67,25 @@ public class Protocol {
                 GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories()); 
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
-                sendInfoPacket(gr);
+                sendStartPacket(gr);
                 return;
             }
         }
         player2.setIsAvailable(true);
     }
 
-    public void sendInfoPacket(GameRoom gr) {
+    
+    public void sendStartPacket(GameRoom gr) {
         System.out.println("startGame");
-        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ,gr.getPlayer2Score()));
-        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false,gr.getPlayer1Score()));
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
         System.out.println("sent questions");
-
+    }
+    public void sendRoundTwo(GameRoom gr) {
+        
+        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), true ));
+        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), false));
+        System.out.println("round two sent");
     }
 
     public QuestionList getQuestionList() {
