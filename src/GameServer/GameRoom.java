@@ -10,7 +10,7 @@ public class GameRoom {
     private ArrayList<boolean[]> player1Score = new ArrayList<>();
     private ArrayList<boolean[]> player2Score = new ArrayList<>();
 
-    int currentRound = 0;
+    private int currentRound = 0;
 
     private ArrayList<ArrayList<Question>> allQuestions;
 
@@ -21,7 +21,7 @@ public class GameRoom {
         this.allQuestions = allQuestions; //de utvalda frågorna för spelomgången
     }
 
-    public boolean bothAnswered() {
+    public boolean bothAnswered() { //true när båda spelare svarat på frågorna för ronden
         return player1Score.size() == player2Score.size();
     }
 

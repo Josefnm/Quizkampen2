@@ -28,7 +28,7 @@
     -fx-font-size: 14px;
 }
 #transparent { /*.transparent*/
-  background:rgba(255,255,255,0.5);
+    background:rgba(255,255,255,0.5);
 }
 #button-test2 {
     -fx-text-fill: white;
@@ -59,7 +59,7 @@
     -fx-stroke-width: 1;
 }*/
 #button-test5 {
-    
+
 }
 #logonamn {
     -fx-font-size: 40;

@@ -34,6 +34,7 @@ public class StartScene { //fixar abstrakt senare
     Button cancelPopupBtn;
     InfoPacket input;
     Thread listener = null;
+    private Text userName;
 
     public StartScene(GameMain main) {
         this.main = main;
@@ -54,11 +55,11 @@ public class StartScene { //fixar abstrakt senare
 
         System.out.println("inne i start, username: " + main.tempUsername());
         //verkar inte uppdatera förens efter popupen
-        Label username = new Label("Username:");
-        System.out.println(main.userName);
-        Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
-        realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
-      //   Text realUser = new Text("hej"); //kopplat till användarens input
+        Label nameLabel = new Label("Username:");
+        
+        userName = new Text("spelarensNamn"); //kopplat till användarens input
+        userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        //   Text userName = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
         startbtn.setMinSize(150, 25);
@@ -94,7 +95,7 @@ public class StartScene { //fixar abstrakt senare
         BorderPane BP = new BorderPane();
         BP.setPadding(new Insets(20, 20, 20, 20));
         BP.setId("pane");
-        VBox vbox = new VBox(username, realUser);
+        VBox vbox = new VBox(nameLabel, userName);
         HBox hbox = new HBox(avatar, vbox);
         HBox hboxKnapp = new HBox(startbtn);
         VBox vboxAllt = new VBox(hbox, hboxKnapp);
@@ -128,7 +129,7 @@ public class StartScene { //fixar abstrakt senare
 
     public void popUp(GameMain main) throws IOException, ClassNotFoundException {
         BorderPane bp = new BorderPane();
-        
+
         bp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
         //bp.setId("score-test");
         popupScene = new Scene(bp, (main.getBoardHeight() / 2), (main.getBoardThicc() / 2));
@@ -157,7 +158,8 @@ public class StartScene { //fixar abstrakt senare
         System.out.println("before thread");
 
         if (listener == null) { //annars blir det två trådar om man trycker cancel och sen start igen
-            listener = new Thread(() -> { //annars hängde sig popupen
+            listener = new Thread(() -> { 
+                System.out.println("popup: " + listener.getName());
                 System.out.println("thread start");
                 try {
                     this.input = (InfoPacket) client.getInStream().readObject();
@@ -172,11 +174,11 @@ public class StartScene { //fixar abstrakt senare
                     main.setQuestionScene();
                     main.closePopupStage();
                 });
-
+                System.out.println("thread closed");
             });
             listener.start();
         }
-        
+
         cancelPopupBtn.setOnAction(e -> {
             System.out.println("hejdu");
             client.sendObject("cancel");
@@ -184,22 +186,16 @@ public class StartScene { //fixar abstrakt senare
 
             System.out.println("nukörvi");
         });
-
-        //skapa popupruta
-        //innehåller progressbar
-        //samt knapp cancel
-        //kopplad till boolean
     }
 
     public Scene getPopupScene() {
         System.out.println("kom tillbaka");
         return popupScene;
     }
-    //main.set
 
-    //primaryStage.setTitle("BMI Calculator");
-    //primaryStage.setScene(startScene);
-    //primaryStage.cancelPopupBtn();
+    public void setUserName(String userName) {
+        this.userName.setText(userName);
+    }
 }
 
 //    this.setName("QuizKampen");

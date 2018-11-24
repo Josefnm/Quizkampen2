@@ -3,21 +3,16 @@ package GameServer;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServerMain {
-  
-    
 
     private ServerSocket listener;
     private Protocol protocol;
 
-
     public ServerMain() {
 
-        
         protocol = new Protocol();
         try {
             listener = new ServerSocket(12345);
@@ -41,6 +36,6 @@ public class ServerMain {
 
     public static void main(String[] args) {
         ServerMain main = new ServerMain();
-        
+
     }
 }

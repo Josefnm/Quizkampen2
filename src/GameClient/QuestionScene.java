@@ -85,7 +85,6 @@ public class QuestionScene {
             }
             //Next knappen kan bara användas om man har svarat på fårgan
             next.setDisable(false);
-            
 
         }
     };
@@ -94,15 +93,15 @@ public class QuestionScene {
         @Override
         public void handle(Event event) {
             svar++;
-            if(svar==questions.size()){
+            if (svar == questions.size()) {
                 main.client.sendObject(pointsrunda);
-                svar=0;
-                
+                svar = 0;
+
                 main.setScoreScene();
-                main.scoresc.boolPoints(pointsrunda);
-            }
-            else
+                main.scoreScene.boolPoints(pointsrunda,0);
+            } else {
                 setNextQuestion();
+            }
             next.setDisable(true);
         }
     };
@@ -118,7 +117,7 @@ public class QuestionScene {
             label.setText(questions.get(svar).getQuestion());
             i++;
         }
-        
+
     }
 
     public Scene getScene() {
@@ -138,8 +137,8 @@ public class QuestionScene {
         this.questions = questions;
         this.pointsrunda = new boolean[questions.size()];
     }
-    
-    public boolean[] setSvar(){
+
+    public boolean[] setSvar() {
         return pointsrunda;
     }
 }

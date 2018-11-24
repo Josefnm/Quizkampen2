@@ -10,27 +10,17 @@ public class Protocol {
     Ska kunna skicka tillbaka frågor, hitta motspelare, skicka poäng osv*/
     private ArrayList<Player> playerList;
     private QuestionList questionList;
-    Properties p;
-    int ronds;
-    int questionPerRond;
 
     public Protocol() {
         questionList = new QuestionList();
         playerList = new ArrayList<>();
-        p = new Properties();
-        try {
-            p.load(new FileInputStream("src/GameServer/ronds.properties"));
-        } catch (Exception e) {
-            System.out.println("Filen inte hittas");
-        }
-        ronds = Integer.parseInt(p.getProperty("rond"));
-        questionPerRond = Integer.parseInt(p.getProperty("questionsForeach"));
+
     }
 
     //Hanterar data som tagits emot från klienten
-    public void getResponse(Player player, Object o) {
-        if (o instanceof String) {
-            switch (o.toString()) {
+    public void getResponse(Player player, Object input) {
+        if (input instanceof String) {
+            switch (input.toString()) {
                 case "start":
                     getOpponent(player);
                     break;
@@ -39,51 +29,45 @@ public class Protocol {
                     break;
 
             }
-        } else if (o instanceof boolean[]) { //körs bär spelaren skickat svaren efter varje rond
+        } else if (input instanceof boolean[]) { //körs bär spelaren skickat svaren efter varje rond
             System.out.println("boolean recieved");
-            getScore(player, (boolean[]) o);
+            setScore(player, (boolean[]) input);
         } else {
             System.out.println("response error");
         }
     }
 
-    public void getScore(Player player, boolean[] score) {
+    public void setScore(Player player, boolean[] score) {
         System.out.println("score recieved");
         GameRoom gr = player.getGameRoom();
         gr.addScore(player, score);
         if (gr.bothAnswered()) {
+            System.out.println(gr.getPlayer1Score()[0]);
+            sendNewRound(gr);
             gr.increaseCurrentRound();
-            sendQuestionsAndScore(gr);
         }
     }
 
-    
     //hittar motspelare när clienten skickat "start"
     public void getOpponent(Player player2) {
         for (Player player1 : playerList) {
             if (player1.getIsIsAvailable() && player2 != player1) {
                 //skapar upp ett gameroom som innehåller info för den specifika spelomgången
-                GameRoom gr = new GameRoom(player1, player2, questionList.getTwoCategories(ronds,questionPerRond)); 
+                GameRoom gr = new GameRoom(player1, player2, questionList.GetRandom());
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
-                sendQuestionsAndScore(gr);
+                sendNewRound(gr);
                 return;
             }
         }
         player2.setIsAvailable(true);
     }
 
-
-
-    public void sendQuestionsAndScore(GameRoom gr) {
-
+    public void sendNewRound(GameRoom gr) {
+        
         gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
         gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
-        System.out.println("round two sent");
-    }
-
-    public QuestionList getQuestionList() {
-        return questionList;
+        System.out.println("round packets sent");
     }
 
     public ArrayList<Player> getPlayerList() {

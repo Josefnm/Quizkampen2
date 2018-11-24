@@ -11,7 +11,9 @@ public class InfoPacket implements Serializable {
 
     public InfoPacket(ArrayList<Question> questions, boolean[] opponentScore) {
         this.questions = questions;
+        this.opponentScore=opponentScore;
     }
+
     public ArrayList<Question> getQuestions() {
         return questions;
     }
