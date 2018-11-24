@@ -36,7 +36,11 @@ public class ServerMain {
 //        ArrayList<Question> tt = ql.getTwoQuestions(ql.matte, 2);
 //        ArrayList<ArrayList<Question>> jj = ql.getTwoCategories(2, 2);
 //        System.out.println(tt.get(0).getQuestion());
+//        System.out.println(tt.get(1).getQuestion());
 //        System.out.println(jj.get(0).get(0).getQuestion());
+//        System.out.println(jj.get(0).get(1).getQuestion());
+//        System.out.println(jj.get(1).get(0).getQuestion());
+//        System.out.println(jj.get(1).get(1).getQuestion());
     }
 
     public static void main(String[] args) {

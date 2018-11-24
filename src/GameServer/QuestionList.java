@@ -13,34 +13,38 @@ public class QuestionList {
     ArrayList<Question> natur = new ArrayList<>();
 
     public QuestionList() {
-        matte.add(new Question("Vad är 1+1",
+        matte.add(new Question("Vad är 1+",
                 new String[]{"2", "5", "10", "20"}, "2"));
-        matte.add(new Question("Vad är 2+2",
-                new String[]{"2", "5", "4", "20"}, "4"));
+        matte.add(new Question("Vad är 2+",
+                new String[]{"2", "19", "4", "20"}, "4"));
         matte.add(new Question("Vad är 1+1",
-                new String[]{"2", "5", "10", "20"}, "2"));
+                new String[]{"2", "78", "10", "20"}, "2"));
         matte.add(new Question("Vad är 2+2",
-                new String[]{"2", "5", "4", "20"}, "4"));
-        sport.add(new Question("Vilken form har en boll",
-                new String[]{"fyrkantig", "trekantig", "pentagon", "rund"}, "rund"));
+                new String[]{"2", "66", "4", "20"}, "4"));
+        sport.add(new Question("Vilken form har en ",
+                new String[]{"fyrkantig", "99", "pentagon", "rund"}, "rund"));
         sport.add(new Question("Vilken sport Sysslar Zlatan med",
-                new String[]{"Ishockey", "Fotboll", "Balett", "Boxning"}, "Fotboll"));
+                new String[]{"Ishockey", "44", "Balett", "Boxning"}, "Fotboll"));
         sport.add(new Question("Vilken form har en boll",
-                new String[]{"fyrkantig", "trekantig", "pentagon", "rund"}, "rund"));
-        sport.add(new Question("Vilken sport Sysslar Zlatan med",
-                new String[]{"Ishockey", "Fotboll", "Balett", "Boxning"}, "Fotboll"));
+                new String[]{"fyrkantig", "33", "pentagon", "rund"}, "rund"));
+        sport.add(new Question("Vilken sport Sysslar Zlatan ",
+                new String[]{"Ishockey", "11", "Balett", "Boxning"}, "Fotboll"));
         historia.add(new Question("what is the year?",
-                new String[]{"1999", "1990", "1992", "1998"}, "1998"));
+                new String[]{"8888", "1990", "1992", "1998"}, "1998"));
         historia.add(new Question("what is the person?",
                 new String[]{"Linkon", "Fox", "Ranbon", "Franklin"}, "Fox"));
-        historia.add(new Question("what is the year?",
-                new String[]{"1999", "1990", "1992", "1998"}, "1998"));
-        historia.add(new Question("what is the person?",
-                new String[]{"Linkon", "Fox", "Ranbon", "Franklin"}, "Fox"));
+        historia.add(new Question("what is the ?",
+                new String[]{"1111", "1990", "1992", "1998"}, "1998"));
+        historia.add(new Question(" is the person?",
+                new String[]{"5555", "Fox", "Ranbon", "Franklin"}, "Fox"));
         natur.add(new Question("what is the weather?",
                 new String[]{"winter", "summer", "autom", "spring"}, "winter"));
         natur.add(new Question("what is the water?",
                 new String[]{"hot", "cold", "iced", "steam"}, "iced"));
+        natur.add(new Question("what is the weat?",
+                new String[]{"6666", "summer", "autom", "spring"}, "winter"));
+        natur.add(new Question("what the water?",
+                new String[]{"3333", "cold", "iced", "steam"}, "iced"));
 
         questionList.add(matte);
         questionList.add(sport);
@@ -72,10 +76,13 @@ public class QuestionList {
         int i = 0;
         ArrayList<Integer> ronds = new ArrayList<>();
 //        ArrayList<Integer> questions = new ArrayList<>();
-        for(int k=0; k<rond; k++){
+        for(int k=0; k<questionList.size(); k++){
             ronds.add(k);
         }
         Collections.shuffle(ronds);
+        for(int p=0; p<ronds.size(); p++){
+            System.out.println(ronds.get(p));
+        }
 //        for(int k=0; k<questionsForeach; k++){
 //            questions.add(k);
 //        }
