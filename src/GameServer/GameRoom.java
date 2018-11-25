@@ -46,7 +46,11 @@ public class GameRoom {
     }
 
     public ArrayList<Question> getCurrentQuestions() {
-        return allQuestions.get(currentRound);
+        try {
+            return allQuestions.get(currentRound);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public boolean[] getPlayer1Score() {

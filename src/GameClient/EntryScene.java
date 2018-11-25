@@ -16,15 +16,13 @@ import javafx.scene.text.Text;
 
 public class EntryScene {
 
-    GameMain main;
-    String userNameInput;
-    Scene entryScene;
-    TextField userNameInputField;
+    private final GameMain main;
+    private Scene entryScene;
+    private TextField userNameInputField;
 
 //Användaren addar sitt användarnamn samt gender (gender en dropdownmeny?)    
     public EntryScene(GameMain main) {
         this.main = main;
-
         //userNameInput = "hehe2";    
         Text logoNamn = new Text("Quizkampen"); //ändra font samt storlek, även plats?
         //logoNamn.setStyle("-fx-fill: white; -fx-font-size: 40; -fx-font-family: comic sans ms;");
@@ -47,9 +45,7 @@ public class EntryScene {
         Button passBtn = new Button("Gå vidare");
         passBtn.setId("button-test4");
         passBtn.setOnAction(e -> {
-
             main.setUserName(userNameInputField.getText());
-            
             main.setStartScene();
         });
         BorderPane bp = new BorderPane();
@@ -68,18 +64,8 @@ public class EntryScene {
         bp.setCenter(vbox);
         //bp.setBottom(hboxKnappar);
         //dropdownmeny för gender?
-
-        this.entryScene = new Scene(bp, main.getBoardHeight(), main.getBoardThicc());
-
-        entryScene.getStylesheets()
-                .add(StartScene.class
-                        .getResource("stylingCSS.css").toExternalForm());
-
-    }
-
-    public String getUsername() {
-        System.out.println("in EntryScene, getUsername " + userNameInput);
-        return userNameInput;
+        entryScene = new Scene(bp, main.getBoardHeight(), main.getBoardThicc());
+        entryScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
 
     public Scene getScene() {

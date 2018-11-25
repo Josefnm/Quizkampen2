@@ -31,6 +31,7 @@ public class Player extends Thread {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
+            Send(protocol.getRoundsPerGame());
             while (!socket.isClosed()) {
                 try {
                     input = inStream.readObject();

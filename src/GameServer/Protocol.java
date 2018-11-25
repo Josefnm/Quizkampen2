@@ -1,6 +1,7 @@
 package GameServer;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -10,11 +11,20 @@ public class Protocol {
     Ska kunna skicka tillbaka frågor, hitta motspelare, skicka poäng osv*/
     private ArrayList<Player> playerList;
     private QuestionList questionList;
+    private int roundsPerGame;
+    private int questionsPerRond;
 
     public Protocol() {
-        questionList = new QuestionList();
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileInputStream("src/GameServer/GameLength.properties"));
+        } catch (IOException e) {
+            System.out.println("Filen inte hittas");
+        }
+        roundsPerGame = Integer.parseInt(properties.getProperty("roundsPerGame"));
+        questionsPerRond = Integer.parseInt(properties.getProperty("questionsPerRound"));
+        questionList = new QuestionList(questionsPerRond,roundsPerGame);
         playerList = new ArrayList<>();
-
     }
 
     //Hanterar data som tagits emot från klienten
@@ -22,10 +32,11 @@ public class Protocol {
         if (input instanceof String) {
             switch (input.toString()) {
                 case "start":
-                    getOpponent(player);
+                    findOpponent(player);
                     break;
                 case "cancel": //gör spelaren otillgänglig när spelaren trycker skickar cancel
                     player.setIsAvailable(false);
+                    System.out.println("cancel");
                     break;
 
             }
@@ -49,7 +60,7 @@ public class Protocol {
     }
 
     //hittar motspelare när clienten skickat "start"
-    public void getOpponent(Player player2) {
+    public void findOpponent(Player player2) {
         for (Player player1 : playerList) {
             if (player1.getIsIsAvailable() && player2 != player1) {
                 //skapar upp ett gameroom som innehåller info för den specifika spelomgången
@@ -64,7 +75,7 @@ public class Protocol {
     }
 
     public void sendNewRound(GameRoom gr) {
-        
+
         gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
         gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
         System.out.println("round packets sent");
@@ -72,5 +83,8 @@ public class Protocol {
 
     public ArrayList<Player> getPlayerList() {
         return playerList;
+    }
+    public int getRoundsPerGame() {
+        return roundsPerGame;
     }
 }

@@ -16,23 +16,14 @@ public class QuestionList {
     private int roundsPerGame;
     private int questionsPerRond;
 
-    public QuestionList() {
+    public QuestionList(int questionsPerRound, int roundsPerGame) {
+        this.questionsPerRond=questionsPerRound;
+        this.roundsPerGame=roundsPerGame;
         setQuestions();
         questionList.add(matte);
         questionList.add(sport);
         questionList.add(historia);
         questionList.add(natur);
-
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream("src/GameServer/GameLength.properties"));
-        } catch (Exception e) {
-            System.out.println("Filen inte hittas");
-        }
-        System.out.println(properties.getProperty("roundsPerGame"));
-        System.out.println(properties.getProperty("questionsPerRound"));
-        roundsPerGame = Integer.parseInt(properties.getProperty("roundsPerGame"));
-        questionsPerRond = Integer.parseInt(properties.getProperty("questionsPerRound"));
     }
 
     private ArrayList<Question> getRandomQuestions(ArrayList<Question> qs) {

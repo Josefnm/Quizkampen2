@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 public class ScoreScene {
 
     int roundCounter = 0;
-    int totalRounds = 4; //placeholder
+    private int totalRounds; //placeholder
     Scene scoreScene;
     GameMain main;
     private Text userName;
@@ -30,8 +30,9 @@ public class ScoreScene {
 
     Button[][][] scoreArray;
 
-    public ScoreScene(GameMain main) {
+    public ScoreScene(GameMain main,int rounds) {
         this.main = main;
+        totalRounds=rounds;
         scoreArray = new Button[2][totalRounds][3];
         //label 1 "användarnamn"
         //label 2 "actual användarnamn"-betydligt större font
@@ -61,11 +62,6 @@ public class ScoreScene {
         realUserP2.setFill(Color.WHITE);
         realUserP2.setStyle("-fx-font-size: 15;");
         //realUserP2.setStyle("-fx-text-fill: red; -fx-font-size: 35px;");, förstod font size men inte färgen
-
-//        Button waitbtn = new Button("VÄNTA"); //logiken saknas men om du blir spelaren som väntar
-//        //basicly en placeholder utan funktion? bör helst ta "SPELA"-knappens plats
-//        waitbtn.setId("button-test4");
-//        waitbtn.setMinSize(85, 45);
         startbtn = new Button("SPELA"); //starta pågående eller nästa rond?
         //startbtn.setStyle("-fx-background-color: green; -fx-text-fill: white;");
         startbtn.setId("button-test2");
@@ -115,10 +111,14 @@ public class ScoreScene {
 
         startbtn.setOnAction(e -> {
             startbtn.setDisable(true);
-            main.questionScene.setQuestions(input.getQuestions());
-            main.questionScene.setNextQuestion();
-            main.setQuestionScene();
-
+            roundCounter++;
+            if (roundCounter < totalRounds) {
+                main.getQuestionScene().setQuestions(input.getQuestions());
+                main.getQuestionScene().setNextQuestion();
+                main.setQuestionScene();
+            } else {
+                main.setStartScene();
+            }
         });
 
         giveUpBtn.setOnAction(e -> main.setStartScene());
@@ -151,11 +151,7 @@ public class ScoreScene {
         //BP.setBottom(avatar);
         this.scoreScene = new Scene(BP, main.getBoardHeight(), main.getBoardThicc());
 
-        scoreScene.getStylesheets()
-                .add(StartScene.class
-                        .getResource("stylingCSS.css").toExternalForm());
-
-        //boolPoints(player1Points, main.questionScene.setSvar()/*qs.getBooleans*/);
+        scoreScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
 
     public Scene getScene() {
@@ -176,14 +172,14 @@ public class ScoreScene {
         totalScoreTexts[playerNr].setText(Integer.toString(totalScores[playerNr]));
     }
 
-    public void ThreadCalling() {
+    public void inputThread() {
+
         new Thread(() -> {
             System.out.println("Scorescene listener: " + Thread.currentThread().getName());
             try {
 
                 input = (InfoPacket) main.client.getInStream().readObject();
                 boolPoints(input.getOpponentScore(), 1);
-                roundCounter++;
                 startbtn.setDisable(false);
                 System.out.println("input");
             } catch (IOException | ClassNotFoundException ex) {
@@ -194,5 +190,9 @@ public class ScoreScene {
 
     public void setUserName(String userName) {
         this.userName.setText(userName);
+    }
+
+    public void setTotalRounds(int totalRounds) {
+        this.totalRounds = totalRounds;
     }
 }
