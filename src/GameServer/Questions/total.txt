@@ -1,4 +1,40 @@
-src\gameserver\questions\matte.txt
-src\gameserver\questions\sport.txt
-src\gameserver\questions\natur.txt
-src\gameserver\questions\historia.txt
+matte,Vad är 1+1,2,4,6,8,2
+matte,Vad är 2+2,2,4,6,8,4
+matte,Vad är 3+3,2,4,6,8,6
+matte,Vad är 4+4,2,4,6,8,8
+matte,Vad är 5+5,10,4,6,8,10
+matte,Vad är 6+6,2,12,6,8,12
+matte,Vad är 7+7,2,4,14,8,14
+matte,Vad är 8+8,2,4,6,16,16
+matte,Vad är 9+9,18,4,6,8,18
+matte,Vad är 10+10,2,4,6,20,20
+sport,Vad är bollen för fot,fotboll,basketboll,handboll,isboll,fotboll
+sport,Vad är bollen för hand,fotboll,basketboll,handboll,isboll,handboll
+sport,Vad är bollen för basket,fotboll,basketboll,handboll,isboll,basketboll
+sport,Vad är bollen för is,fotboll,basketboll,handboll,isboll,isboll
+sport,Vad är bollen för vatten,vattenboll,basketboll,handboll,isboll,vattenboll
+sport,Vad är bollen för eld,fotboll,eldboll,handboll,isboll,eldboll
+sport,Vad är bollen för dance,fotboll,basketboll,danceboll,isboll,danceboll
+sport,Vad är bollen för hopp,fotboll,basketboll,handboll,hoppboll,hoppboll
+sport,Vad är bollen för springa,springaboll,basketboll,handboll,isboll,springaboll
+sport,Vad är bollen för flyga,fotboll,flygaboll,handboll,isboll,flygaboll
+natur,Vilken årstid för blommor,vår,sommar,höst,vinter,vår
+natur,Vilken årstid för simmmar,vår,sommar,höst,vinter,sommar
+natur,Vilken årstid för löv,vår,sommar,höst,vinter,höst
+natur,Vilken årstid för snö,vår,sommar,höst,vinter,vinter
+natur,Vilken tid för frukost,vår,sommar,höst,förmiddag,förmiddag
+natur,Vilken tid för lunch,vår,sommar,mitdag,vinter,mitdag
+natur,Vilken tid för middag,vår,natt,höst,eftermiddag,eftermiddag
+natur,Vilken tid för sova,natt,sommar,höst,vinter,natt
+natur,Vilken dag för ledig,vår,helgen,höst,vinter,helgen
+natur,Vilken dag för jobb,vår,sommar,höst,vardag,vardag
+historia,Vilket år nu,1999,2000,2007,2018,2018
+historia,Vilket år är nästa,1999,2000,2019,2018,2019
+historia,Vilket år är förre,1999,2000,2017,2018,2017
+historia,Vilket år är för 10 år sen,1999,2000,2007,2008,2008
+historia,Vilket år är efter 10 år,1999,2028,2007,2018,2028
+historia,Vilket år är för 3 år sen,1999,2015,2007,2018,2015
+historia,Vilket år är efter 3 år,1999,2021,2007,2018,2021
+historia,Vilket år är för 5 år sen,1999,2000,2007,2013,2013
+historia,Vilket år efter 5 år,1999,2000,2023,2018,2023
+historia,Vilket år är för 2 år sen,2016,2000,2007,2018,2016
