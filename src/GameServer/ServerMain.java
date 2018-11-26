@@ -11,36 +11,36 @@ public class ServerMain {
   
     
 
-    private ServerSocket listener;
-    private Protocol protocol;
+//    private ServerSocket listener;
+//    private Protocol protocol;
 
 
     public ServerMain() {
 
         
-        protocol = new Protocol();
-        try {
-            listener = new ServerSocket(12345);
-            System.out.println("Quiz Server is Running");
-            while (true) {
-                final Socket socket = listener.accept();
-                Player player = new Player(socket, protocol);
-                player.start();
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        protocol = new Protocol();
+//        try {
+//            listener = new ServerSocket(12345);
+//            System.out.println("Quiz Server is Running");
+//            while (true) {
+//                final Socket socket = listener.accept();
+//                Player player = new Player(socket, protocol);
+//                player.start();
+//            }
+//        } catch (IOException ex) {
+//            Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-//        QuestionList ql = new QuestionList();
-//        System.out.println("ok");
-//        ArrayList<Question> tt = ql.getTwoQuestions(ql.matte, 2);
-//        ArrayList<ArrayList<Question>> jj = ql.getTwoCategories(2, 2);
-//        System.out.println(tt.get(0).getQuestion());
-//        System.out.println(tt.get(1).getQuestion());
-//        System.out.println(jj.get(0).get(0).getQuestion());
-//        System.out.println(jj.get(0).get(1).getQuestion());
-//        System.out.println(jj.get(1).get(0).getQuestion());
-//        System.out.println(jj.get(1).get(1).getQuestion());
+        QuestionList ql = new QuestionList();
+        System.out.println("ok");
+        ArrayList<Question> tt = ql.getTwoQuestions(ql.matte, 2);
+        ArrayList<ArrayList<Question>> jj = ql.getTwoCategories(2, 2);
+        System.out.println(tt.get(0).getQuestion());
+        System.out.println(tt.get(1).getQuestion());
+        System.out.println(jj.get(0).get(0).getQuestion());
+        System.out.println(jj.get(0).get(1).getQuestion());
+        System.out.println(jj.get(1).get(0).getQuestion());
+        System.out.println(jj.get(1).get(1).getQuestion());
     }
 
     public static void main(String[] args) {

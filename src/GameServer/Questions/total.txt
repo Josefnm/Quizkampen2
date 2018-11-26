@@ -1,0 +1,4 @@
+src\gameserver\questions\matte.txt
+src\gameserver\questions\sport.txt
+src\gameserver\questions\natur.txt
+src\gameserver\questions\historia.txt
