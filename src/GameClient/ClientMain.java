@@ -1,11 +1,5 @@
 package GameClient;
 
-import GameClient.Scenes.StartScene;
-import GameClient.Scenes.QuestionScene;
-import GameClient.Scenes.ScoreScene;
-import GameClient.Scenes.PopupScene;
-import GameClient.Scenes.EntryScene;
-import GameClient.Scenes.ChatScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Modality;

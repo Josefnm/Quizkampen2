@@ -1,4 +1,4 @@
-package GameClient.Scenes;
+package GameClient;
 
 import GameClient.ClientMain;
 import GameServer.InfoPacket;
