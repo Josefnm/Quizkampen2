@@ -1,10 +1,8 @@
 package GameServer;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Properties;
 
 public class QuestionList {
 
@@ -20,10 +18,7 @@ public class QuestionList {
         this.questionsPerRond=questionsPerRound;
         this.roundsPerGame=roundsPerGame;
         setQuestions();
-        questionList.add(matte);
-        questionList.add(sport);
-        questionList.add(historia);
-        questionList.add(natur);
+        
     }
 
     private ArrayList<Question> getRandomQuestions(ArrayList<Question> qs) {
@@ -78,5 +73,9 @@ public class QuestionList {
                 new String[]{"hot", "cold", "iced", "steam"}, "iced"));
         natur.add(new Question("what is the water?",
                 new String[]{"hot", "cold", "iced", "steam"}, "iced"));
+        questionList.add(matte);
+        questionList.add(sport);
+        questionList.add(historia);
+        questionList.add(natur);
     }
 }

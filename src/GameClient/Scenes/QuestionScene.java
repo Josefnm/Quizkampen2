@@ -1,5 +1,8 @@
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
+import GameServer.IdEnum;
+import GameServer.InfoPacket;
 import GameServer.Question;
 import java.util.ArrayList;
 import javafx.event.Event;
@@ -22,14 +25,14 @@ public class QuestionScene {
     int questionsAnsweredNr = 0;
 
     //egenskaper för scenen:
-    GameMain main;
+    ClientMain main;
     Button next = new Button("Next");
     private Scene scene;
     ArrayList<Button> buttons = new ArrayList();
     HBox hbox = new HBox();
     Label label = new Label();
 
-    QuestionScene(GameMain main) {
+    public QuestionScene(ClientMain main) {
         this.main = main;
         BorderPane border = new BorderPane();
         GridPane grid = new GridPane();
@@ -88,9 +91,8 @@ public class QuestionScene {
         public void handle(Event event) {
             questionsAnsweredNr++;
             if (questionsAnsweredNr == questions.size()) {
-                main.client.sendObject(roundScore);
+                main.getClient().send(new InfoPacket(roundScore));
                 questionsAnsweredNr = 0;
-
                 main.setScoreScene();
                 main.getScoreScene().boolPoints(roundScore,0);
             } else {
@@ -120,6 +122,6 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
-        this.roundScore = new boolean[questions.size()];
+        setNextQuestion();
     }
 }

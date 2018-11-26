@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 public class ServerMain {
 
     private ServerSocket listener;
-    private Protocol protocol;
+    private ServerProtocol protocol;
 
     public ServerMain() {
 
-        protocol = new Protocol();
+        protocol = new ServerProtocol();
         try {
             listener = new ServerSocket(12345);
             System.out.println("Quiz Server is Running");

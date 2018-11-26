@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameRoom {
 
-    private Player player1; //spelar först
+    private Player player1;
     private Player player2;
 
     private ArrayList<boolean[]> player1Score = new ArrayList<>();
@@ -12,13 +12,12 @@ public class GameRoom {
 
     private int currentRound = 0;
 
-    private ArrayList<ArrayList<Question>> allQuestions;
+    private ArrayList<ArrayList<Question>> questions; //alla frågor för en hel spelomgång
 
-    public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> allQuestions) {
+    public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> questions) {
         this.player1 = player1;
         this.player2 = player2;
-
-        this.allQuestions = allQuestions; //de utvalda frågorna för spelomgången
+        this.questions = questions; 
     }
 
     public boolean bothAnswered() { //true när båda spelare svarat på frågorna för ronden
@@ -32,22 +31,17 @@ public class GameRoom {
             player2Score.add(score);
         }
     }
-
-    public boolean isFirstPlayer(Player player) {
-        return (player1 == player);
-    }
-
     public void increaseCurrentRound() {
         currentRound++;
     }
 
-    public ArrayList<ArrayList<Question>> getAllQuestions() {
-        return allQuestions;
+    public ArrayList<ArrayList<Question>> getQuestions() {
+        return questions;
     }
 
     public ArrayList<Question> getCurrentQuestions() {
         try {
-            return allQuestions.get(currentRound);
+            return questions.get(currentRound);
         } catch (Exception e) {
             return null;
         }

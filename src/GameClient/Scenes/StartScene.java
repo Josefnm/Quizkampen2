@@ -1,5 +1,7 @@
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
+import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,10 +18,10 @@ import javafx.scene.text.Text;
 public class StartScene { //fixar abstrakt senare
 
     private Scene startScene;
-    private GameMain main;
+    private ClientMain main;
     private Text userName;
 
-    public StartScene(GameMain main) {
+    public StartScene(ClientMain main) {
         this.main = main;
         //label 1 "användarnamn"
         //label 2 "actual användarnamn"-betydligt större font
@@ -35,25 +37,20 @@ public class StartScene { //fixar abstrakt senare
         avatar.setSmooth(true);
         avatar.setCache(true);
 
-
         Label nameLabel = new Label("Username:");
-
-        userName = new Text("spelarensNamn"); //kopplat till användarens input
+        userName = new Text(main.getUserName()); //kopplat till användarens input
         userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
         //   Text userName = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
         startbtn.setMinSize(150, 25);
 
-        //lambda
-        //tanken att vi genom start engagear servern
         startbtn.setOnAction(e -> {
-            main.client.sendObject("start");
+            main.getClient().send(new InfoPacket(IdEnum.START));
             main.setPopupScene();
 
             System.out.println("hejdå");
-        }); //hej funkar 100%
-        //bonus, onclick, popop med spinning wheel + cancelknapp vars funktion stänger popupen
+        });
 
         //borderpane, vbox, hbox
         BorderPane BP = new BorderPane();
@@ -74,18 +71,12 @@ public class StartScene { //fixar abstrakt senare
         BP.setCenter(vboxAllt);
         //BP.setTop(startbtn);
         //BP.setBottom(avatar);
-        this.startScene = new Scene(BP, main.getBoardHeight(), main.getBoardThicc());
-
-        startScene.getStylesheets()
-                .add(getClass()
-                        .getResource("stylingCSS.css").toExternalForm());
+        startScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
+        startScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
 
     public Scene getScene() {
         return startScene;
     }
 
-    public void setUserName(String userName) {
-        this.userName.setText(userName);
-    }
 }

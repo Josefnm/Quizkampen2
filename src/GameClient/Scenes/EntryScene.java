@@ -1,8 +1,11 @@
 /*
  * JavaUtveckling 2018
  */
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
+import GameServer.IdEnum;
+import GameServer.InfoPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,12 +19,12 @@ import javafx.scene.text.Text;
 
 public class EntryScene {
 
-    private final GameMain main;
+    private final ClientMain main;
     private Scene entryScene;
     private TextField userNameInputField;
 
 //Användaren addar sitt användarnamn samt gender (gender en dropdownmeny?)    
-    public EntryScene(GameMain main) {
+    public EntryScene(ClientMain main) {
         this.main = main;
         //userNameInput = "hehe2";    
         Text logoNamn = new Text("Quizkampen"); //ändra font samt storlek, även plats?
@@ -46,6 +49,8 @@ public class EntryScene {
         passBtn.setId("button-test4");
         passBtn.setOnAction(e -> {
             main.setUserName(userNameInputField.getText());
+            main.getClient().send(new InfoPacket(userNameInputField.getText()));
+            main.initScenes();
             main.setStartScene();
         });
         BorderPane bp = new BorderPane();
@@ -64,7 +69,7 @@ public class EntryScene {
         bp.setCenter(vbox);
         //bp.setBottom(hboxKnappar);
         //dropdownmeny för gender?
-        entryScene = new Scene(bp, main.getBoardHeight(), main.getBoardThicc());
+        entryScene = new Scene(bp, main.getBoardWidth(), main.getBoardHeight());
         entryScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
 
