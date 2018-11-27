@@ -1,6 +1,5 @@
 package GameClient;
 
-import GameClient.ClientMain;
 import GameServer.InfoPacket;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

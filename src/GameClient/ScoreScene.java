@@ -4,8 +4,10 @@ import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -57,7 +59,7 @@ public class ScoreScene {
         avatarG.setSmooth(true);
         avatarG.setCache(true);
 
-        userName = new Text(main.getUserName()); 
+        userName = new Text(main.getUserName());
         userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
         opponentName = new Text("spelare2"); //kopplat till användarens input
         opponentName.setStyle("-fx-font-size: 15; -fx-fill: white;");
@@ -115,6 +117,7 @@ public class ScoreScene {
             if (roundCounter < roundsPerGame) {
                 main.setQuestionScene();
             } else {
+                resetScore();
                 main.getClient().send(new InfoPacket(IdEnum.ENDED));
                 main.setStartScene();
             }
@@ -158,9 +161,7 @@ public class ScoreScene {
     }
 
     public void boolPoints(boolean[] bool, int playerNr) {
-
         for (int i = 0; i < 3; i++) {
-
             if (bool[i]) {
                 scoreArray[playerNr][roundCounter][i].setId("button-test2"); //grön
                 totalScores[playerNr]++;
@@ -174,7 +175,17 @@ public class ScoreScene {
     public void setOpponentName(String opponentName) {
         this.opponentName.setText(opponentName);
     }
-    public void enableStartBtn(){
+
+    public void enableStartBtn() {
         startBtn.setDisable(false);
+    }
+
+    public void resetScore() {
+        roundCounter = 0;
+        totalScores = new int[]{0, 0};
+        Arrays.stream(scoreArray)
+                .flatMap(Arrays::stream)
+                .flatMap(Arrays::stream)
+                .forEach(btn -> btn.setId(null));
     }
 }

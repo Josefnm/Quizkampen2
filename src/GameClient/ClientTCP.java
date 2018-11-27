@@ -39,6 +39,7 @@ public class ClientTCP {
     public void send(Object object) {
         try {
             outStream.writeObject(object);
+            outStream.flush();
         } catch (IOException ex) {
             System.out.println("writeobject error");
             Logger.getLogger(ClientTCP.class.getName()).log(Level.SEVERE, null, ex);

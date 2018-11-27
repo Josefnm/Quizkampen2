@@ -25,13 +25,6 @@ public class ServerMain {
         } catch (IOException ex) {
             Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-//        QuestionList ql = new QuestionList();
-//        System.out.println("ok");
-//        ArrayList<Question> tt = ql.getTwoQuestions(ql.matte, 2);
-//        ArrayList<ArrayList<Question>> jj = ql.getTwoCategories(2, 2);
-//        System.out.println(tt.get(0).getQuestion());
-//        System.out.println(jj.get(0).get(0).getQuestion());
     }
 
     public static void main(String[] args) {

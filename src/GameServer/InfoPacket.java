@@ -25,6 +25,7 @@ public class InfoPacket implements Serializable {
     public InfoPacket(boolean[] opponentScore) {
         id = IdEnum.NEXT_ROUND;
         this.score = opponentScore;
+        System.out.println(score[0]+""+score[1]+""+score[2]);
     }
 
     public InfoPacket(int roundsPerGame) {

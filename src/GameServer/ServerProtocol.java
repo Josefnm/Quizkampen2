@@ -3,6 +3,7 @@ package GameServer;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
 
 public class ServerProtocol {
@@ -50,30 +51,33 @@ public class ServerProtocol {
                 break;
             case NEXT_ROUND:
                 System.out.println("score");
-                recieveScore(player, data);
+                sendScore(player, data);
                 break;
             case ENDED:
                 break;
         }
     }
 
-    public void recieveScore(Player player, InfoPacket data) {
+    public void sendScore(Player player, InfoPacket data) {
         System.out.println("score recieved");
         GameRoom gr = player.getGameRoom();
-        gr.addScore(player, (boolean[]) data.getScore());
+        System.out.println(data.getScore()[0] + "" + data.getScore()[1] + "" + data.getScore()[2]);
+        gr.addScore(player, data.getScore());
         if (gr.bothAnswered()) {
-            sendNewRound(gr);
             gr.increaseCurrentRound();
+            gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
+            gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
         }
     }
 
     //hittar motspelare när clienten skickat "start"
     public void findOpponent(Player player2) {
-
         for (Player player1 : playerList) {
-            if (player1.getIsIsAvailable() && player2 != player1) {
+            if (player1.getIsIsAvailable()) {
                 //skapar upp ett gameroom som innehåller data för den specifika spelomgången
                 GameRoom gr = new GameRoom(player1, player2, questionList.GetRandom());
+                player1.setIsAvailable(false);
+                player2.setIsAvailable(false);
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
                 player1.Send(new InfoPacket(gr.getCurrentQuestions(), player2.getPlayerName()));
@@ -83,12 +87,6 @@ public class ServerProtocol {
             }
         }
         player2.setIsAvailable(true);
-    }
-
-    public void sendNewRound(GameRoom gr) { //skickar nya frågor och motståndarens poäng
-        gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
-        gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
-        System.out.println("round packets sent");
     }
 
     public ArrayList<Player> getPlayerList() {

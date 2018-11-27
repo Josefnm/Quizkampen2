@@ -91,7 +91,7 @@ public class QuestionScene {
         public void handle(Event event) {
             questionsAnsweredNr++;
             if (questionsAnsweredNr == questions.size()) {
-                main.getClient().send(new InfoPacket(roundScore));
+                main.getClient().send(new InfoPacket(roundScore.clone()));
                 questionsAnsweredNr = 0;
                 main.setScoreScene();
                 main.getScoreScene().boolPoints(roundScore,0);
@@ -122,6 +122,6 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
-        setNextQuestion();
+        
     }
 }

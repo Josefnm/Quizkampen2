@@ -64,6 +64,7 @@ public class ClientMain extends Application {
     }
     
     public void setQuestionScene() {
+        questionScene.setNextQuestion();
         primaryStage.setScene(questionScene.getScene());
     }
 

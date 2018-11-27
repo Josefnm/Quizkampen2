@@ -17,7 +17,7 @@ public class GameRoom {
     public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> questions) {
         this.player1 = player1;
         this.player2 = player2;
-        this.questions = questions; 
+        this.questions = questions;
     }
 
     public boolean bothAnswered() { //true när båda spelare svarat på frågorna för ronden
@@ -31,8 +31,10 @@ public class GameRoom {
             player2Score.add(score);
         }
     }
+
     public void increaseCurrentRound() {
         currentRound++;
+        System.out.println(currentRound);
     }
 
     public ArrayList<ArrayList<Question>> getQuestions() {
@@ -48,19 +50,11 @@ public class GameRoom {
     }
 
     public boolean[] getPlayer1Score() {
-        try {
-            return player1Score.get(currentRound);
-        } catch (Exception e) {
-            return null;
-        }
+        return player1Score.get(currentRound - 1);
     }
 
     public boolean[] getPlayer2Score() {
-        try {
-            return player2Score.get(currentRound);
-        } catch (Exception ex) {
-            return null;
-        }
+        return player2Score.get(currentRound - 1);
     }
 
     public Player getPlayer1() {
