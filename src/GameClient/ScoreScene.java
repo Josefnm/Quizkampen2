@@ -29,24 +29,22 @@ public class ScoreScene {
     StartScene sc;
     Scene popUp;
     InfoPacket input;
+    Text realUserP1;
     Button[][] spelareOnePoints = new Button[3][2]; //kopplad till properties? rundor 2 skulle kunna vara dynamiskt
     Button[][] spelareTwoPoints = new Button[3][2];
+    ImageView avatar;
 
     public ScoreScene(GameMain main) {
         this.main = main;
 
         ThreadCalling();
+        
+        Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
 
-        //label 1 "användarnamn"
-        //label 2 "actual användarnamn"-betydligt större font
-        //Avatarbild, den ska även gå att ändra
-        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
-        Image avatarGirl = new Image("./images/girl.png");
+        ImageView avatarG = new ImageView(); //spelare2 bör gå genom server
+        avatar = new ImageView(); //sköter vi själva
 
-        ImageView avatarG = new ImageView();
-        ImageView avatar = new ImageView();
-
-        avatar.setImage(avatarBoy);
+        
         avatar.setFitWidth(40);
         avatar.setPreserveRatio(true);
         avatar.setSmooth(true);
@@ -58,7 +56,7 @@ public class ScoreScene {
         avatarG.setSmooth(true);
         avatarG.setCache(true);
 
-        Text realUserP1 = new Text("spelare1"); //kopplat till användarens input
+        realUserP1 = new Text(""); //kopplat till användarens input
         realUserP1.setFill(Color.WHITE);
         realUserP1.setStyle("-fx-font-size: 15;");
         Text realUserP2 = new Text("spelare2"); //kopplat till användarens input
@@ -125,6 +123,8 @@ public class ScoreScene {
         Text r2 = new Text("ROND 2");
 
         r2.setId("textvit");
+        r2.getStyleClass().add("textvit"); //omdet vore punkt framför
+        
         Button b4r2 = new Button(); //p2
         b4r2.setMinSize(30, 25);
         spelareTwoPoints[0][1] = b4r2;
@@ -218,6 +218,15 @@ public class ScoreScene {
     public Scene getScene() {
         return scoreScene;
     }
+    public void setAvatar(Image input)
+    {
+        System.out.println(input);
+        avatar.setImage(input);
+    }
+    public void setUsername(String name)
+    {
+        realUserP1.setText(name);   
+    }
 
     public void boolPoints(boolean[] bool) {
         Button[][] spelare = null;
@@ -239,7 +248,7 @@ public class ScoreScene {
     }
 
     public void ThreadCalling() {
-        new Thread(() -> { //annars hängde sig popupen // strular
+        new Thread(() -> { 
             System.out.println("thread start");
             try {
                 this.input = (InfoPacket) client.getInStream().readObject();

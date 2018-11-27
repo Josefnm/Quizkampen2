@@ -34,30 +34,39 @@ public class StartScene { //fixar abstrakt senare
     Button cancelPopupBtn;
     InfoPacket input;
     Thread listener = null;
+    EntryScene entry;
+    
+    Text realUsername; //för vår setter
+    ImageView avatar;
 
     public StartScene(GameMain main) {
         this.main = main;
         client = main.client;
-        //label 1 "användarnamn"
-        //label 2 "actual användarnamn"-betydligt större font
-        //Avatarbild, den ska även gå att ändra
 
-        //entryScene = new EntryScene(main);
-        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
 
-        ImageView avatar = new ImageView();
-        avatar.setImage(avatarBoy);
+
+        avatar = new ImageView();
+        
+        //avatar.setImage("");
         avatar.setFitWidth(40);
         avatar.setPreserveRatio(true);
         avatar.setSmooth(true);
         avatar.setCache(true);
-
+        entry = new EntryScene(main);
         System.out.println("inne i start, username: " + main.tempUsername());
         //verkar inte uppdatera förens efter popupen
         Label username = new Label("Username:");
         System.out.println(main.userName);
-        Text realUser = new Text("spelarensNamn"); //kopplat till användarens input
-        realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        System.out.println("22222222222222");
+        
+        //realUsername = new Text("hehehehehehe"); //<---
+        
+        
+        //realUser = new Text("KAPTEN BAJS"); //kopplat till användarens input
+        //realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        realUsername = new Text("");
+        realUsername.getStyleClass().add("text_white");
+        //realUsername.setStyle("-fx-font-size: 15; -fx-fill: white;");
       //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
         startbtn.setId("button-test4");
@@ -94,7 +103,7 @@ public class StartScene { //fixar abstrakt senare
         BorderPane BP = new BorderPane();
         BP.setPadding(new Insets(20, 20, 20, 20));
         BP.setId("pane");
-        VBox vbox = new VBox(username, realUser);
+        VBox vbox = new VBox(username, /*realUser,*/ realUsername); //leker
         HBox hbox = new HBox(avatar, vbox);
         HBox hboxKnapp = new HBox(startbtn);
         VBox vboxAllt = new VBox(hbox, hboxKnapp);
@@ -121,9 +130,26 @@ public class StartScene { //fixar abstrakt senare
                 .add(StartScene.class
                         .getResource("stylingCSS.css").toExternalForm());
     }
-
+//    public void setAvatar(String input)
+//    {
+//        System.out.println(input);
+//        if (input == "boy") avatar.setImage(avatarBoy);
+//        else if (input == "girl")  avatar.setImage(avatarGirl);
+//        else avatar.setImage(avatarPikatchu);//gäller för default samt not sure
+//
+//    }
+    public void setAvatar(Image input)
+    {
+        System.out.println(input);
+        avatar.setImage(input);
+    }
     public Scene getScene() {
         return startScene;
+    }
+    public void setUsername(String name)
+    {
+        System.out.println("username start");
+        realUsername.setText(name);
     }
 
     public void popUp(GameMain main) throws IOException, ClassNotFoundException {
@@ -139,6 +165,7 @@ public class StartScene { //fixar abstrakt senare
         //adda progressbar 
         //popup.cancelPopupBtn(primaryStage);
         cancelPopupBtn = new Button("Cancel");
+        
         cancelPopupBtn.setId("button-test3");
         Text searching = new Text("Letar efter spelare...");
         searching.setId("textvit");
@@ -184,58 +211,9 @@ public class StartScene { //fixar abstrakt senare
 
             System.out.println("nukörvi");
         });
-
-        //skapa popupruta
-        //innehåller progressbar
-        //samt knapp cancel
-        //kopplad till boolean
     }
-
     public Scene getPopupScene() {
         System.out.println("kom tillbaka");
         return popupScene;
     }
-    //main.set
-
-    //primaryStage.setTitle("BMI Calculator");
-    //primaryStage.setScene(startScene);
-    //primaryStage.cancelPopupBtn();
 }
-
-//    this.setName("QuizKampen");
-//    createAndShowUI();
-//    initComponents();
-//    
-//    private void createAndShowUI() {
-//        this.setResizable(false);
-//        this.setSize(500, 500);
-//        this.setLocationRelativeTo(null); //Placerar fönstret i mitten
-//        this.setVisible(true);
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//    }
-//    private void initComponents() {
-//        Button startButton = new Button("Start Game");
-//    }
-//    
-//
-//    public void actionPerformed(ActionEvent e) {
-//        try {
-//            //start
-//        } catch (Exception e1) {
-//            e1.printStackTrace();
-//        }
-//    }
-//}
-//        startbtn.setOnAction(new EventHandler<ActionEvent>() {
-//
-//            
-//
-//            @Override
-//
-//            public void handle(ActionEvent event) {
-//                
-//                System.out.println("hhehe");
-//                main.setQuestionScene(/*client,*/);
-//            }
-//            
-//        });

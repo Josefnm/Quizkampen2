@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 public class GameMain extends Application {
 
+    public static int counter = 0;
+    
     private Stage stage;
     StartScene sc;
     Client client;
@@ -26,15 +28,18 @@ public class GameMain extends Application {
     //popuptest
     Stage stagepop;
    
-    EntryScene entryScene ; //= new EntryScene(this);;
+    EntryScene entryScene;
     
     String userName;
+    
+    public GameMain() {
+        counter++;
+        System.out.println("I AM IN THIS" + counter);
+    }
 
     @Override
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {
-//        stage = primaryStage;
-//      //  sc = new StartScene(this);
-////        questionScene = new QuestionScene(this);
+
         primaryStage.setTitle("Quiz!");
 
         client = new Client();
@@ -42,20 +47,14 @@ public class GameMain extends Application {
         stagepop = new Stage();
         entryScene = new EntryScene(this);
         sc = new StartScene(this);
+        entryScene.startInitiated(sc); //<------
         questionScene = new QuestionScene(this);
         scoresc = new ScoreScene(this);
+        entryScene.scoreInitiated(scoresc); // <---
         primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(entryScene.getScene());
         primaryStage.show();
 
-        //Button btn = new Button("lol");
-        //StackPane root = new StackPane();
-        //root.getChildren().add(btn);
-        //användes vid tidigare tester
-        //mainScene = new Scene(root, getBoardHeight(), getBoardThicc());
-        //btn.setOnAction(e -> setScoreScene());
-        //btn.setOnAction(e -> popUp());
-        //test
         
         //detta handlar om second stage (aka popups) x-funktion, tack vare josef överflödig?
         stagepop.setOnCloseRequest(event -> {
@@ -69,13 +68,8 @@ public class GameMain extends Application {
     }
     public String tempUsername()
     {
-        String hej = "";
         System.out.println("tempUserName "+entryScene);
         return entryScene.getUsername();
-    }
-    public void tempGenderChoice()
-    {
-        //en setter kanske vore något
     }
 
     public void setQuestionScene() {
@@ -91,13 +85,11 @@ public class GameMain extends Application {
     public void setMainScene() {
         tempScene = mainScene;
         stage.setScene(tempScene);
-        //stage.initModality(Modality.WINDOW_MODAL);
     }
 
     public void setScoreScene() {
         tempScene = scoresc.getScene();
         stage.setScene(tempScene);
-        //stage.initModality(Modality.WINDOW_MODAL);
     }
     public void setEntryScene()
     {
@@ -105,7 +97,8 @@ public class GameMain extends Application {
         stage.setScene(tempScene);
     }
 
-    public void setStartScene() {
+    public void setStartScene()
+    {
         tempScene = sc.getScene();
         stage.setScene(tempScene);
     }
@@ -116,10 +109,9 @@ public class GameMain extends Application {
         stagepop.setScene(tempScene);
 
         if (stagepop.getModality() == Modality.NONE) {
-            stagepop.initModality(Modality.APPLICATION_MODAL);
-
+            stagepop.initModality(Modality.APPLICATION_MODAL); //ger popupkänslan
         }
-        stagepop.show();//ger popupkänslan
+        stagepop.show();
     }
 
     public void closePopupStage() {
@@ -135,27 +127,7 @@ public class GameMain extends Application {
     public int getBoardThicc() {
         return 506;
     }
-
-    public void popUp() {
-        final Popup popup = new Popup();
-        popup.setX(300);
-        popup.setY(200);
-        //popup.show(primaryStage);
-        Button show = new Button("Cancel");
-
-        popup.getContent().addAll(show);
-        popup.show(stage);
-        show.setOnAction(e -> {
-            popup.hide();
-            System.out.println("hejdå");
-        });
-
-        //skapa popupruta
-        //innehåller progressbar
-        //samt knapp cancel
-        //kopplad till boolean
-    }
-
+    
     public static void main(String[] args) {
         launch(args);
 
