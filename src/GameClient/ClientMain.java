@@ -35,6 +35,7 @@ public class ClientMain extends Application {
         chatScene=new ChatScene(this);
         
         primaryStage.setTitle("QUIZKAMPEN!");
+        //setChatScene();
         setEntryScene();
         primaryStage.show();
     }
