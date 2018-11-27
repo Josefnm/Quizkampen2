@@ -51,17 +51,16 @@ public class ServerProtocol {
                 break;
             case NEXT_ROUND:
                 System.out.println("score");
-                sendScore(player, data);
+                nextRound(player, data);
                 break;
             case ENDED:
                 break;
         }
     }
 
-    public void sendScore(Player player, InfoPacket data) {
+    public void nextRound(Player player, InfoPacket data) {
         System.out.println("score recieved");
         GameRoom gr = player.getGameRoom();
-        System.out.println(data.getScore()[0] + "" + data.getScore()[1] + "" + data.getScore()[2]);
         gr.addScore(player, data.getScore());
         if (gr.bothAnswered()) {
             gr.increaseCurrentRound();
