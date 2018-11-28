@@ -3,9 +3,6 @@ package GameClient;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import java.util.Arrays;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -34,7 +31,7 @@ public class ScoreScene {
     private Label duVann;
 
     Text realUserP1;
-    ImageView avatar;
+    ImageView userAvatar;
 
     public ScoreScene(ClientMain main) {
         this.main = main;
@@ -42,24 +39,16 @@ public class ScoreScene {
         roundsPerGame = main.getRoundsPerGame();
         scoreArray = new Button[2][roundsPerGame][3];
         totalScores = new int[]{0, 0};
-
-        //Avatarbild, den ska även gå att ändra
-//        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
-//        Image avatarGirl = new Image("./images/girl.png");
-        //ImageView avatarG = new ImageView();
-        avatar = new ImageView();
-
-        //avatar.setImage(avatarBoy);
         scoreArray = new Button[2][roundsPerGame][3];
 
         Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
 
         ImageView avatarG = new ImageView(); //spelare2 bör gå genom server
-        avatar = new ImageView(); //sköter vi själva
-        avatar.setFitWidth(40);
-        avatar.setPreserveRatio(true);
-        avatar.setSmooth(true);
-        avatar.setCache(true);
+        userAvatar = new ImageView(main.getUserAvatar()); //sköter vi själva
+        userAvatar.setFitWidth(40);
+        userAvatar.setPreserveRatio(true);
+        userAvatar.setSmooth(true);
+        userAvatar.setCache(true);
 
         avatarG.setImage(avatarGirl);
         avatarG.setFitWidth(40);
@@ -122,8 +111,7 @@ public class ScoreScene {
             hRow.getChildren().add(1, text);
             vBoxScore.getChildren().add(hRow);
         }
-        
-        
+
         startBtn.setOnAction(e -> {
             startBtn.setDisable(true);
             roundCounter++;
@@ -143,7 +131,7 @@ public class ScoreScene {
         BorderPane BP = new BorderPane();
         BP.setPadding(new Insets(30, 20, 20, 20));
         BP.setId("pane");
-        VBox vboxp1 = new VBox(avatar, userName);
+        VBox vboxp1 = new VBox(userAvatar, userName);
         vboxp1.setSpacing(5);
         VBox vboxp2 = new VBox(avatarG, opponentName);
         vboxp2.setSpacing(5);
@@ -177,8 +165,8 @@ public class ScoreScene {
         BP.setBottom(hboxKnappar);
 
         //BP.setTop(startBtn);
-        //BP.setBottom(avatar);
-        this.scoreScene = new Scene(BP, main.getBoardWidth(),main.getBoardHeight());
+        //BP.setBottom(userAvatar);
+        this.scoreScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
 
         scoreScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
@@ -193,7 +181,7 @@ public class ScoreScene {
      * @param bool array with wrong/correct answers
      * @param playerNr 0=this player, 1=opponent player
      */
-    public void showPoints(boolean[] bool, int playerNr) {
+    public void showScore(boolean[] bool, int playerNr) {
         for (int i = 0; i < 3; i++) {
             if (bool[i]) {
                 scoreArray[playerNr][roundCounter][i].setId("greenScoreKnapp"); //grön

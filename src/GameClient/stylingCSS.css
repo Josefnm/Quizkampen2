@@ -179,3 +179,7 @@
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
 }
+#question {
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+}

@@ -2,11 +2,9 @@ package GameClient;
 
 import GameServer.InfoPacket;
 import GameServer.Question;
-import com.sun.prism.paint.Color;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class QuestionScene {
 
@@ -46,7 +45,6 @@ public class QuestionScene {
             button.setOnAction(click);
             button.getStyleClass().add("button");
             button.setId("svarsKnapp");
-            
             buttons.add(button);
             grid.add(button, i/2, i%2);
         }
@@ -113,7 +111,7 @@ public class QuestionScene {
                 main.getClient().send(new InfoPacket(roundScore.clone()));
                 questionsAnsweredNr = 0;
                 main.setScoreScene();
-                main.getScoreScene().showPoints(roundScore,0);
+                main.getScoreScene().showScore(roundScore,0);
             } else {
                 setNextQuestion();
             }
@@ -128,8 +126,13 @@ public class QuestionScene {
             b.setDisable(false);
             b.setStyle(null);
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
+            b.setTextAlignment(TextAlignment.CENTER);
             b.setWrapText(true);
-            questionLabel.setText(questions.get(questionsAnsweredNr).getQuestion());
+            questionLabel.setText(/*questions.get(questionsAnsweredNr).getCategory()*/"hej" +":\n\n" +
+                    questions.get(questionsAnsweredNr).getQuestion());
+            questionLabel.setId("question");
+            questionLabel.setTextAlignment(TextAlignment.CENTER);
+            questionLabel.setWrapText(true);
             i++;
         }
 
