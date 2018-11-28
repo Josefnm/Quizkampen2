@@ -163,3 +163,7 @@
    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
    -fx-background-color:linear-gradient(#45484d, #000000);
 }
+#question {
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+}
