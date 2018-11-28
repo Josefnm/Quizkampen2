@@ -3,9 +3,6 @@ package GameClient;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import java.util.Arrays;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class ScoreScene {
+public class testa {
 
     private int roundCounter;
     private int roundsPerGame;
@@ -31,10 +28,7 @@ public class ScoreScene {
     private int[] totalScores;
     private Button[][][] scoreArray;
 
-    Text realUserP1;
-    ImageView avatar;
-
-    public ScoreScene(ClientMain main) {
+    public testa(ClientMain main) {
         this.main = main;
         roundCounter = 0;
         roundsPerGame = main.getRoundsPerGame();
@@ -43,18 +37,12 @@ public class ScoreScene {
         //label 1 "användarnamn"
         //label 2 "actual användarnamn"-betydligt större font
         //Avatarbild, den ska även gå att ändra
-//        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
-//        Image avatarGirl = new Image("./images/girl.png");
-        //ImageView avatarG = new ImageView();
-        avatar = new ImageView();
+        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
+        Image avatarGirl = new Image("./images/girl.png");
+        ImageView avatarG = new ImageView();
+        ImageView avatar = new ImageView();
 
-        //avatar.setImage(avatarBoy);
-        scoreArray = new Button[2][roundsPerGame][3];
-
-        Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
-
-        ImageView avatarG = new ImageView(); //spelare2 bör gå genom server
-        avatar = new ImageView(); //sköter vi själva
+        avatar.setImage(avatarBoy);
         avatar.setFitWidth(40);
         avatar.setPreserveRatio(true);
         avatar.setSmooth(true);
@@ -73,34 +61,24 @@ public class ScoreScene {
         //realUserP2.setStyle("-fx-text-fill: red; -fx-font-size: 35px;");, förstod font size men inte färgen
         startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
         //startbtn.setStyle("-fx-background-color: green; -fx-text-fill: white;");
-        
-        realUserP1 = new Text(""); //kopplat till användarens input
-        realUserP1.getStyleClass().add("text_white");
-        Text realUserP2 = new Text("spelare2"); //kopplat till användarens input
-        realUserP2.getStyleClass().add("text_white");
-
-        Button waitbtn = new Button("VÄNTA"); //logiken saknas men om du blir spelaren som väntar
-        //basicly en placeholder utan funktion? bör helst ta "SPELA"-knappens plats
-        waitbtn.setId("button-test4");
-        waitbtn.setMinSize(85, 45);
-
-        startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
-        startBtn.getStyleClass().add("button");
-        startBtn.setId("startKnapp"); // grön
-startBtn.setDisable(true);
+        startBtn.setId("button-test2");
+        startBtn.setMinSize(85, 45);
+        startBtn.setDisable(true);
         Button giveUpBtn = new Button("Ge upp"); //starta pågående eller nästa rond?
-        giveUpBtn.getStyleClass().add("button");
-        giveUpBtn.setId("giveUpKnapp");
+        giveUpBtn.setMinSize(35, 25);
+        //giveUpBtn.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+        giveUpBtn.setId("button-test3");
 
         Text ScoreP1 = new Text("0"); //dynamiskt
-        ScoreP1.getStyleClass().add("toppen_score");
+        ScoreP1.setFill(Color.WHITE);
         Text Streck = new Text("-"); //kopplat till användarens input
         Streck.setFill(Color.WHITE);
-
-        Streck.getStyleClass().add("toppen_score");
         Text ScoreP2 = new Text("0"); //dynamiskt
-        ScoreP2.getStyleClass().add("toppen_score");
+        ScoreP2.setFill(Color.WHITE);
         totalScoreTexts = new Text[]{ScoreP1, ScoreP2};
+//        ScoreP1.setFont((20)); //antingen css direkt
+//        Streck.setFont((20));
+//        ScoreP2.setFont((20));
 
         VBox vBoxScore = new VBox();
         vBoxScore.setSpacing(25);
@@ -109,25 +87,25 @@ startBtn.setDisable(true);
         for (int i = 0; i < roundsPerGame; i++) { //en rad med knappar för varje runda
             HBox hRow = new HBox();
             hRow.setSpacing(10);
+            hRow.setStyle("-fx-background: rgba(76, 175, 80, 0.3); -fx-text-fill: white;");
             hRow.setAlignment(Pos.CENTER);
-            for (int j = 0; j < 2; j++) { //player1 och player2
+            for (int j = 0; j < 2; j++) { // en var för player1 och player2
                 HBox btns = new HBox();
                 btns.setSpacing(2);
-                for (int k = 0; k < 3; k++) { //3 knappar
+                for (int k = 0; k < 3; k++) { //1 knapp för varje fråga
                     Button b = new Button();
-                    b.getStyleClass().add("button");
                     b.setMinSize(30, 25);
                     btns.getChildren().add(b);
                     scoreArray[j][i][k] = b;  //j=spelare, i=runda, k=fråga
                 }
                 hRow.getChildren().add(btns);
             }
-            Text text = new Text("ROND " + (i + 1));
-            text.getStyleClass().add("text_black");
-            hRow.getChildren().add(1, text);
+            Text roundText = new Text("ROND " + (i + 1));
+            roundText.setId("textsvart");
+            hRow.getChildren().add(1, roundText);
             vBoxScore.getChildren().add(hRow);
         }
-        
+
         startBtn.setOnAction(e -> {
             startBtn.setDisable(true);
             roundCounter++;
@@ -141,8 +119,11 @@ startBtn.setDisable(true);
         });
 
         giveUpBtn.setOnAction(e -> main.setStartScene());
+        //bonus, onclick, popop med spinning wheel + cancelknapp vars funktion stänger popupen
 
         HBox toppen = new HBox(ScoreP1, Streck, ScoreP2);
+
+        toppen.setStyle("-fx-font-size: 40; -fx-fill: white;");
 
         BorderPane BP = new BorderPane();
         BP.setPadding(new Insets(30, 20, 20, 20));
@@ -154,11 +135,7 @@ startBtn.setDisable(true);
         HBox hboxtop = new HBox(vboxp1, toppen, vboxp2);
         hboxtop.setSpacing(25);
 
-//        //hrow1.setOpacity(0.5); //eftersom den ovan inte funkade :)
-//
         HBox hboxKnappar = new HBox(giveUpBtn, startBtn);
-
-        //HBox hboxKnapparPH = new HBox(giveUpBtn, waitbtn); //för placeholdern
         hboxKnappar.setSpacing(25);
 
         hboxtop.setAlignment(Pos.CENTER);
@@ -169,7 +146,7 @@ startBtn.setDisable(true);
 
         //BP.setTop(startBtn);
         //BP.setBottom(avatar);
-        this.scoreScene = new Scene(BP, main.getBoardWidth(),main.getBoardHeight());
+        this.scoreScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
 
         scoreScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
@@ -177,20 +154,18 @@ startBtn.setDisable(true);
     public Scene getScene() {
         return scoreScene;
     }
-
-    /**
-     * sets colours on the score buttons
-     *
-     * @param bool array with wrong/correct answers
-     * @param playerNr 0=this player, 1=opponent player
-     */
+/**
+ * sets colours on the score buttons
+ * @param bool array with wrong/correct answers
+ * @param playerNr 0=this player, 1=opponent player
+ */
     public void showPoints(boolean[] bool, int playerNr) {
         for (int i = 0; i < 3; i++) {
             if (bool[i]) {
-                scoreArray[playerNr][roundCounter][i].setId("greenScoreKnapp"); //grön
+                scoreArray[playerNr][roundCounter][i].setId("button-test2"); //grön
                 totalScores[playerNr]++;
             } else {
-                scoreArray[playerNr][roundCounter][i].setId("redScoreKnapp"); //röd
+                scoreArray[playerNr][roundCounter][i].setId("button-test3"); //röd
             }
         }
         totalScoreTexts[playerNr].setText(Integer.toString(totalScores[playerNr]));
@@ -203,10 +178,9 @@ startBtn.setDisable(true);
     public void enableStartBtn() {
         startBtn.setDisable(false);
     }
-
-    /**
-     * resets scores after a game ended to prepare for a new game
-     */
+/**
+ * resets scores after a game ended to prepare for a new game
+ */
     public void resetScore() {
         roundCounter = 0;
         totalScores = new int[]{0, 0};
