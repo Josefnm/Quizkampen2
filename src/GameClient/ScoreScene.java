@@ -7,29 +7,30 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ScoreScene {
 
     private int roundCounter;
     private int roundsPerGame;
+    private int[] totalScores;
+    private Button[][][] scoreArray;
+    private Text[] totalScoreTexts;
+    
     private Scene scoreScene;
     private ClientMain main;
     private Text userName;
     private Text opponentName;
     private Button startBtn;
-    private Text[] totalScoreTexts;
-    private int[] totalScores;
-    private Button[][][] scoreArray;
-private ImageView opponentAvatar;
-    Text realUserP1;
-    ImageView userAvatar;
+    private Label winnerLabel;
+    private ImageView opponentAvatar;
+    private ImageView userAvatar;
 
     public ScoreScene(ClientMain main) {
         this.main = main;
@@ -39,43 +40,31 @@ private ImageView opponentAvatar;
         totalScores = new int[]{0, 0};
         scoreArray = new Button[2][roundsPerGame][3];
 
-        Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
-
-         opponentAvatar = new ImageView(); //spelare2 bör gå genom server
         userAvatar = new ImageView(new Image(main.getUserAvatar())); //sköter vi själva
         userAvatar.setFitWidth(40);
         userAvatar.setPreserveRatio(true);
         userAvatar.setSmooth(true);
         userAvatar.setCache(true);
 
-        opponentAvatar.setImage(avatarGirl);
+        opponentAvatar = new ImageView();
         opponentAvatar.setFitWidth(40);
         opponentAvatar.setPreserveRatio(true);
         opponentAvatar.setSmooth(true);
         opponentAvatar.setCache(true);
 
         userName = new Text(main.getUserName());
-        userName.setStyle("text_white");
+        userName.getStyleClass().add("text_white");
         opponentName = new Text("spelare2"); //kopplat till användarens input
-        opponentName.setStyle("text_white");
+        opponentName.getStyleClass().add("text_white");
 
         startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
         startBtn.getStyleClass().add("button");
         startBtn.setId("startKnapp"); // grön
         startBtn.setDisable(true);
+
         Button giveUpBtn = new Button("Ge upp"); //starta pågående eller nästa rond?
         giveUpBtn.getStyleClass().add("button");
         giveUpBtn.setId("giveUpKnapp");
-
-        Text ScoreP1 = new Text("0"); //dynamiskt
-        ScoreP1.getStyleClass().add("toppen_score");
-        Text Streck = new Text("-"); //kopplat till användarens input
-        Streck.setFill(Color.WHITE);
-
-        Streck.getStyleClass().add("toppen_score");
-        Text ScoreP2 = new Text("0"); //dynamiskt
-        ScoreP2.getStyleClass().add("toppen_score");
-        totalScoreTexts = new Text[]{ScoreP1, ScoreP2};
 
         VBox vBoxScore = new VBox();
         vBoxScore.setSpacing(25);
@@ -97,9 +86,9 @@ private ImageView opponentAvatar;
                 }
                 hRow.getChildren().add(btns);
             }
-            Text text = new Text("ROND " + (i + 1));
-            text.getStyleClass().add("text_black");
-            hRow.getChildren().add(1, text);
+            Text roundText = new Text("ROND " + (i + 1));
+            roundText.getStyleClass().add("text_black");
+            hRow.getChildren().add(1, roundText);
             vBoxScore.getChildren().add(hRow);
         }
 
@@ -117,40 +106,45 @@ private ImageView opponentAvatar;
 
         giveUpBtn.setOnAction(e -> main.setStartScene());
 
+        Text ScoreP1 = new Text("0"); //dynamiskt
+        ScoreP1.getStyleClass().add("toppen_score");
+        Text Streck = new Text("-"); //kopplat till användarens input
+        Streck.getStyleClass().add("toppen_score");
+        Text ScoreP2 = new Text("0"); //dynamiskt
+        ScoreP2.getStyleClass().add("toppen_score");
+        totalScoreTexts = new Text[]{ScoreP1, ScoreP2};
         HBox toppen = new HBox(ScoreP1, Streck, ScoreP2);
 
-        BorderPane BP = new BorderPane();
-        BP.setPadding(new Insets(30, 20, 20, 20));
-        BP.setId("pane");
         VBox vboxp1 = new VBox(userAvatar, userName);
         vboxp1.setSpacing(5);
         VBox vboxp2 = new VBox(opponentAvatar, opponentName);
         vboxp2.setSpacing(5);
         HBox hboxtop = new HBox(vboxp1, toppen, vboxp2);
         hboxtop.setSpacing(25);
-
-//        //hrow1.setOpacity(0.5); //eftersom den ovan inte funkade :)
-//
-        HBox hboxKnappar = new HBox(giveUpBtn, startBtn);
-
-        //HBox hboxKnapparPH = new HBox(giveUpBtn, waitbtn); //för placeholdern
-        hboxKnappar.setSpacing(25);
-
         hboxtop.setAlignment(Pos.CENTER);
+
+        winnerLabel = new Label();
+        winnerLabel.setId("duVann");
+        winnerLabel.setVisible(false);
+
+        VBox finalVBox = new VBox(vBoxScore, winnerLabel);
+        finalVBox.setSpacing(35);
+        finalVBox.setAlignment(Pos.CENTER);
+
+        HBox hboxKnappar = new HBox(giveUpBtn, startBtn);
+        hboxKnappar.setSpacing(25);
         hboxKnappar.setAlignment(Pos.BOTTOM_CENTER);
+
+        BorderPane BP = new BorderPane();
+        BP.setPadding(new Insets(30, 20, 20, 20));
+        BP.setId("pane");
         BP.setTop(hboxtop);
-        BP.setCenter(vBoxScore);
+        BP.setCenter(finalVBox);
         BP.setBottom(hboxKnappar);
 
-        //BP.setTop(startBtn);
-        //BP.setBottom(userAvatar);
         this.scoreScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
 
         scoreScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
-    }
-
-    public Scene getScene() {
-        return scoreScene;
     }
 
     /**
@@ -169,20 +163,27 @@ private ImageView opponentAvatar;
             }
         }
         totalScoreTexts[playerNr].setText(Integer.toString(totalScores[playerNr]));
+
     }
 
-    public void setOpponentName(String opponentName) {
-        this.opponentName.setText(opponentName);
-    }
-
-    public void enableStartBtn() {
-        startBtn.setDisable(false);
+    public void whoWon() {
+        if (roundCounter + 1 == roundsPerGame) { //hur vet man vilken som är sista ronden?
+            if (totalScores[0] > totalScores[1]) {
+                winnerLabel.setText("DU VANN");
+            } else if (totalScores[0] < totalScores[1]) {
+                winnerLabel.setText("DU FÖRLORADE");
+            } else { //lika
+                winnerLabel.setText("LIKA");
+            }
+            winnerLabel.setVisible(true);
+        }
     }
 
     /**
      * resets scores after a game ended to prepare for a new game
      */
     public void resetScore() {
+        winnerLabel.setVisible(false);
         roundCounter = 0;
         totalScores = new int[]{0, 0};
         Arrays.stream(scoreArray)
@@ -191,7 +192,19 @@ private ImageView opponentAvatar;
                 .forEach(btn -> btn.setId(null));
     }
 
+    public void enableStartBtn() {
+        startBtn.setDisable(false);
+    }
+
+    public void setOpponentName(String opponentName) {
+        this.opponentName.setText(opponentName);
+    }
+
     public void setOpponentAvatar(String avatarG) {
         this.opponentAvatar.setImage(new Image(avatarG));
+    }
+
+    public Scene getScene() {
+        return scoreScene;
     }
 }

@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -21,10 +20,6 @@ public class EntryScene {
     private ClientMain main;
     private Scene entryScene;
     private TextField userNameInputField;
-    
-    String userNameInput;
-    ScoreScene scoreScene;
-    
     private String avatarBoy;
     private String avatarGirl;
     private String avatarPikatchu;
@@ -34,34 +29,29 @@ public class EntryScene {
     public EntryScene(ClientMain main) {
         this.main = main;
         
-        avatarBoy = "./images/boy.png"; //en getter från server i slutändan?
+        avatarBoy = "./images/boy.png"; 
         avatarGirl = "./images/girl.png";
         avatarPikatchu = "./images/pikachu.png";
         avatarSnorlax = "./images/Snorlax.png";
         
-        Text logoNamn = new Text("Quizkampen"); //ändra font samt storlek, även plats?
-        //logoNamn.setStyle("-fx-fill: white; -fx-font-size: 40; -fx-font-family: comic sans ms;");
+        Text logoNamn = new Text("Quizkampen");
         logoNamn.setId("logonamn");
         Text userName = new Text("Ange användarnamn:");
-        //userName.setId("textsvart");
         userName.getStyleClass().add("text_black");
         userNameInputField = new TextField();
         userNameInputField.getStyleClass().add("text_white");
         userNameInputField.setMaxSize(100, 25);
 
-        //fixa choicebox
+        
         Text whatGender = new Text("Jag identifierar mig som:");
-        //whatGender.setId("textsvart");
         whatGender.getStyleClass().add("text_black");
         ChoiceBox<String> genderMenu = new ChoiceBox();
         genderMenu.getStyleClass().add("text_black");
-        
         genderMenu.getItems().addAll("Välj ett alternativ", "Jag är en stor pojke!",
                 "flicka!", "ÅÅåhh! snorlax!", "not sure :)");
         genderMenu.setValue("Välj ett alternativ"); //då får vi ett värde som står "synligt/överst"
 
         Button passBtn = new Button("Gå vidare");
-        //passBtn.setId("button-test4");
         passBtn.getStyleClass().add("button");
         passBtn.setId("goVidareKnapp");
         passBtn.setOnAction(e -> {
@@ -83,7 +73,6 @@ public class EntryScene {
         vboxLOGO.setAlignment(Pos.CENTER);
         
         bp.setId("pane");
-        
         bp.setTop(vboxLOGO);
         bp.setCenter(vbox);
         
@@ -113,12 +102,7 @@ public class EntryScene {
                 break;
         }
     }
-    
-    public String getUsername() {
-        System.out.println("in EntryScene, getUsername " + userNameInput);
-        return userNameInput;
-    }
-    
+        
     public Scene getScene() {
         return entryScene;
     }

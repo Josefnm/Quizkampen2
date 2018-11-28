@@ -20,7 +20,7 @@ public class QuestionScene {
 
     //egenskaper för frågor:
     private ArrayList<Question> questions;
-    private boolean[] roundScore= new boolean[3];
+    private boolean[] roundScore = new boolean[3];
     private String correctAnswer;
     private int questionsAnsweredNr = 0;
 
@@ -28,49 +28,53 @@ public class QuestionScene {
     private ClientMain main;
     private Button next = new Button("Next");
     private Scene scene;
-    ArrayList<Button> buttons = new ArrayList();
-    HBox hbox = new HBox();
-    VBox vbox = new VBox();
-    Label questionLabel = new Label();
+    private ArrayList<Button> buttons = new ArrayList();
+    private Label questionLabel = new Label();
 
     public QuestionScene(ClientMain main) {
         this.main = main;
-        BorderPane border = new BorderPane();
-        GridPane grid = new GridPane();
+
+        GridPane answerBtnGrid = new GridPane();
 
         for (int i = 0; i < 4; i++) {
             Button button = new Button();
-            button.setMinSize(127,102);
+            button.setMinSize(127, 102);
             button.setMaxSize(127, 102);
             button.setOnAction(click);
+            button.getStyleClass().add("button");
             button.setId("svarsKnapp");
             buttons.add(button);
-            grid.add(button, i/2, i%2);
+            answerBtnGrid.add(button, i / 2, i % 2);
         }
-        border.setPadding(new Insets(30,10,20,10));
+
+        next.setId("nextKnapp");
         next.setDisable(true);
         next.setMinSize(50, 25);
         next.setOnAction(nextBtnEvent);
+        HBox hbox = new HBox();
         hbox.getChildren().add(next);
         hbox.setAlignment(Pos.CENTER);
-        
+
         questionLabel.setMinSize(260, 180);
         questionLabel.setAlignment(Pos.CENTER);
         questionLabel.setStyle("-fx-background-color: White; -fx-border-radius: 10 10 10 10;"
                 + "-fx-background-radius: 10 10 10 10");
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(6);
-        grid.setVgap(6);
+        answerBtnGrid.setAlignment(Pos.CENTER);
+        answerBtnGrid.setHgap(6);
+        answerBtnGrid.setVgap(6);
+        VBox vbox = new VBox();
         vbox.getChildren().add(questionLabel);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(5);
+        BorderPane border = new BorderPane();
+        border.setPadding(new Insets(30, 10, 20, 10));
         border.setId("pane");
         border.setTop(vbox);
-        border.setCenter(grid);
+        border.setCenter(answerBtnGrid);
         border.setBottom(hbox);
-        scene = new Scene(border,main.getBoardWidth(),main.getBoardHeight());
+        scene = new Scene(border, main.getBoardWidth(), main.getBoardHeight());
         scene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
-        
+
     }
 
     EventHandler click = new EventHandler() {
@@ -79,15 +83,14 @@ public class QuestionScene {
             Button btn = (Button) event.getSource();
             if (btn.getText().equals(correctAnswer)) {
                 btn.setStyle("-fx-background-color: Green");
-                roundScore[questionsAnsweredNr] = true; 
+                roundScore[questionsAnsweredNr] = true;
                 for (Button b : buttons) {
                     b.setDisable(true);
                 }
-                
 
             } else {
                 btn.setStyle("-fx-background-color: Red");
-                roundScore[questionsAnsweredNr] = false;     
+                roundScore[questionsAnsweredNr] = false;
                 for (Button b : buttons) {
                     if (b.getText().equals(correctAnswer)) {
                         b.setStyle("-fx-background-color: Green");
@@ -104,17 +107,16 @@ public class QuestionScene {
     EventHandler nextBtnEvent = new EventHandler() {
         @Override
         public void handle(Event event) {
+            next.setDisable(true);
             questionsAnsweredNr++;
             if (questionsAnsweredNr == questions.size()) { //skickar svaren till servern när alla frågor är besvarade
-                
                 main.getClient().send(new InfoPacket(roundScore));
-                questionsAnsweredNr = 0;
+                questionsAnsweredNr = 0; //återställer räknaren
                 main.setScoreScene();
-                main.getScoreScene().showScore(roundScore,0);
+                main.getScoreScene().showScore(roundScore, 0);
             } else {
                 setNextQuestion();
             }
-            next.setDisable(true);
         }
     };
 
@@ -127,13 +129,13 @@ public class QuestionScene {
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
             b.setTextAlignment(TextAlignment.CENTER);
             b.setWrapText(true);
-            questionLabel.setText(/*questions.get(questionsAnsweredNr).getCategory()*/"hej" +":\n\n" +
-                    questions.get(questionsAnsweredNr).getQuestion());
-            questionLabel.setId("question");
-            questionLabel.setTextAlignment(TextAlignment.CENTER);
-            questionLabel.setWrapText(true);
             i++;
         }
+        questionLabel.setText(questions.get(questionsAnsweredNr).getCategory() + ":\n\n"
+                + questions.get(questionsAnsweredNr).getQuestion());
+        questionLabel.setId("question");
+        questionLabel.setTextAlignment(TextAlignment.CENTER);
+        questionLabel.setWrapText(true);
 
     }
 
@@ -143,6 +145,6 @@ public class QuestionScene {
 
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
-        
+
     }
 }
