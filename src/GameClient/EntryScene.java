@@ -3,6 +3,7 @@
  */
 package GameClient;
 
+import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,19 +25,19 @@ public class EntryScene {
     String userNameInput;
     ScoreScene scoreScene;
     
-    private Image avatarBoy;
-    private Image avatarGirl;
-    private Image avatarPikatchu;
-    private Image avatarSnorlax;
+    private String avatarBoy;
+    private String avatarGirl;
+    private String avatarPikatchu;
+    private String avatarSnorlax;
 
 //Användaren addar sitt användarnamn samt gender (gender en dropdownmeny?)    
     public EntryScene(ClientMain main) {
         this.main = main;
         
-        avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
-        avatarGirl = new Image("./images/girl.png");
-        avatarPikatchu = new Image("./images/pikachu.png");
-        avatarSnorlax = new Image("./images/Snorlax.png");
+        avatarBoy = "./images/boy.png"; //en getter från server i slutändan?
+        avatarGirl = "./images/girl.png";
+        avatarPikatchu = "./images/pikachu.png";
+        avatarSnorlax = "./images/Snorlax.png";
         
         Text logoNamn = new Text("Quizkampen"); //ändra font samt storlek, även plats?
         //logoNamn.setStyle("-fx-fill: white; -fx-font-size: 40; -fx-font-family: comic sans ms;");
@@ -66,7 +67,7 @@ public class EntryScene {
         passBtn.setOnAction(e -> {
             getChoice(genderMenu);
             main.setUserName(userNameInputField.getText());
-            main.getClient().send(new InfoPacket(userNameInputField.getText()));
+            main.getClient().send(new InfoPacket(userNameInputField.getText(),main.getUserAvatar(),IdEnum.LOGIN));
             main.initScenes();
             main.setStartScene();
         });

@@ -34,7 +34,7 @@ public class StartScene { //fixar abstrakt senare
         //label 2 "actual användarnamn"-betydligt större font
         //Avatarbild, den ska även gå att ändra
 
-        userAvatar = new ImageView(main.getUserAvatar());
+        userAvatar = new ImageView(new Image(main.getUserAvatar()));
 
         userAvatar.setFitWidth(40);
         userAvatar.setPreserveRatio(true);

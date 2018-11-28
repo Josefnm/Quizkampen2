@@ -28,6 +28,7 @@ public class ClientProtocol {
                 break;
             case START:
                 main.getScoreScene().setOpponentName(data.getName());
+                main.getScoreScene().setOpponentAvatar(data.getAvatar());
                 main.getQuestionScene().setQuestions(data.getQuestions());
                 //Platform.runlater anropar Applications-tråden. Detta görs för att i javafx så vissa saker bara göras från den tråden.
                 Platform.runLater(() -> {

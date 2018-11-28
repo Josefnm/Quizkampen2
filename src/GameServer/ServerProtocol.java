@@ -44,6 +44,7 @@ public class ServerProtocol {
                 break;
             case LOGIN:
                 player.setPlayerName(data.getName());
+                player.setAvatar(data.getAvatar());
                 break;
             case START:
                 start(player);
@@ -86,8 +87,8 @@ public class ServerProtocol {
                 player2.setIsAvailable(false);
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
-                player1.send(new InfoPacket(gr.getCurrentQuestions(), player2.getPlayerName()));
-                player2.send(new InfoPacket(gr.getCurrentQuestions(), player1.getPlayerName()));
+                player1.send(new InfoPacket(gr.getCurrentQuestions(), player2.getPlayerName(),player2.getAvatar()));
+                player2.send(new InfoPacket(gr.getCurrentQuestions(), player1.getPlayerName(),player1.getAvatar()));
                 System.out.println("start packets sent");
                 return;
             }

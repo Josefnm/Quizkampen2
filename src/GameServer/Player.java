@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 
 public class Player extends Thread {
 
@@ -16,6 +17,7 @@ public class Player extends Thread {
     private ServerProtocol protocol;
     private GameRoom gameRoom;
     private String playerName;
+     private String avatar;
     private boolean isAvailable = false; //vill (inte) starta nytt spel
 
     public Player(Socket socket, ServerProtocol protocol) {
@@ -86,5 +88,13 @@ public class Player extends Thread {
 
     public void setPlayerName(String name) {
         this.playerName = name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

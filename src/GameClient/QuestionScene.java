@@ -106,7 +106,8 @@ public class QuestionScene {
         public void handle(Event event) {
             questionsAnsweredNr++;
             if (questionsAnsweredNr == questions.size()) { //skickar svaren till servern när alla frågor är besvarade
-                main.getClient().send(new InfoPacket(roundScore.clone()));
+                
+                main.getClient().send(new InfoPacket(roundScore));
                 questionsAnsweredNr = 0;
                 main.setScoreScene();
                 main.getScoreScene().showScore(roundScore,0);

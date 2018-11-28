@@ -36,6 +36,7 @@ public class ClientTCP {
         try {
             outStream.writeObject(object);
             outStream.flush();
+            outStream.reset();
         } catch (IOException ex) {
             System.out.println("writeobject error");
             Logger.getLogger(ClientTCP.class.getName()).log(Level.SEVERE, null, ex);

@@ -13,7 +13,7 @@ public class ClientMain extends Application {
     private int boardWidth = 300;
     private int roundsPerGame;
     private String userName;
-    private Image userAvatar;
+    private String userAvatar;
 
     private Stage primaryStage;
     private Stage popupStage;
@@ -131,11 +131,11 @@ public class ClientMain extends Application {
         this.roundsPerGame = roundsPerGame;
     }
 
-    public Image getUserAvatar() {
+    public String getUserAvatar() {
         return userAvatar;
     }
 
-    public void setUserAvatar(Image userAvatar) {
+    public void setUserAvatar(String userAvatar) {
         this.userAvatar = userAvatar;
     }
 }

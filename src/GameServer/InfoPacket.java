@@ -2,6 +2,7 @@ package GameServer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 /**
  * data sent between server and client
  */
@@ -10,6 +11,7 @@ public class InfoPacket implements Serializable {
     private IdEnum id;
     private String name;
     private String chatMsg;
+    private String avatar;
     private int roundsPerGame;
     private ArrayList<Question> questions;
     private boolean[] score;
@@ -18,9 +20,10 @@ public class InfoPacket implements Serializable {
         this.id = id;
     }
 
-    public InfoPacket(String name) {
-        id = IdEnum.LOGIN;
+    public InfoPacket(String name,String avatar,IdEnum login) {
+        id = login;
         this.name = name;
+        this.avatar=avatar;
     }
     
 
@@ -42,10 +45,11 @@ public class InfoPacket implements Serializable {
     }
     
 
-    public InfoPacket(ArrayList<Question> questions, String name) {
+    public InfoPacket(ArrayList<Question> questions, String name,String avatar) {
         id = IdEnum.START;
         this.name = name;
         this.questions = questions;
+        this.avatar=avatar;
     }
 
     public InfoPacket(ArrayList<Question> questions, boolean[] opponentScore) {
@@ -76,6 +80,10 @@ public class InfoPacket implements Serializable {
 
     public String getChatMsg() {
         return chatMsg;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
     
 }

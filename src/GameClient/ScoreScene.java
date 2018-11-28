@@ -27,7 +27,7 @@ public class ScoreScene {
     private Text[] totalScoreTexts;
     private int[] totalScores;
     private Button[][][] scoreArray;
-
+private ImageView opponentAvatar;
     Text realUserP1;
     ImageView userAvatar;
 
@@ -41,18 +41,18 @@ public class ScoreScene {
 
         Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
 
-        ImageView avatarG = new ImageView(); //spelare2 bör gå genom server
-        userAvatar = new ImageView(main.getUserAvatar()); //sköter vi själva
+         opponentAvatar = new ImageView(); //spelare2 bör gå genom server
+        userAvatar = new ImageView(new Image(main.getUserAvatar())); //sköter vi själva
         userAvatar.setFitWidth(40);
         userAvatar.setPreserveRatio(true);
         userAvatar.setSmooth(true);
         userAvatar.setCache(true);
 
-        avatarG.setImage(avatarGirl);
-        avatarG.setFitWidth(40);
-        avatarG.setPreserveRatio(true);
-        avatarG.setSmooth(true);
-        avatarG.setCache(true);
+        opponentAvatar.setImage(avatarGirl);
+        opponentAvatar.setFitWidth(40);
+        opponentAvatar.setPreserveRatio(true);
+        opponentAvatar.setSmooth(true);
+        opponentAvatar.setCache(true);
 
         userName = new Text(main.getUserName());
         userName.setStyle("text_white");
@@ -124,7 +124,7 @@ public class ScoreScene {
         BP.setId("pane");
         VBox vboxp1 = new VBox(userAvatar, userName);
         vboxp1.setSpacing(5);
-        VBox vboxp2 = new VBox(avatarG, opponentName);
+        VBox vboxp2 = new VBox(opponentAvatar, opponentName);
         vboxp2.setSpacing(5);
         HBox hboxtop = new HBox(vboxp1, toppen, vboxp2);
         hboxtop.setSpacing(25);
@@ -189,5 +189,9 @@ public class ScoreScene {
                 .flatMap(Arrays::stream)
                 .flatMap(Arrays::stream)
                 .forEach(btn -> btn.setId(null));
+    }
+
+    public void setOpponentAvatar(String avatarG) {
+        this.opponentAvatar.setImage(new Image(avatarG));
     }
 }
