@@ -16,6 +16,16 @@ import javafx.scene.text.Text;
 
 public class StartScene { //fixar abstrakt senare
 
+    ClientTCP client;
+    QuestionScene qs;
+    Scene popupScene;
+    Button cancelPopupBtn;
+    InfoPacket input;
+    Thread listener = null;
+    EntryScene entry;
+
+    Text realUsername; //för vår setter
+    ImageView avatar;
     private Scene startScene;
     private ClientMain main;
     private Text userName;
@@ -26,22 +36,27 @@ public class StartScene { //fixar abstrakt senare
         //label 2 "actual användarnamn"-betydligt större font
         //Avatarbild, den ska även gå att ändra
 
-        //entryScene = new EntryScene(main);
-        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
+        avatar = new ImageView();
 
-        ImageView avatar = new ImageView();
-        avatar.setImage(avatarBoy);
+        //avatar.setImage("");
         avatar.setFitWidth(40);
         avatar.setPreserveRatio(true);
         avatar.setSmooth(true);
         avatar.setCache(true);
+        entry = new EntryScene(main);
 
-        Label nameLabel = new Label("Username:");
         userName = new Text(main.getUserName()); //kopplat till användarens input
         userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
         //   Text userName = new Text("hej"); //kopplat till användarens input
+
+        Label nameLabel = new Label("Username:");
+        nameLabel.getStyleClass().add("text_white");
+
+        realUsername = new Text("");
+        realUsername.getStyleClass().add("text_white");
         Button startbtn = new Button("Play?");
-        startbtn.setId("button-test4");
+        startbtn.getStyleClass().add("button");
+        startbtn.setId("startsceneKnapp");
         startbtn.setMinSize(150, 25);
 
         startbtn.setOnAction(e -> {
@@ -66,7 +81,6 @@ public class StartScene { //fixar abstrakt senare
         hboxKnapp.setAlignment(Pos.CENTER);
         vboxAllt.setAlignment(Pos.CENTER);
 
-        //BP.setBottom(hboxKnapp);
         BP.setCenter(vboxAllt);
         //BP.setTop(startbtn);
         //BP.setBottom(avatar);
@@ -74,8 +88,18 @@ public class StartScene { //fixar abstrakt senare
         startScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
 
+    public void setAvatar(Image input) {
+        System.out.println(input);
+        avatar.setImage(input);
+    }
+
     public Scene getScene() {
         return startScene;
+    }
+
+    public void setUsername(String name) {
+        System.out.println("username start");
+        realUsername.setText(name);
     }
 
 }
