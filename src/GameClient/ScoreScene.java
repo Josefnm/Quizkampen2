@@ -37,15 +37,6 @@ public class ScoreScene {
         roundsPerGame = main.getRoundsPerGame();
         scoreArray = new Button[2][roundsPerGame][3];
         totalScores = new int[]{0, 0};
-        //label 1 "användarnamn"
-        //label 2 "actual användarnamn"-betydligt större font
-        //Avatarbild, den ska även gå att ändra
-//        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
-//        Image avatarGirl = new Image("./images/girl.png");
-        //ImageView avatarG = new ImageView();
-        
-
-        //avatar.setImage(avatarBoy);
         scoreArray = new Button[2][roundsPerGame][3];
 
         Image avatarGirl = new Image("./images/girl.png"); //tills lösning via server
@@ -64,27 +55,14 @@ public class ScoreScene {
         avatarG.setCache(true);
 
         userName = new Text(main.getUserName());
-        userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        userName.setStyle("text_white");
         opponentName = new Text("spelare2"); //kopplat till användarens input
-        opponentName.setStyle("-fx-font-size: 15; -fx-fill: white;");
-        //realUserP2.setStyle("-fx-text-fill: red; -fx-font-size: 35px;");, förstod font size men inte färgen
-        startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
-        //startbtn.setStyle("-fx-background-color: green; -fx-text-fill: white;");
-        
-        realUserP1 = new Text(""); //kopplat till användarens input
-        realUserP1.getStyleClass().add("text_white");
-        Text realUserP2 = new Text("spelare2"); //kopplat till användarens input
-        realUserP2.getStyleClass().add("text_white");
-
-        Button waitbtn = new Button("VÄNTA"); //logiken saknas men om du blir spelaren som väntar
-        //basicly en placeholder utan funktion? bör helst ta "SPELA"-knappens plats
-        waitbtn.setId("button-test4");
-        waitbtn.setMinSize(85, 45);
+        opponentName.setStyle("text_white");
 
         startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
         startBtn.getStyleClass().add("button");
         startBtn.setId("startKnapp"); // grön
-startBtn.setDisable(true);
+        startBtn.setDisable(true);
         Button giveUpBtn = new Button("Ge upp"); //starta pågående eller nästa rond?
         giveUpBtn.getStyleClass().add("button");
         giveUpBtn.setId("giveUpKnapp");
@@ -124,7 +102,7 @@ startBtn.setDisable(true);
             hRow.getChildren().add(1, text);
             vBoxScore.getChildren().add(hRow);
         }
-        
+
         startBtn.setOnAction(e -> {
             startBtn.setDisable(true);
             roundCounter++;
@@ -166,7 +144,7 @@ startBtn.setDisable(true);
 
         //BP.setTop(startBtn);
         //BP.setBottom(userAvatar);
-        this.scoreScene = new Scene(BP, main.getBoardWidth(),main.getBoardHeight());
+        this.scoreScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
 
         scoreScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
@@ -181,7 +159,7 @@ startBtn.setDisable(true);
      * @param bool array with wrong/correct answers
      * @param playerNr 0=this player, 1=opponent player
      */
-    public void showPoints(boolean[] bool, int playerNr) {
+    public void showScore(boolean[] bool, int playerNr) {
         for (int i = 0; i < 3; i++) {
             if (bool[i]) {
                 scoreArray[playerNr][roundCounter][i].setId("greenScoreKnapp"); //grön

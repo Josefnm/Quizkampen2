@@ -37,7 +37,7 @@ public class ClientProtocol {
                 break;
             case NEXT_ROUND:
                 main.getQuestionScene().setQuestions(data.getQuestions());
-                main.getScoreScene().showPoints(data.getScore(), 1);
+                main.getScoreScene().showScore(data.getScore(), 1);
                 main.getScoreScene().enableStartBtn();
                 break;
         }

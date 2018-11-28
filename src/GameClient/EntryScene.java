@@ -108,7 +108,6 @@ public class EntryScene {
                 break;
             case "not sure :)":
             default:
-                //gäller för default samt "not sure" atm
                 main.setUserAvatar(avatarPikatchu);
                 break;
         }

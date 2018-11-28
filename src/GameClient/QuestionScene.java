@@ -2,11 +2,9 @@ package GameClient;
 
 import GameServer.InfoPacket;
 import GameServer.Question;
-import com.sun.prism.paint.Color;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,7 +44,6 @@ public class QuestionScene {
             button.setMaxSize(127, 102);
             button.setOnAction(click);
             button.setId("svarsKnapp");
-            
             buttons.add(button);
             grid.add(button, i/2, i%2);
         }
@@ -112,7 +109,7 @@ public class QuestionScene {
                 main.getClient().send(new InfoPacket(roundScore.clone()));
                 questionsAnsweredNr = 0;
                 main.setScoreScene();
-                main.getScoreScene().showPoints(roundScore,0);
+                main.getScoreScene().showScore(roundScore,0);
             } else {
                 setNextQuestion();
             }
