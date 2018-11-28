@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class QuestionScene {
 
@@ -126,8 +127,13 @@ public class QuestionScene {
             b.setDisable(false);
             b.setStyle(null);
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
+            b.setTextAlignment(TextAlignment.CENTER);
             b.setWrapText(true);
-            questionLabel.setText(questions.get(questionsAnsweredNr).getQuestion());
+            questionLabel.setText(/*questions.get(questionsAnsweredNr).getCategory()*/"hej" +":\n\n" +
+                    questions.get(questionsAnsweredNr).getQuestion());
+            questionLabel.setId("question");
+            questionLabel.setTextAlignment(TextAlignment.CENTER);
+            questionLabel.setWrapText(true);
             i++;
         }
 
