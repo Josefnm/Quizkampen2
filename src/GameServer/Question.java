@@ -9,6 +9,7 @@ public class Question implements Serializable {
     private String correctAnswer;
 
     public Question(String category, String question, String[] answers, String correctAnswer) {
+        this.category=category;
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
