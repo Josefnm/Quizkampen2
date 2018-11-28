@@ -4,9 +4,12 @@ import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import GameServer.Question;
+import com.sun.prism.paint.Color;
 import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class QuestionScene {
 
@@ -30,7 +34,8 @@ public class QuestionScene {
     private Scene scene;
     ArrayList<Button> buttons = new ArrayList();
     HBox hbox = new HBox();
-    Label label = new Label();
+    VBox vbox = new VBox();
+    Label questionLabel = new Label();
 
     public QuestionScene(ClientMain main) {
         this.main = main;
@@ -39,23 +44,37 @@ public class QuestionScene {
 
         for (int i = 0; i < 4; i++) {
             Button button = new Button();
-            button.setMinSize(300, 200);
+            button.setMinSize(127,102);
             button.setOnAction(click);
+            button.setId("svarsKnapp");
             buttons.add(button);
             grid.add(button, i/2, i%2);
         }
+        border.setPadding(new Insets(30,10,20,10));
         next.setDisable(true);
         next.setMinSize(50, 25);
         next.setOnAction(nextBtnEvent);
         hbox.getChildren().add(next);
         hbox.setAlignment(Pos.CENTER);
-        label.setMinSize(600, 200);
-        label.setAlignment(Pos.CENTER);
-        border.setTop(label);
+        
+        questionLabel.setMinSize(260, 180);
+        questionLabel.setId("fråga");
+        questionLabel.setAlignment(Pos.CENTER);
+        questionLabel.setStyle("-fx-background-color: White; -fx-border-radius: 10 10 10 10;"
+                + "-fx-background-radius: 10 10 10 10");
         grid.setAlignment(Pos.CENTER);
+        grid.setHgap(6);
+        grid.setVgap(6);
+        vbox.getChildren().add(questionLabel);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(5);
+        border.setId("pane");
+        border.setTop(vbox);
         border.setCenter(grid);
         border.setBottom(hbox);
-        scene = new Scene(border);
+        scene = new Scene(border,main.getBoardWidth(),main.getBoardHeight());
+        scene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
+        
     }
 
     EventHandler click = new EventHandler() {
@@ -110,7 +129,7 @@ public class QuestionScene {
             b.setDisable(false);
             b.setStyle(btn.getStyle());
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
-            label.setText(questions.get(questionsAnsweredNr).getQuestion());
+            questionLabel.setText(questions.get(questionsAnsweredNr).getQuestion());
             i++;
         }
 
