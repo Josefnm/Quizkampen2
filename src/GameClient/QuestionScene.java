@@ -42,8 +42,10 @@ public class QuestionScene {
         for (int i = 0; i < 4; i++) {
             Button button = new Button();
             button.setMinSize(127,102);
+            button.setMaxSize(127, 102);
             button.setOnAction(click);
             button.setId("svarsKnapp");
+            
             buttons.add(button);
             grid.add(button, i/2, i%2);
         }
@@ -55,7 +57,6 @@ public class QuestionScene {
         hbox.setAlignment(Pos.CENTER);
         
         questionLabel.setMinSize(260, 180);
-        questionLabel.setId("fråga");
         questionLabel.setAlignment(Pos.CENTER);
         questionLabel.setStyle("-fx-background-color: White; -fx-border-radius: 10 10 10 10;"
                 + "-fx-background-radius: 10 10 10 10");
@@ -125,6 +126,7 @@ public class QuestionScene {
             b.setDisable(false);
             b.setStyle(null);
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
+            b.setWrapText(true);
             questionLabel.setText(questions.get(questionsAnsweredNr).getQuestion());
             i++;
         }
