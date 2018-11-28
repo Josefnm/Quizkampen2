@@ -11,8 +11,10 @@ public class ServerMain {
     private ServerSocket listener;
     private ServerProtocol protocol;
 
+
     public ServerMain() {
 
+        
         protocol = new ServerProtocol();
         try {
             listener = new ServerSocket(12345);
@@ -25,6 +27,8 @@ public class ServerMain {
         } catch (IOException ex) {
             Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }
 
     public static void main(String[] args) {

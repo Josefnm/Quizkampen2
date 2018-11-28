@@ -3,7 +3,7 @@ package GameServer;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-
+// private String category
     private String question;
     private String[] answers;
     private String correctAnswer;

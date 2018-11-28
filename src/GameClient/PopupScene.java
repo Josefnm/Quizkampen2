@@ -1,6 +1,5 @@
 package GameClient;
 
-import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Pos;
@@ -11,10 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-/**
- *
- * @author Josef
- */
 public class PopupScene {
 
     private ClientMain main;
@@ -25,14 +20,15 @@ public class PopupScene {
         this.main = main;
         BorderPane bp = new BorderPane();
 
-        bp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        bp.setStyle("-fx-background-color: darkslateblue");
         //bp.setId("score-test");
         popupScene = new Scene(bp, (main.getBoardWidth() / 2), (main.getBoardHeight() / 2));
         popupScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
         cancelPopupBtn = new Button("Cancel");
-        cancelPopupBtn.setId("button-test3");
+        cancelPopupBtn.getStyleClass().add("button");
+        cancelPopupBtn.setId("cancelKnappen");
         Text searching = new Text("Letar efter spelare...");
-        searching.setId("textvit");
+        searching.getStyleClass().add("text_white");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, cancelPopupBtn);
         //pop.setStyle("-fx-margin: 20");
@@ -50,3 +46,4 @@ public class PopupScene {
         return popupScene;
     }
 }
+

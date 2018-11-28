@@ -25,15 +25,11 @@ public class ClientTCP {
             socket = new Socket(address, port);
             inStream = new ObjectInputStream(socket.getInputStream());
             outStream = new ObjectOutputStream(socket.getOutputStream());
-            startShutDownHook(); // Stänger socketen om programmet avslutas
-            inputThread(); //lyssnar på input från servern
+            startShutDownHook();
+            inputThread();
         } catch (IOException ex) {
             Logger.getLogger(ClientTCP.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public ObjectInputStream getInStream() {
-        return inStream;
     }
 
     public void send(Object object) {
@@ -45,12 +41,14 @@ public class ClientTCP {
             Logger.getLogger(ClientTCP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void inputThread() { //separerad från konstruktorn för läsbarhet
         new Thread(() -> {
             InfoPacket input;
-            while (!socket.isClosed()) {
+
+            while (!socket.isClosed()) {//lyssnar på input från servern
                 try {
-                    input =(InfoPacket) inStream.readObject();
+                    input = (InfoPacket) inStream.readObject();
                     protocol.handleInput(input);
                     System.out.println("recieved input");
                 } catch (IOException | ClassNotFoundException ex) {
@@ -62,6 +60,7 @@ public class ClientTCP {
     }
 
     private void startShutDownHook() { //separerad från konstruktorn för läsbarhet
+        // Stänger socketen om programmet avslutas, förhindrar fel på serversidan
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
@@ -75,5 +74,5 @@ public class ClientTCP {
                 }
             }
         });
-    } 
+    }
 }

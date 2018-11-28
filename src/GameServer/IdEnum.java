@@ -1,7 +1,9 @@
 package GameServer;
 
 import java.io.Serializable;
-
+/**
+ * used to identify the info that is received
+ */
 public enum IdEnum implements Serializable{
     /**
      * rounds per game
@@ -24,7 +26,13 @@ public enum IdEnum implements Serializable{
      *  round result from client
      *  opponent round result and new questions from server
      */
-    NEXT_ROUND, 
+    NEXT_ROUND,
+    /**
+     * not in use
+     */
     ENDED,
+    /**
+     * player name and message
+     */
     CHAT
 }

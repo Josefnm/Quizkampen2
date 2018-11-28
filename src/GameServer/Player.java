@@ -31,31 +31,32 @@ public class Player extends Thread {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            Send(new InfoPacket(protocol.getRoundsPerGame()));
+            send(new InfoPacket(protocol.getRoundsPerGame())); //skickar rundor per spel som bestämts av properties
             while (!socket.isClosed()) {
                 try {
                     input = inStream.readObject();
+                    protocol.handleInput(this, (InfoPacket) input);
                 } catch (EOFException eofe) {
                     break;  //ifall klienten stängs
                 }
-                protocol.getResponse(this, (InfoPacket)input);
             }
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        } finally { //stänger anslutningen och tar bort spelaren ifall den loggat ur
+            protocol.getPlayerList().remove(this);
             try {
-                protocol.getPlayerList().remove(this);
                 outStream.close();
                 inStream.close();
                 socket.close();
                 System.out.println("closed and removed player");
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
     }
 
-    public void Send(Object o) {
+    public void send(Object o) {
         try {
             outStream.writeObject(o);
         } catch (IOException ex) {
