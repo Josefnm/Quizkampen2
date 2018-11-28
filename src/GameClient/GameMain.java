@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class GameMain extends Application {
 
-    public static int counter = 0;
+    //public static int counter = 0;
     
     private Stage stage;
     StartScene sc;
@@ -32,10 +32,10 @@ public class GameMain extends Application {
     
     String userName;
     
-    public GameMain() {
-        counter++;
-        System.out.println("I AM IN THIS" + counter);
-    }
+//    public GameMain() {
+//        counter++;
+//        System.out.println("I AM IN THIS" + counter);
+//    }
 
     @Override
     public void start(Stage primaryStage) throws IOException, ClassNotFoundException {

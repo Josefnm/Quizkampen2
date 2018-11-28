@@ -89,6 +89,13 @@
 #redScoreKnapp { /* röd knapp */
     -fx-background-color: linear-gradient(#f62b2b, #d20202);
 }
+#svarsKnapp {
+    -fx-text-fill: white;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-color:linear-gradient(#45484d, #000000);
+}
 /*
 #textvit {
     -fx-fill: white;
