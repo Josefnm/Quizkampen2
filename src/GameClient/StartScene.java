@@ -53,51 +53,29 @@ public class StartScene { //fixar abstrakt senare
         avatar.setSmooth(true);
         avatar.setCache(true);
         entry = new EntryScene(main);
-        System.out.println("inne i start, username: " + main.tempUsername());
-        //verkar inte uppdatera förens efter popupen
+
         Label username = new Label("Username:");
-        System.out.println(main.userName);
-        System.out.println("22222222222222");
+        username.getStyleClass().add("text_white");
+
         
-        //realUsername = new Text("hehehehehehe"); //<---
-        
-        
-        //realUser = new Text("KAPTEN BAJS"); //kopplat till användarens input
-        //realUser.setStyle("-fx-font-size: 15; -fx-fill: white;");
+
         realUsername = new Text("");
         realUsername.getStyleClass().add("text_white");
-        //realUsername.setStyle("-fx-font-size: 15; -fx-fill: white;");
-      //   Text realUser = new Text("hej"); //kopplat till användarens input
         Button startbtn = new Button("Play?");
-        startbtn.setId("button-test4");
-        startbtn.setMinSize(150, 25);
+        startbtn.getStyleClass().add("button");
+        startbtn.setId("startsceneKnapp");
 
-        //lambda
-        //tanken att vi genom start engagear servern
+
         startbtn.setOnAction(e -> {
             //TODO försöka få popupen att dyka upp på muspekarens position (kanske +- x, y)
             client.sendObject("start");
-//            startbtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent t) 
-//            {
-//                //txt=(TextBox)t.getSource();
-//                if(t.getButton()==MouseButton.SECONDARY )
-//                {
-//                    popup.show(txt,t.getScreenX(),t.getScreenY());                   
-//                }
-//            }
             try {
-                //main.setMainScene();
-                //main.setScoreScene();
                 popUp(main);
             } catch (IOException | ClassNotFoundException ex) {
                 Logger.getLogger(StartScene.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //main.setScoreScene();
-            System.out.println("hejdå");
-        }); //hej funkar 100%
-        //bonus, onclick, popop med spinning wheel + cancelknapp vars funktion stänger popupen
+        });
+
 
         //borderpane, vbox, hbox
         BorderPane BP = new BorderPane();
@@ -114,30 +92,15 @@ public class StartScene { //fixar abstrakt senare
         hboxKnapp.setAlignment(Pos.CENTER);
         vboxAllt.setAlignment(Pos.CENTER);
 
-        //BP.setBottom(hboxKnapp);
         BP.setCenter(vboxAllt);
 
-        //BP.setTop(startbtn);
-        //BP.setBottom(avatar);
-//        cancelPopupBtn.setOnAction(e -> {
-//        System.out.println("hejdu");
-//        main.closePopupStage();
-//        System.out.println("nukörvi");
-//        });
         this.startScene = new Scene(BP, main.getBoardHeight(), main.getBoardThicc());
 
         startScene.getStylesheets()
                 .add(StartScene.class
                         .getResource("stylingCSS.css").toExternalForm());
     }
-//    public void setAvatar(String input)
-//    {
-//        System.out.println(input);
-//        if (input == "boy") avatar.setImage(avatarBoy);
-//        else if (input == "girl")  avatar.setImage(avatarGirl);
-//        else avatar.setImage(avatarPikatchu);//gäller för default samt not sure
-//
-//    }
+
     public void setAvatar(Image input)
     {
         System.out.println(input);
@@ -155,29 +118,28 @@ public class StartScene { //fixar abstrakt senare
     public void popUp(GameMain main) throws IOException, ClassNotFoundException {
         BorderPane bp = new BorderPane();
         
-        bp.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
-        //bp.setId("score-test");
+        bp.setStyle("-fx-background-color: darkslateblue");
         popupScene = new Scene(bp, (main.getBoardHeight() / 2), (main.getBoardThicc() / 2));
 
         popupScene.getStylesheets()
                 .add(StartScene.class
                         .getResource("stylingCSS.css").toExternalForm());
-        //adda progressbar 
-        //popup.cancelPopupBtn(primaryStage);
+
         cancelPopupBtn = new Button("Cancel");
-        
-        cancelPopupBtn.setId("button-test3");
+        cancelPopupBtn.getStyleClass().add("button");
+        cancelPopupBtn.setId("cancelKnapp");
         Text searching = new Text("Letar efter spelare...");
-        searching.setId("textvit");
+ 
+        searching.getStyleClass().add("text_white");
         ProgressIndicator pi = new ProgressIndicator();
         VBox pop = new VBox(searching, pi, cancelPopupBtn);
-        //pop.setStyle("-fx-margin: 20");
+        
 
         pop.setAlignment(Pos.CENTER);
         pop.setSpacing(10);
         bp.setCenter(pop);
 
-        System.out.println("HEHEHEHEH");
+        
         main.setPopupScene(popupScene);
 
         //lambdaknappaction
@@ -205,11 +167,8 @@ public class StartScene { //fixar abstrakt senare
         }
         
         cancelPopupBtn.setOnAction(e -> {
-            System.out.println("hejdu");
             client.sendObject("cancel");
             main.closePopupStage();
-
-            System.out.println("nukörvi");
         });
     }
     public Scene getPopupScene() {

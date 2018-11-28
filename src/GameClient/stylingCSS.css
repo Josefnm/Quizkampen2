@@ -5,81 +5,97 @@
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
     /*-fx-paddig: 20;*/
-}
-
+}/*
 .score-test {
     -fx-padding: 20;
     -fx-spacing: 10;
     -fx-alignment: center;
     -fx-font-size: 60;
-}
-/**#pane {
-    -fx-background-color: YELLOW;
 }*/
-#button-test {
-    -fx-background-color: 
-        #3c7fb1,
-        linear-gradient(#fafdfe, #e8f5fc),
-        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
-    -fx-background-insets: 0,1,2;
-    -fx-background-radius: 3,2,1;
-    -fx-padding: 3 30 3 30;
-    -fx-text-fill: black;
-    -fx-font-size: 14px;
-}
-#transparent { /*.transparent*/
+#transparent { /*.transparent, används inte just nu*/
   background:rgba(255,255,255,0.5);
 }
-
-.text_white {
+.toppen_score { /*används*/
     -fx-fill: white;
     -fx-font-family: "comic sans ms";
     -fx-font-size: 40;
 }
-
-#button-test2 {
-    -fx-text-fill: white;
-    -fx-font-family: "comic sans ms";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#4ba614, #008c00);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-
-#button-test3 {
-    -fx-text-fill: white;
-    -fx-font-family: "comic sans ms";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#f62b2b, #d20202);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-#button-test4 {
-    -fx-text-fill: white;
-    -fx-font-family: "comic sans ms";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#a7cfdf, #23538a);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-/*
-#texttest {
-    -fx-font: 100px comic sans ms;
+/*används*/
+.text_white {
     -fx-fill: white;
-    -fx-stroke: black;
-    -fx-stroke-width: 1;
-}*/
-#button-test5 {
-    
+    -fx-font-family: "comic sans ms";
+    -fx-font-size: 15;
 }
+/*används*/
+.text_black {
+    -fx-fill: black;
+    -fx-font-family: "comic sans ms";
+    -fx-font-size: 14;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#goVidareKnapp {
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+}
+#goVidareKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+#startKnapp {
+    -fx-background-color: linear-gradient(#4ba614, #008c00);
+    -fx-min-width: 85px;
+    -fx-min-height: 45px;
+}
+#startKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
+    -fx-background-color: linear-gradient(#008c00, #4ba614);
+}
+#giveUpKnapp { /* röd knapp, giveup samt cancel */
+    -fx-background-color: linear-gradient(#f62b2b, #d20202);
+    -fx-min-width: 35px;
+    -fx-min-height: 25px;
+}
+#giveUpKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
+    -fx-background-color: linear-gradient(#d20202, #f62b2b);
+}
+#cancelKnapp { /* röd knapp, giveup samt cancel */
+    -fx-background-color: linear-gradient(#f62b2b, #d20202);
+    -fx-min-width: 35px;
+    -fx-min-height: 25px;
+}
+#cancelKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
+    -fx-background-color: linear-gradient(#d20202, #f62b2b);
+}
+#startsceneKnapp {
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-min-width: 150px;
+    -fx-min-height: 25px;
+}
+#startsceneKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+/*används*/
 #logonamn {
     -fx-font-size: 40;
     -fx-font-family: "comic sans ms";
     -fx-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
+#greenScoreKnapp { /* grön */
+    -fx-background-color: linear-gradient(#4ba614, #008c00);
+}
+#redScoreKnapp { /* röd knapp */
+    -fx-background-color: linear-gradient(#f62b2b, #d20202);
+}
+/*
 #textvit {
     -fx-fill: white;
     -fx-font-family: "comic sans ms";
 }
-#textsvart {
+#textsvart {  används inte
     -fx-fill: black;
     -fx-font-family: "comic sans ms";
 }
+*/

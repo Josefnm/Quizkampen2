@@ -46,21 +46,28 @@ public class EntryScene {
     //logoNamn.setStyle("-fx-fill: white; -fx-font-size: 40; -fx-font-family: comic sans ms;");
     logoNamn.setId("logonamn");
     Text userName = new Text("Ange användarnamn:");
-    userName.setId("textsvart");
+    //userName.setId("textsvart");
+    userName.getStyleClass().add("text_black");
     TextField userNameInputField = new TextField();
+    userNameInputField.getStyleClass().add("text_white");
     userNameInputField.setMaxSize(100,25);
     
     //fixa choicebox
     Text whatGender = new Text("Jag identifierar mig som:");
-    whatGender.setId("textsvart");
+    //whatGender.setId("textsvart");
+    whatGender.getStyleClass().add("text_black");
     ChoiceBox<String> genderMenu = new ChoiceBox();
+    genderMenu.getStyleClass().add("text_black");
+    
     
     genderMenu.getItems().addAll("Välj ett alternativ", "Jag är en stor pojke!", 
                                 "flicka!", "ÅÅåhh! snorlax!", "not sure :)");
     genderMenu.setValue("Välj ett alternativ"); //då får vi ett värde som står "synligt/överst"
     
     Button passBtn = new Button("Gå vidare");
-    passBtn.setId("button-test4");
+    //passBtn.setId("button-test4");
+    passBtn.getStyleClass().add("button");
+    passBtn.setId("goVidareKnapp");
     passBtn.setOnAction(e -> {
         userNameInput = userNameInputField.getText();
         startScene.setUsername(userNameInput);

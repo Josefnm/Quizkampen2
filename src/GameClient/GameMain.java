@@ -43,28 +43,20 @@ public class GameMain extends Application {
         primaryStage.setTitle("Quiz!");
 
         client = new Client();
+        int rounds = 2;//(Integer)client.getInStream().readObject();
         stage = primaryStage;
         stagepop = new Stage();
         entryScene = new EntryScene(this);
         sc = new StartScene(this);
-        entryScene.startInitiated(sc); //<------
+        entryScene.startInitiated(sc); //<------ instans vi vill åt
         questionScene = new QuestionScene(this);
-        scoresc = new ScoreScene(this);
-        entryScene.scoreInitiated(scoresc); // <---
+        scoresc = new ScoreScene(this, rounds);
+        entryScene.scoreInitiated(scoresc); // <--- instans vi vill åt
         primaryStage.setTitle("QUIZKAMPEN!");
         primaryStage.setScene(entryScene.getScene());
         primaryStage.show();
 
-        
-        //detta handlar om second stage (aka popups) x-funktion, tack vare josef överflödig?
-        stagepop.setOnCloseRequest(event -> {
-        System.out.println("Stage is closing"); 
-        stagepop.hide();
-        stagepop.close();
-        System.out.println("closed");
-        System.out.println(entryScene.getUsername()); //ger null
-        });
-        
+       
     }
     public String tempUsername()
     {
@@ -131,5 +123,11 @@ public class GameMain extends Application {
     public static void main(String[] args) {
         launch(args);
 
+    }
+    public QuestionScene getQuestionScene() {
+        return questionScene;
+    }
+    public ScoreScene getScoreScene() {
+        return scoresc;
     }
 }
