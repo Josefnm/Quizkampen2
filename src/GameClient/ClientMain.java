@@ -2,6 +2,7 @@ package GameClient;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -12,6 +13,7 @@ public class ClientMain extends Application {
     private int boardWidth = 300;
     private int roundsPerGame;
     private String userName;
+    private Image userAvatar;
 
     private Stage primaryStage;
     private Stage popupStage;
@@ -127,5 +129,13 @@ public class ClientMain extends Application {
 
     public void setRoundsPerGame(int roundsPerGame) {
         this.roundsPerGame = roundsPerGame;
+    }
+
+    public Image getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(Image userAvatar) {
+        this.userAvatar = userAvatar;
     }
 }

@@ -52,7 +52,7 @@ public class QuestionList {
          try(BufferedReader br = Files.newBufferedReader(path)){
             while((temp=br.readLine()) != null && !temp.trim().equals("")){
                 String[] str = temp.split(",");
-                Question question = new Question(str[1], new String[]{str[2],str[3],str[4],str[5]}, str[6]);
+                Question question = new Question(str[0],str[1], new String[]{str[2],str[3],str[4],str[5]}, str[6]);
                 if(str[0].equals("Computer Science")) computerScience.add(question);
                 if(str[0].equals("History")) history.add(question);
                 if(str[0].equals("Video Games")) videoGames.add(question);

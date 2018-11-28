@@ -20,12 +20,10 @@ public class StartScene { //fixar abstrakt senare
     QuestionScene qs;
     Scene popupScene;
     Button cancelPopupBtn;
-    InfoPacket input;
-    Thread listener = null;
-    EntryScene entry;
+   
 
     Text realUsername; //för vår setter
-    ImageView avatar;
+    ImageView userAvatar;
     private Scene startScene;
     private ClientMain main;
     private Text userName;
@@ -36,14 +34,13 @@ public class StartScene { //fixar abstrakt senare
         //label 2 "actual användarnamn"-betydligt större font
         //Avatarbild, den ska även gå att ändra
 
-        avatar = new ImageView();
+        userAvatar = new ImageView(main.getUserAvatar());
 
-        //avatar.setImage("");
-        avatar.setFitWidth(40);
-        avatar.setPreserveRatio(true);
-        avatar.setSmooth(true);
-        avatar.setCache(true);
-        entry = new EntryScene(main);
+        userAvatar.setFitWidth(40);
+        userAvatar.setPreserveRatio(true);
+        userAvatar.setSmooth(true);
+        userAvatar.setCache(true);
+       
 
         userName = new Text(main.getUserName()); //kopplat till användarens input
         userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
@@ -71,7 +68,7 @@ public class StartScene { //fixar abstrakt senare
         BP.setPadding(new Insets(20, 20, 20, 20));
         BP.setId("pane");
         VBox vbox = new VBox(nameLabel, userName);
-        HBox hbox = new HBox(avatar, vbox);
+        HBox hbox = new HBox(userAvatar, vbox);
         HBox hboxKnapp = new HBox(startbtn);
         VBox vboxAllt = new VBox(hbox, hboxKnapp);
         vboxAllt.setSpacing(8);
@@ -83,14 +80,9 @@ public class StartScene { //fixar abstrakt senare
 
         BP.setCenter(vboxAllt);
         //BP.setTop(startbtn);
-        //BP.setBottom(avatar);
+        //BP.setBottom(userAvatar);
         startScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
         startScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
-    }
-
-    public void setAvatar(Image input) {
-        System.out.println(input);
-        avatar.setImage(input);
     }
 
     public Scene getScene() {

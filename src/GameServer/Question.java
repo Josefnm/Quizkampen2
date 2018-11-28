@@ -3,12 +3,12 @@ package GameServer;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-// private String category
+ private String category;
     private String question;
     private String[] answers;
     private String correctAnswer;
 
-    public Question(String question, String[] answers, String correctAnswer) {
+    public Question(String category, String question, String[] answers, String correctAnswer) {
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
@@ -25,4 +25,9 @@ public class Question implements Serializable {
     public String getCorrectAnswer() {
         return correctAnswer;
     }
+
+    public String getCategory() {
+        return category;
+    }
+    
 }
