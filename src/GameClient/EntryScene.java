@@ -64,7 +64,7 @@ public class EntryScene {
         genderMenu.setValue("Välj ett alternativ"); //då får vi ett värde som står "synligt/överst"
 
         Button passBtn = new Button("Gå vidare");
-        //passBtn.setId("button-test4");
+        
         passBtn.getStyleClass().add("button");
         passBtn.setId("goVidareKnapp");
         passBtn.setOnAction(e -> {
@@ -93,7 +93,7 @@ public class EntryScene {
 
         entryScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }
-    //   public void getChoice(ChoiceBox<String> choice)
+//       public void getChoice(ChoiceBox<String> choice)
 //    {
 //        String genderChoice = choice.getValue();
 //        System.out.println(genderChoice);

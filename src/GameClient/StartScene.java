@@ -46,7 +46,8 @@ public class StartScene { //fixar abstrakt senare
         entry = new EntryScene(main);
 
         userName = new Text(main.getUserName()); //kopplat till användarens input
-        userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        //userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        userName.getStyleClass().add("text_white");
         //   Text userName = new Text("hej"); //kopplat till användarens input
 
         Label nameLabel = new Label("Username:");
@@ -57,7 +58,7 @@ public class StartScene { //fixar abstrakt senare
         Button startbtn = new Button("Play?");
         startbtn.getStyleClass().add("button");
         startbtn.setId("startsceneKnapp");
-        startbtn.setMinSize(150, 25);
+        //startbtn.setMinSize(150, 25);
 
         startbtn.setOnAction(e -> {
             main.getClient().send(new InfoPacket(IdEnum.START));

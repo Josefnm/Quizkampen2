@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -30,6 +31,7 @@ public class ScoreScene {
     private Text[] totalScoreTexts;
     private int[] totalScores;
     private Button[][][] scoreArray;
+    private Label duVann;
 
     Text realUserP1;
     ImageView avatar;
@@ -40,8 +42,7 @@ public class ScoreScene {
         roundsPerGame = main.getRoundsPerGame();
         scoreArray = new Button[2][roundsPerGame][3];
         totalScores = new int[]{0, 0};
-        //label 1 "användarnamn"
-        //label 2 "actual användarnamn"-betydligt större font
+
         //Avatarbild, den ska även gå att ändra
 //        Image avatarBoy = new Image("./images/boy.png"); //en getter från server i slutändan?
 //        Image avatarGirl = new Image("./images/girl.png");
@@ -67,27 +68,23 @@ public class ScoreScene {
         avatarG.setCache(true);
 
         userName = new Text(main.getUserName());
-        userName.setStyle("-fx-font-size: 15; -fx-fill: white;");
+        userName.getStyleClass().add("text_white");
         opponentName = new Text("spelare2"); //kopplat till användarens input
-        opponentName.setStyle("-fx-font-size: 15; -fx-fill: white;");
-        //realUserP2.setStyle("-fx-text-fill: red; -fx-font-size: 35px;");, förstod font size men inte färgen
+        opponentName.getStyleClass().add("text_white");
         startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
-        //startbtn.setStyle("-fx-background-color: green; -fx-text-fill: white;");
         
+        //tror inte det under används
         realUserP1 = new Text(""); //kopplat till användarens input
         realUserP1.getStyleClass().add("text_white");
         Text realUserP2 = new Text("spelare2"); //kopplat till användarens input
         realUserP2.getStyleClass().add("text_white");
 
-        Button waitbtn = new Button("VÄNTA"); //logiken saknas men om du blir spelaren som väntar
-        //basicly en placeholder utan funktion? bör helst ta "SPELA"-knappens plats
-        waitbtn.setId("button-test4");
-        waitbtn.setMinSize(85, 45);
+
 
         startBtn = new Button("SPELA"); //starta pågående eller nästa rond?
         startBtn.getStyleClass().add("button");
         startBtn.setId("startKnapp"); // grön
-startBtn.setDisable(true);
+        startBtn.setDisable(true);
         Button giveUpBtn = new Button("Ge upp"); //starta pågående eller nästa rond?
         giveUpBtn.getStyleClass().add("button");
         giveUpBtn.setId("giveUpKnapp");
@@ -95,8 +92,6 @@ startBtn.setDisable(true);
         Text ScoreP1 = new Text("0"); //dynamiskt
         ScoreP1.getStyleClass().add("toppen_score");
         Text Streck = new Text("-"); //kopplat till användarens input
-        Streck.setFill(Color.WHITE);
-
         Streck.getStyleClass().add("toppen_score");
         Text ScoreP2 = new Text("0"); //dynamiskt
         ScoreP2.getStyleClass().add("toppen_score");
@@ -128,6 +123,7 @@ startBtn.setDisable(true);
             vBoxScore.getChildren().add(hRow);
         }
         
+        
         startBtn.setOnAction(e -> {
             startBtn.setDisable(true);
             roundCounter++;
@@ -157,14 +153,27 @@ startBtn.setDisable(true);
 //        //hrow1.setOpacity(0.5); //eftersom den ovan inte funkade :)
 //
         HBox hboxKnappar = new HBox(giveUpBtn, startBtn);
-
-        //HBox hboxKnapparPH = new HBox(giveUpBtn, waitbtn); //för placeholdern
+        duVann = new Label("DU VANN");
+        //duVann.setMinSize(75, 55);
+        //duVann.getStyleClass().add("text_black");
+        duVann.setId("duVann");
+        duVann.setVisible(false);
+        //duVann.setStyle("-fx-background-color: White; -fx-border-radius: 10 10 10 10;"
+                //+ "-fx-background-radius: 10 10 10 10");
+        
+        
+        VBox finalVBox = new VBox(vBoxScore, duVann);
+        finalVBox.setSpacing(35);
         hboxKnappar.setSpacing(25);
 
         hboxtop.setAlignment(Pos.CENTER);
+        finalVBox.setAlignment(Pos.CENTER);
         hboxKnappar.setAlignment(Pos.BOTTOM_CENTER);
+        
+        
         BP.setTop(hboxtop);
-        BP.setCenter(vBoxScore);
+        BP.setCenter(finalVBox);
+        
         BP.setBottom(hboxKnappar);
 
         //BP.setTop(startBtn);
@@ -194,8 +203,22 @@ startBtn.setDisable(true);
             }
         }
         totalScoreTexts[playerNr].setText(Integer.toString(totalScores[playerNr]));
-    }
 
+    }
+    public void whoWon()
+    {
+        if (totalScores[0] > totalScores[1] && roundCounter+1 == roundsPerGame)
+        { //hur vet man vilken som är sista ronden?
+            duVann.setVisible(true);
+        }
+        else if (totalScores[0] < totalScores[1])
+        {
+            //
+        }
+        else{ //lika
+            //duVann.setVisible(true);
+        }
+    }
     public void setOpponentName(String opponentName) {
         this.opponentName.setText(opponentName);
     }
@@ -208,6 +231,7 @@ startBtn.setDisable(true);
      * resets scores after a game ended to prepare for a new game
      */
     public void resetScore() {
+        duVann.setVisible(false);
         roundCounter = 0;
         totalScores = new int[]{0, 0};
         Arrays.stream(scoreArray)

@@ -44,12 +44,14 @@ public class QuestionScene {
             button.setMinSize(127,102);
             button.setMaxSize(127, 102);
             button.setOnAction(click);
+            button.getStyleClass().add("button");
             button.setId("svarsKnapp");
             
             buttons.add(button);
             grid.add(button, i/2, i%2);
         }
         border.setPadding(new Insets(30,10,20,10));
+        next.setId("nextKnapp");
         next.setDisable(true);
         next.setMinSize(50, 25);
         next.setOnAction(nextBtnEvent);

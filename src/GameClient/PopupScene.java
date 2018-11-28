@@ -26,7 +26,7 @@ public class PopupScene {
         popupScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
         cancelPopupBtn = new Button("Cancel");
         cancelPopupBtn.getStyleClass().add("button");
-        cancelPopupBtn.setId("cancelKnappen");
+        cancelPopupBtn.setId("cancelKnapp");
         Text searching = new Text("Letar efter spelare...");
         searching.getStyleClass().add("text_white");
         ProgressIndicator pi = new ProgressIndicator();

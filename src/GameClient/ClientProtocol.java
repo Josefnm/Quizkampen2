@@ -39,6 +39,7 @@ public class ClientProtocol {
                 main.getQuestionScene().setQuestions(data.getQuestions());
                 main.getScoreScene().showPoints(data.getScore(), 1);
                 main.getScoreScene().enableStartBtn();
+                main.getScoreScene().whoWon();
                 break;
         }
     }

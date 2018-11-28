@@ -55,14 +55,13 @@
     -fx-font: 100px comic sans ms;}*/
 .toppen_score { /*används*/
     -fx-fill: white;
-    -fx-stroke: black;
-    -fx-stroke-width: 1;
-}
-#button-test5 {
-
     -fx-font-family: "comic sans ms";
     -fx-font-size: 40;
-}
+}/*
+#button-test5 {
+    -fx-font-family: "comic sans ms";
+    -fx-font-size: 40;
+}*/
 /*används*/
 .text_white {
     -fx-fill: white;
@@ -80,6 +79,24 @@
     -fx-font-family: "comic sans ms";
     -fx-font-weight: bold;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#nextKnapp {
+    -fx-text-fill: black;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#duVann {
+    -fx-text-fill: black;
+    -fx-font-family: "comic sans ms";
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+    -fx-min-width: 85px;
+    -fx-min-height: 45px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-color: White;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
 }
 #goVidareKnapp {
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
@@ -119,6 +136,12 @@
 #startsceneKnapp:hover { /*behöver inte läggas in i koden, uppfattas per automatik*/
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
+#svarsKnapp {
+   -fx-background-color:linear-gradient(#45484d, #000000);
+}
+#svarsKnapp:hover {
+    -fx-background-color:linear-gradient(#000000, #45484d);
+}
 /*används*/
 #logonamn {
     -fx-font-size: 40;
@@ -155,11 +178,4 @@
 }
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
-}
-#svarsKnapp {
-   -fx-text-fill: white;
-   -fx-font-family: "comic sans ms";
-   -fx-font-weight: bold;
-   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-   -fx-background-color:linear-gradient(#45484d, #000000);
 }
