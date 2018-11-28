@@ -3,7 +3,6 @@
  */
 package GameClient;
 
-import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -57,7 +56,7 @@ public class EntryScene {
         passBtn.setOnAction(e -> {
             getChoice(genderMenu);
             main.setUserName(userNameInputField.getText());
-            main.getClient().send(new InfoPacket(userNameInputField.getText(),main.getUserAvatar(),IdEnum.LOGIN));
+            main.getClient().send(new InfoPacket(userNameInputField.getText(),main.getUserAvatar()));
             main.initScenes();
             main.setStartScene();
         });

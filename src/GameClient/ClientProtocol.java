@@ -21,7 +21,7 @@ public class ClientProtocol {
     public void handleInput(InfoPacket data) {
         switch (data.getId()) {
             case CHAT:
-                main.getChatScene().writeToChatArea(data.getName(), data.getChatMsg());
+                main.getChatScene().writeToChatArea( data.getChatMsg());
                 break;
             case GAME_LENGTH: //ställer in antal ronder
                 main.setRoundsPerGame(data.getRoundsPerGame());

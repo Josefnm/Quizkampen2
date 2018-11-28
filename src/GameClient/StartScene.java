@@ -38,7 +38,6 @@ public class StartScene { //fixar abstrakt senare
         Button startBtn = new Button("Play?");
         startBtn.getStyleClass().add("button");
         startBtn.setId("startsceneKnapp");
-        //startbtn.setMinSize(150, 25);
 
         startBtn.setOnAction(e -> {
             main.getClient().send(new InfoPacket(IdEnum.START));

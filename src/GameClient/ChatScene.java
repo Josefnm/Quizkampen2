@@ -52,7 +52,7 @@ public class ChatScene {
     }
 
     private void sendChatMsg() {
-        main.getClient().send(new InfoPacket(main.getUserName(), writeField.getText()));
+        main.getClient().send(new InfoPacket(main.getUserName()+": "+writeField.getText()));
         writeField.setText("");
     }
 
@@ -64,7 +64,7 @@ public class ChatScene {
         return chatScene;
     }
 
-    public void writeToChatArea(String name, String chatMsg) {
-        chatArea.appendText(name + ": " + chatMsg + "\n");
+    public void writeToChatArea( String chatMsg) {
+        chatArea.appendText( chatMsg + "\n");
     }
 }

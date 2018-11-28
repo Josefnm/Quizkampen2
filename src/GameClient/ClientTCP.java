@@ -25,7 +25,7 @@ public class ClientTCP {
             socket = new Socket(address, port);
             inStream = new ObjectInputStream(socket.getInputStream());
             outStream = new ObjectOutputStream(socket.getOutputStream());
-            startShutDownHook();
+           // startShutDownHook();
             inputThread();
         } catch (IOException ex) {
             Logger.getLogger(ClientTCP.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,20 +60,34 @@ public class ClientTCP {
         }).start();
     }
 
-    private void startShutDownHook() { //separerad från konstruktorn för läsbarhet
-        // Stänger socketen om programmet avslutas, förhindrar fel på serversidan
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    outStream.close();
-                    inStream.close();
-                    socket.close();
-                    System.out.println("Socket closed!");
-                } catch (IOException e) {
-                    System.out.println("closing socket failed");
-                }
-            }
-        });
+//    private void startShutDownHook() { //separerad från konstruktorn för läsbarhet
+//        // Stänger socketen om programmet avslutas, förhindrar fel på serversidan
+//        Runtime.getRuntime().addShutdownHook(new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    outStream.close();
+//                    inStream.close();
+//                    socket.close();
+//                    System.exit(0);
+//                    System.out.println("Socket closed!");
+//                } catch (IOException e) {
+//                    System.out.println("closing socket failed");
+//                }
+//            }
+//        });
+//    }
+
+    public ObjectInputStream getInStream() {
+        return inStream;
     }
+
+    public ObjectOutputStream getOutStream() {
+        return outStream;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+    
 }
