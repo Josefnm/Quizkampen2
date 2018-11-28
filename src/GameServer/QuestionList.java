@@ -6,18 +6,48 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class QuestionList {
     private String file = "src\\gameserver\\questions\\total.txt";
-    private Path path = Paths.get(file);
-    ArrayList<ArrayList<Question>> questionList = new ArrayList<>();
-    ArrayList<Question> matte = new ArrayList<>();
-    ArrayList<Question> sport = new ArrayList<>();
-    ArrayList<Question> historia = new ArrayList<>();
-    ArrayList<Question> natur = new ArrayList<>();
+    private Path path = Paths.get(file);    
 
-    public QuestionList() {
+    private List<ArrayList<Question>> questionList = new ArrayList<>();
+    private ArrayList<Question> matte = new ArrayList<>();
+    private ArrayList<Question> sport = new ArrayList<>();
+    private ArrayList<Question> historia = new ArrayList<>();
+    private ArrayList<Question> natur = new ArrayList<>();
+    private int roundsPerGame;
+    private int questionsPerRond;
+
+    public QuestionList(int questionsPerRound, int roundsPerGame) {
+        this.questionsPerRond=questionsPerRound;
+        this.roundsPerGame=roundsPerGame;
+        setQuestions();
+        
+    }
+
+    private ArrayList<Question> getRandomQuestions(ArrayList<Question> qs) {
+        Collections.shuffle(qs);
+        ArrayList<Question> questions = new ArrayList<>(qs.subList(0, questionsPerRond));
+        return questions;
+    }
+
+    public ArrayList<ArrayList<Question>> GetRandom() {
+        ArrayList<ArrayList<Question>> randomCategories = new ArrayList<>();
+        ArrayList<Integer> ronds = new ArrayList<>();
+        for (int k = 0; k < questionList.size(); k++) {
+            ronds.add(k);
+        }
+        Collections.shuffle(ronds);
+        for (int p = 0; p < roundsPerGame; p++) {
+            randomCategories.add(getRandomQuestions(questionList.get(ronds.get(p))));
+        }
+        return randomCategories;
+    }
+
+    private void setQuestions() { //Vi kanske ska läsa dessa från ett textdokument istället?
         String temp;    
          try(BufferedReader br = Files.newBufferedReader(path)){
             while((temp=br.readLine()) != null && !temp.trim().equals("")){
@@ -36,7 +66,7 @@ public class QuestionList {
         questionList.add(matte);
         questionList.add(sport);
         questionList.add(natur);
-        questionList.add(historia);  
+        questionList.add(historia);        
     }
 
     // Metoden tar in en lista med frågor som sedan kommer att ge ut 2 frågor från listan

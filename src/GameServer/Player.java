@@ -13,12 +13,12 @@ public class Player extends Thread {
     private Socket socket;
     private ObjectInputStream inStream;
     private ObjectOutputStream outStream;
-    private Protocol protocol;
+    private ServerProtocol protocol;
     private GameRoom gameRoom;
-
+    private String playerName;
     private boolean isAvailable = false; //vill (inte) starta nytt spel
 
-    public Player(Socket socket, Protocol protocol) {
+    public Player(Socket socket, ServerProtocol protocol) {
         System.out.println("player connected");
         this.protocol = protocol;
         this.socket = socket;
@@ -27,23 +27,22 @@ public class Player extends Thread {
 
     @Override
     public void run() {
-        try{
+        try {
             outStream = new ObjectOutputStream(socket.getOutputStream());
             inStream = new ObjectInputStream(socket.getInputStream());
             Object input;
-            while(! socket.isClosed()){
-                try{
+            Send(new InfoPacket(protocol.getRoundsPerGame()));
+            while (!socket.isClosed()) {
+                try {
                     input = inStream.readObject();
-                } catch(EOFException eofe){
+                } catch (EOFException eofe) {
                     break;  //ifall klienten stängs
                 }
-                protocol.getResponse(this, input);
+                protocol.getResponse(this, (InfoPacket)input);
             }
-        }
-        catch(IOException | ClassNotFoundException ex){
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);            
-        }
-        finally {
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
             try {
                 protocol.getPlayerList().remove(this);
                 outStream.close();
@@ -78,5 +77,13 @@ public class Player extends Thread {
 
     public void setGameRoom(GameRoom gameRoom) {
         this.gameRoom = gameRoom;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String name) {
+        this.playerName = name;
     }
 }

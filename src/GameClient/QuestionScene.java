@@ -1,5 +1,8 @@
 package GameClient;
 
+import GameClient.ClientMain;
+import GameServer.IdEnum;
+import GameServer.InfoPacket;
 import GameServer.Question;
 import java.util.ArrayList;
 import javafx.event.Event;
@@ -15,21 +18,22 @@ import javafx.scene.layout.HBox;
 public class QuestionScene {
 
     //egenskaper för frågor:
-    ArrayList<String> points = new ArrayList<>();
+    ArrayList<String> score = new ArrayList<>();
     ArrayList<Question> questions;
+    boolean[] roundScore= new boolean[3];
     String correctAnswer;
-    int nextQuestion = 0;
+    int questionsAnsweredNr = 0;
 
     //egenskaper för scenen:
-    GameMain main;
+    ClientMain main;
     Button next = new Button("Next");
     private Scene scene;
     ArrayList<Button> buttons = new ArrayList();
     HBox hbox = new HBox();
     Label label = new Label();
 
-    QuestionScene() {
-
+    public QuestionScene(ClientMain main) {
+        this.main = main;
         BorderPane border = new BorderPane();
         GridPane grid = new GridPane();
 
@@ -38,17 +42,11 @@ public class QuestionScene {
             button.setMinSize(300, 200);
             button.setOnAction(click);
             buttons.add(button);
+            grid.add(button, i/2, i%2);
         }
-
-        grid.add((buttons.get(0)), 0, 0);
-        grid.add((buttons.get(1)), 0, 1);
-        grid.add((buttons.get(2)), 1, 0);
-        grid.add((buttons.get(3)), 1, 1);
-
         next.setDisable(true);
-        next.setOnAction(e -> main.setStartScene());
         next.setMinSize(50, 25);
-        next.setOnAction(setScene);
+        next.setOnAction(nextBtnEvent);
         hbox.getChildren().add(next);
         hbox.setAlignment(Pos.CENTER);
         label.setMinSize(600, 200);
@@ -57,8 +55,7 @@ public class QuestionScene {
         grid.setAlignment(Pos.CENTER);
         border.setCenter(grid);
         border.setBottom(hbox);
-
-        this.scene = new Scene(border);
+        scene = new Scene(border);
     }
 
     EventHandler click = new EventHandler() {
@@ -67,33 +64,41 @@ public class QuestionScene {
             Button btn = (Button) event.getSource();
             if (btn.getText().equals(correctAnswer)) {
                 btn.setStyle("-fx-background-color: Green");
-                points.add("1"); //skickas till servern för poäng
+                roundScore[questionsAnsweredNr] = true; //skickas till servern för poäng
                 for (Button b : buttons) {
                     b.setDisable(true);
                 }
-                //skicka tillbaka till server en boolean? som ska säga att det blir poäng
+                
 
             } else {
                 btn.setStyle("-fx-background-color: Red");
-                points.add("0");         //skicka till servern för att sedan parseas och ge poäng
+                roundScore[questionsAnsweredNr] = false;     
                 for (Button b : buttons) {
                     if (b.getText().equals(correctAnswer)) {
                         b.setStyle("-fx-background-color: Green");
                     }
                     b.setDisable(true);
                 }
-
             }
-            //Next knappen kan bara användas om man har svarat på fårgan
+            //Next knappen kan bara användas om man har svarat på frågan
             next.setDisable(false);
 
         }
     };
 
-    EventHandler setScene = new EventHandler() {
+    EventHandler nextBtnEvent = new EventHandler() {
         @Override
         public void handle(Event event) {
-            setNextQuestion();
+            questionsAnsweredNr++;
+            if (questionsAnsweredNr == questions.size()) {
+                main.getClient().send(new InfoPacket(roundScore.clone()));
+                questionsAnsweredNr = 0;
+                main.setScoreScene();
+                main.getScoreScene().boolPoints(roundScore,0);
+            } else {
+                setNextQuestion();
+            }
+            next.setDisable(true);
         }
     };
 
@@ -101,30 +106,22 @@ public class QuestionScene {
         Button btn = new Button();
         int i = 0;
         for (Button b : buttons) {
-            correctAnswer = questions.get(nextQuestion).getCorrectAnswer();
+            correctAnswer = questions.get(questionsAnsweredNr).getCorrectAnswer();
             b.setDisable(false);
             b.setStyle(btn.getStyle());
-            b.setText(questions.get(nextQuestion).getAnswer(i));
-            label.setText(questions.get(nextQuestion).getQuestion());
+            b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
+            label.setText(questions.get(questionsAnsweredNr).getQuestion());
             i++;
         }
-        nextQuestion++;
+
     }
 
     public Scene getScene() {
         return scene;
     }
 
-    public ArrayList<Button> getButtons() {
-        return buttons;
-    }
-//   public void setButtonText(ArrayList <String> a){
-//       for(int i=0; i<4; i++){
-//           buttons.get(i).setText(a.get(i));
-//       }
-//   }
-
     public void setQuestions(ArrayList<Question> questions) {
         this.questions = questions;
+        
     }
 }
