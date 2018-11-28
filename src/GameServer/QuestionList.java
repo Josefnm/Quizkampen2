@@ -30,7 +30,7 @@ public class QuestionList {
     public ArrayList<ArrayList<Question>> GetRandom() {
         ArrayList<ArrayList<Question>> randomCategories = new ArrayList<>();
         ArrayList<Integer> ronds = new ArrayList<>();
-        for (int k = 0; k < roundsPerGame; k++) {
+        for (int k = 0; k < questionList.size(); k++) {
             ronds.add(k);
         }
         Collections.shuffle(ronds);
