@@ -3,6 +3,9 @@ package GameClient;
 import GameServer.InfoPacket;
 import javafx.application.Platform;
 
+/**
+ * handles data sent from the server
+ */
 public class ClientProtocol {
 
     private ClientMain main;
@@ -11,34 +14,32 @@ public class ClientProtocol {
         this.main = main;
     }
 
+    /**
+     * Handles what to do with the InfoPackets sent from server
+     * @param data
+     */
     public void handleInput(InfoPacket data) {
         switch (data.getId()) {
             case CHAT:
-                main.getChatScene().writeToChatArea(data.getName(),data.getChatMsg());
+                main.getChatScene().writeToChatArea(data.getName(), data.getChatMsg());
                 break;
-            case GAME_LENGTH:
+            case GAME_LENGTH: //ställer in antal ronder
                 main.setRoundsPerGame(data.getRoundsPerGame());
                 break;
             case START:
-                start(data);
+                main.getScoreScene().setOpponentName(data.getName());
+                main.getQuestionScene().setQuestions(data.getQuestions());
+                //Platform.runlater anropar Applications-tråden. Detta görs för att i javafx så vissa saker bara göras från den tråden.
+                Platform.runLater(() -> {
+                    main.setQuestionScene();
+                    main.closePopupStage();
+                });
                 break;
             case NEXT_ROUND:
                 main.getQuestionScene().setQuestions(data.getQuestions());
-                main.getScoreScene().boolPoints(data.getScore(), 1);
+                main.getScoreScene().showPoints(data.getScore(), 1);
                 main.getScoreScene().enableStartBtn();
                 break;
         }
     }
-
-    private void start(InfoPacket data) {
-       
-        main.getScoreScene().setOpponentName(data.getName());
-        //Platform.runlater anropar Applications-tråden. Detta görs för att i javafx så kan bara scener köras från den tråden.
-        Platform.runLater(() -> {
-            main.getQuestionScene().setQuestions(data.getQuestions());
-            main.setQuestionScene();
-            main.closePopupStage();
-        });
-    }
-
 }

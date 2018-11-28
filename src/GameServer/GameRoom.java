@@ -7,14 +7,16 @@ public class GameRoom {
     private Player player1;
     private Player player2;
 
-    private ArrayList<boolean[]> player1Score = new ArrayList<>();
-    private ArrayList<boolean[]> player2Score = new ArrayList<>();
+    private ArrayList<boolean[]> player1Score;
+    private ArrayList<boolean[]> player2Score;
 
     private int currentRound = 0;
 
     private ArrayList<ArrayList<Question>> questions; //alla frågor för en hel spelomgång
 
     public GameRoom(Player player1, Player player2, ArrayList<ArrayList<Question>> questions) {
+        this.player1Score = new ArrayList<>();
+        this.player2Score = new ArrayList<>();
         this.player1 = player1;
         this.player2 = player2;
         this.questions = questions;
@@ -42,15 +44,16 @@ public class GameRoom {
     }
 
     public ArrayList<Question> getCurrentQuestions() {
+        //Fullösning för att inte få nullpointer när sista rundans poäng skickas med newRound från ServerProtocol
         try {
             return questions.get(currentRound);
         } catch (Exception e) {
             return null;
         }
     }
-
+//currentRound-1 eftersom föregående rundas poäng ska skickas samtidigt som nästa rundas frågor
     public boolean[] getPlayer1Score() {
-        return player1Score.get(currentRound - 1);
+        return player1Score.get(currentRound - 1);  
     }
 
     public boolean[] getPlayer2Score() {

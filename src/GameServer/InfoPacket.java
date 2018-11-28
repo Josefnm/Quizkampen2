@@ -2,7 +2,9 @@ package GameServer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * data sent between server and client
+ */
 public class InfoPacket implements Serializable {
 
     private IdEnum id;

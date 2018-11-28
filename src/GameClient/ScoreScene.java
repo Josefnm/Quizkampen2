@@ -1,13 +1,8 @@
 package GameClient;
 
-import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Stream;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -159,8 +154,12 @@ public class ScoreScene {
     public Scene getScene() {
         return scoreScene;
     }
-
-    public void boolPoints(boolean[] bool, int playerNr) {
+/**
+ * sets colours on the score buttons
+ * @param bool array with wrong/correct answers
+ * @param playerNr 0=this player, 1=opponent player
+ */
+    public void showPoints(boolean[] bool, int playerNr) {
         for (int i = 0; i < 3; i++) {
             if (bool[i]) {
                 scoreArray[playerNr][roundCounter][i].setId("button-test2"); //grön
@@ -179,7 +178,9 @@ public class ScoreScene {
     public void enableStartBtn() {
         startBtn.setDisable(false);
     }
-
+/**
+ * resets scores after a game ended to prepare for a new game
+ */
     public void resetScore() {
         roundCounter = 0;
         totalScores = new int[]{0, 0};

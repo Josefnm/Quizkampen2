@@ -1,7 +1,5 @@
 package GameClient;
 
-import GameClient.ClientMain;
-import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import GameServer.Question;
 import java.util.ArrayList;
@@ -18,19 +16,19 @@ import javafx.scene.layout.HBox;
 public class QuestionScene {
 
     //egenskaper för frågor:
-    ArrayList<String> score = new ArrayList<>();
-    ArrayList<Question> questions;
-    boolean[] roundScore= new boolean[3];
-    String correctAnswer;
-    int questionsAnsweredNr = 0;
+    private ArrayList<Question> questions;
+    private boolean[] roundScore= new boolean[3];
+    private String correctAnswer;
+    private int questionsAnsweredNr = 0;
 
     //egenskaper för scenen:
-    ClientMain main;
-    Button next = new Button("Next");
+    private ClientMain main;
+    private Button next = new Button("Next");
     private Scene scene;
-    ArrayList<Button> buttons = new ArrayList();
-    HBox hbox = new HBox();
-    Label label = new Label();
+    private ArrayList<Button> buttons = new ArrayList();
+    private HBox hbox = new HBox();
+    private Label label = new Label();
+    
 
     public QuestionScene(ClientMain main) {
         this.main = main;
@@ -64,7 +62,7 @@ public class QuestionScene {
             Button btn = (Button) event.getSource();
             if (btn.getText().equals(correctAnswer)) {
                 btn.setStyle("-fx-background-color: Green");
-                roundScore[questionsAnsweredNr] = true; //skickas till servern för poäng
+                roundScore[questionsAnsweredNr] = true; 
                 for (Button b : buttons) {
                     b.setDisable(true);
                 }
@@ -90,11 +88,11 @@ public class QuestionScene {
         @Override
         public void handle(Event event) {
             questionsAnsweredNr++;
-            if (questionsAnsweredNr == questions.size()) {
+            if (questionsAnsweredNr == questions.size()) { //skickar svaren till servern när alla frågor är besvarade
                 main.getClient().send(new InfoPacket(roundScore.clone()));
                 questionsAnsweredNr = 0;
                 main.setScoreScene();
-                main.getScoreScene().boolPoints(roundScore,0);
+                main.getScoreScene().showPoints(roundScore,0);
             } else {
                 setNextQuestion();
             }
@@ -103,12 +101,11 @@ public class QuestionScene {
     };
 
     public void setNextQuestion() {
-        Button btn = new Button();
         int i = 0;
         for (Button b : buttons) {
             correctAnswer = questions.get(questionsAnsweredNr).getCorrectAnswer();
             b.setDisable(false);
-            b.setStyle(btn.getStyle());
+            b.setStyle(null);
             b.setText(questions.get(questionsAnsweredNr).getAnswer(i));
             label.setText(questions.get(questionsAnsweredNr).getQuestion());
             i++;

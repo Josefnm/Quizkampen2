@@ -1,6 +1,5 @@
 package GameClient;
 
-import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Insets;

@@ -31,11 +31,8 @@ public class ClientMain extends Application {
         
         client = new ClientTCP(this);
         this.primaryStage = primaryStage;
-        entryScene = new EntryScene(this);
-        chatScene=new ChatScene(this);
-        
+        entryScene = new EntryScene(this);       
         primaryStage.setTitle("QUIZKAMPEN!");
-        //setChatScene();
         setEntryScene();
         primaryStage.show();
     }
@@ -43,7 +40,9 @@ public class ClientMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+/**
+ * initiates scenes after info from EntryScene has been entered
+ */
     public void initScenes() {
         popupStage = new Stage();
         popupStage.initStyle(StageStyle.UNDECORATED); //tar bort standardpanelen högst upp som vanliga windowsfönster har

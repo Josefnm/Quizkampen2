@@ -1,6 +1,5 @@
 package GameClient;
 
-import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import javafx.geometry.Pos;
@@ -11,10 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-/**
- *
- * @author Josef
- */
 public class PopupScene {
 
     private ClientMain main;

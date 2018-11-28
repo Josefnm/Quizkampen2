@@ -3,15 +3,14 @@ package GameServer;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Properties;
-
+/**
+ * handles data sent from the clients
+ */
 public class ServerProtocol {
 
-    /* Från den här klassen ska klientens föerfrågningar till servern hanteras.
-    Ska kunna skicka tillbaka frågor, hitta motspelare, skicka poäng osv*/
-    private ArrayList<Player> playerList;
-    private QuestionList questionList;
+    private ArrayList<Player> playerList; //lista med alla inlogga spelare
+    private QuestionList questionList; //lista med alla inloggade spelare
     private int roundsPerGame;
     private int questionsPerRond;
 
@@ -22,7 +21,8 @@ public class ServerProtocol {
             roundsPerGame = Integer.parseInt(properties.getProperty("roundsPerGame"));
             questionsPerRond = Integer.parseInt(properties.getProperty("questionsPerRound"));
         } catch (IOException e) {
-            roundsPerGame = 2;
+            //defaultvärden ifall properties inte funkar
+            roundsPerGame = 2; 
             questionsPerRond = 3;
             System.out.println("Filen inte hittas");
         }
@@ -31,46 +31,53 @@ public class ServerProtocol {
         playerList = new ArrayList<>();
     }
 
-    //Hanterar data som tagits emot från klienten
-    public void getResponse(Player player, InfoPacket data) {
+    /**
+     * Handles what to do with the InfoPackets sent from clients
+     * @param player, source of the data
+     * @param data 
+     */
+    public void handleInput(Player player, InfoPacket data) {
 
         switch (data.getId()) {
-            case CHAT:
-                playerList.forEach(e -> e.Send(data));
+            case CHAT: //skickar chattmedelanden till alla klienter
+                playerList.forEach(e -> e.send(data));
                 break;
             case LOGIN:
                 player.setPlayerName(data.getName());
                 break;
             case START:
-                System.out.println("start");
-                findOpponent(player);
+                start(player);
                 break;
             case CANCEL: //gör spelaren otillgänglig när spelaren skickar cancel
                 player.setIsAvailable(false);
-                System.out.println("cancel");
                 break;
-            case NEXT_ROUND:
-                System.out.println("score");
+            case NEXT_ROUND: 
                 nextRound(player, data);
                 break;
-            case ENDED:
+            case ENDED: //ej implementerad
                 break;
         }
     }
-
-    public void nextRound(Player player, InfoPacket data) {
-        System.out.println("score recieved");
+/**
+ * adds score from a players round. 
+ * If both players have finished the round, sends new 
+ * questions and the opponents score to each player 
+ */
+    private void nextRound(Player player, InfoPacket data) {
         GameRoom gr = player.getGameRoom();
         gr.addScore(player, data.getScore());
         if (gr.bothAnswered()) {
-            gr.increaseCurrentRound();
-            gr.getPlayer1().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
-            gr.getPlayer2().Send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
+            gr.increaseCurrentRound(); 
+            gr.getPlayer1().send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer2Score()));
+            gr.getPlayer2().send(new InfoPacket(gr.getCurrentQuestions(), gr.getPlayer1Score()));
         }
     }
 
-    //hittar motspelare när clienten skickat "start"
-    public void findOpponent(Player player2) {
+    /**
+     * finds available opponent and initiates a new game,
+     * or sets player as available otherwise
+     */
+    private void start(Player player2) {
         for (Player player1 : playerList) {
             if (player1.getIsIsAvailable()) {
                 //skapar upp ett gameroom som innehåller data för den specifika spelomgången
@@ -79,8 +86,8 @@ public class ServerProtocol {
                 player2.setIsAvailable(false);
                 player1.setGameRoom(gr);
                 player2.setGameRoom(gr);
-                player1.Send(new InfoPacket(gr.getCurrentQuestions(), player2.getPlayerName()));
-                player2.Send(new InfoPacket(gr.getCurrentQuestions(), player1.getPlayerName()));
+                player1.send(new InfoPacket(gr.getCurrentQuestions(), player2.getPlayerName()));
+                player2.send(new InfoPacket(gr.getCurrentQuestions(), player1.getPlayerName()));
                 System.out.println("start packets sent");
                 return;
             }
