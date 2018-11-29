@@ -123,7 +123,8 @@ public class ScoreScene {
         HBox hboxtop = new HBox(vboxp1, toppen, vboxp2);
         hboxtop.setSpacing(25);
         hboxtop.setAlignment(Pos.CENTER);
-
+VBox topBox =new VBox(new Header(main),hboxtop);
+topBox.setSpacing(10);
         winnerLabel = new Label();
         winnerLabel.setId("duVann");
         winnerLabel.setVisible(false);
@@ -137,9 +138,9 @@ public class ScoreScene {
         hboxKnappar.setAlignment(Pos.BOTTOM_CENTER);
 
         BorderPane BP = new BorderPane();
-        BP.setPadding(new Insets(30, 20, 20, 20));
+        BP.setPadding(new Insets(0, 20, 0, 0));
         BP.setId("pane");
-        BP.setTop(hboxtop);
+        BP.setTop(topBox);
         BP.setCenter(finalVBox);
         BP.setBottom(hboxKnappar);
 

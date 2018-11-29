@@ -62,20 +62,21 @@ public class EntryScene {
         });
         
         BorderPane bp = new BorderPane();
-        bp.setPadding(new Insets(50, 20, 20, 20));
+        bp.setPadding(new Insets(0, 0, 0, 0));
         
         VBox vbox = new VBox(userName, userNameInputField, whatGender, genderMenu, passBtn);
         vbox.setSpacing(5);
         vbox.setAlignment(Pos.CENTER);
         bp.setCenter(vbox);
+        bp.setTop(new Header(main));
         VBox vboxLOGO = new VBox(logoNamn);
         vboxLOGO.setAlignment(Pos.CENTER);
         
         bp.setId("pane");
-        bp.setTop(vboxLOGO);
+        //bp.setTop(vboxLOGO);
         bp.setCenter(vbox);
         
-        this.entryScene = new Scene(bp, main.getBoardWidth(), main.getBoardHeight());
+        entryScene = new Scene(bp, main.getBoardWidth(), main.getBoardHeight());
         
         entryScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
     }

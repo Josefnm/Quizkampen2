@@ -56,6 +56,7 @@ public class QuestionScene {
         hbox.setAlignment(Pos.CENTER);
 
         questionLabel.setMinSize(260, 180);
+        questionLabel.setMaxSize(260, 180);
         questionLabel.setAlignment(Pos.CENTER);
         questionLabel.setStyle("-fx-background-color: White; -fx-border-radius: 10 10 10 10;"
                 + "-fx-background-radius: 10 10 10 10");
@@ -63,11 +64,12 @@ public class QuestionScene {
         answerBtnGrid.setHgap(6);
         answerBtnGrid.setVgap(6);
         VBox vbox = new VBox();
+        vbox.getChildren().add(new Header(main));
         vbox.getChildren().add(questionLabel);
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(5);
         BorderPane border = new BorderPane();
-        border.setPadding(new Insets(30, 10, 20, 10));
+        border.setPadding(new Insets(0, 0, 20, 0));
         border.setId("pane");
         border.setTop(vbox);
         border.setCenter(answerBtnGrid);

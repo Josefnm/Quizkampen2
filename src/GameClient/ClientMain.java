@@ -28,7 +28,7 @@ public class ClientMain extends Application {
     private EntryScene entryScene;
     private PopupScene popupScene;
     private ChatScene chatScene;
-    private Scene currentScene;
+    private Scene previousScene;
 
     private ClientTCP client;
 
@@ -38,7 +38,8 @@ public class ClientMain extends Application {
         client = new ClientTCP(this);
         this.primaryStage = primaryStage;
         entryScene = new EntryScene(this);
-        primaryStage.setTitle("QUIZKAMPEN!");
+        chatScene = new ChatScene(this);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         setEntryScene();
         primaryStage.setOnCloseRequest((WindowEvent event) -> {
             try {
@@ -52,20 +53,6 @@ public class ClientMain extends Application {
             }
         });
 
-//                .setOnCloseRequest(e -> {
-//            try {//client.getInStream().close();
-////                client.getOutStream().close();
-////                client.getInStream().close();
-////                client.getSocket().close();
-//Platform.exit();
-//                System.exit(0);
-//                //System.out.println("Socket closed!");
-//            } catch (Exception ioe) {
-//                System.out.println("closing socket failed");
-//            }
-//            Platform.exit();
-//            System.exit(0);
-//        });
         primaryStage.show();
     }
 
@@ -82,21 +69,22 @@ public class ClientMain extends Application {
         popupStage.initModality(Modality.APPLICATION_MODAL); //ger popupkänsla
         popupScene = new PopupScene(this);
         popupStage.setScene(popupScene.getScene());
-        chatScene = new ChatScene(this);
+        
         startScene = new StartScene(this);
         questionScene = new QuestionScene(this);
         scoreScene = new ScoreScene(this);
     }
 
     public void setChatScene() {
-        this.currentScene = primaryStage.getScene();
+        this.previousScene = primaryStage.getScene();
         primaryStage.setScene(chatScene.getScene());
         chatScene.setFocus();
     }
 
-    public void setCurrentScene() {
-        primaryStage.setScene(currentScene);
+    public void setPreviousScene() {
+        primaryStage.setScene(previousScene);
     }
+    
 
     public void setQuestionScene() {
         questionScene.setNextQuestion();
@@ -131,6 +119,9 @@ public class ClientMain extends Application {
 
     public ChatScene getChatScene() {
         return chatScene;
+    }
+    public Scene getScene() {
+        return primaryStage.getScene();
     }
 
     public ClientTCP getClient() {
@@ -171,5 +162,8 @@ public class ClientMain extends Application {
 
     public void setUserAvatar(String userAvatar) {
         this.userAvatar = userAvatar;
+    }
+    public Stage getPrimaryStage(){
+        return primaryStage;
     }
 }

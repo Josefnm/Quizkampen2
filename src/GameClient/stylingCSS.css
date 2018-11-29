@@ -12,8 +12,7 @@
     -fx-alignment: center;
     -fx-font-size: 60;
 }*/
-#transparent { /*.transparent, används inte just nu*/
-  background:rgba(255,255,255,0.5);}
+
 #button-test {
     -fx-background-color: 
         #3c7fb1,
@@ -26,7 +25,13 @@
     -fx-font-size: 14px;
 }
 #transparent { /*.transparent*/
-    background:rgba(255,255,255,0.5);
+    background:rgba(200,200,200,0.5);
+}
+#header{
+    -fx-background-color: transparent;
+}
+#header:hover{
+    -fx-background-color:linear-gradient(#000000, #45484d);
 }
 #button-test2 {
     -fx-text-fill: white;
@@ -144,7 +149,7 @@
 }
 /*används*/
 #logonamn {
-    -fx-font-size: 40;
+    -fx-font-size: 30;
     -fx-font-family: "comic sans ms";
     -fx-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
@@ -183,3 +188,4 @@
     -fx-font-family: "comic sans ms";
     -fx-font-weight: bold;
 }
+

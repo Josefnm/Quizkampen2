@@ -16,10 +16,9 @@ public class ChatScene {
     private Scene chatScene;
     private TextField writeField;
     private TextArea chatArea;
-    private Button returnBtn;
-    private Button writeBtn;
+
     private VBox vBox;
-    private HBox hBox;
+ 
 
     public ChatScene(ClientMain main) {
         this.main = main;
@@ -28,11 +27,11 @@ public class ChatScene {
         writeField.requestFocus();
         chatArea = new TextArea();
         chatArea.setEditable(false);
-        writeBtn = new Button("Skicka");
-        returnBtn = new Button("Tillbaka");
-        hBox = new HBox(writeBtn, returnBtn);
-        hBox.setAlignment(Pos.CENTER);
-        vBox = new VBox(chatArea, writeField, hBox);
+        
+        
+        Header header=new Header(main);
+        header.setReturnImg();
+        vBox = new VBox(header,chatArea, writeField);
         vBox.setId("pane");
         chatArea.setPrefSize(main.getBoardWidth(), main.getBoardHeight());
         chatScene = new Scene(vBox, main.getBoardWidth(), main.getBoardHeight());
@@ -43,12 +42,7 @@ public class ChatScene {
                 sendChatMsg();
             }
         });
-        writeBtn.setOnAction(e -> {
-            sendChatMsg();
-        });
-        returnBtn.setOnAction(e -> {
-            main.setCurrentScene();
-        });
+
     }
 
     private void sendChatMsg() {

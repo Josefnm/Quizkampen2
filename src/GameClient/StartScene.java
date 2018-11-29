@@ -57,9 +57,10 @@ public class StartScene { //fixar abstrakt senare
         hboxKnapp.setAlignment(Pos.CENTER);
         vboxAllt.setAlignment(Pos.CENTER);
         BorderPane BP = new BorderPane();
-        BP.setPadding(new Insets(20, 20, 20, 20));
+        BP.setPadding(new Insets(0, 0, 0, 0));
         BP.setId("pane");
         BP.setCenter(vboxAllt);
+        BP.setTop(new Header(main));
 
         startScene = new Scene(BP, main.getBoardWidth(), main.getBoardHeight());
         startScene.getStylesheets().add(getClass().getResource("stylingCSS.css").toExternalForm());
