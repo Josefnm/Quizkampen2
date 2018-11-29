@@ -1,5 +1,11 @@
 package GameClient;
 
+import GameClient.Scenes.PopupScene;
+import GameClient.Scenes.ScoreScene;
+import GameClient.Scenes.StartScene;
+import GameClient.Scenes.QuestionScene;
+import GameClient.Scenes.ChatScene;
+import GameClient.Scenes.EntryScene;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

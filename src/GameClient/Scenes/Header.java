@@ -1,5 +1,6 @@
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

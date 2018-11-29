@@ -1,8 +1,9 @@
 /*
  * JavaUtveckling 2018
  */
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
 import GameServer.InfoPacket;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

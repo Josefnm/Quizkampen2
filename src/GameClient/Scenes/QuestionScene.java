@@ -1,5 +1,6 @@
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
 import GameServer.InfoPacket;
 import GameServer.Question;
 import java.util.ArrayList;

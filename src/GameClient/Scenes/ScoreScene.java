@@ -1,5 +1,6 @@
-package GameClient;
+package GameClient.Scenes;
 
+import GameClient.ClientMain;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import java.util.Arrays;
