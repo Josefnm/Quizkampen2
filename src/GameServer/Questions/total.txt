@@ -1,0 +1,197 @@
+Literature::Which of the following authors was not born in England? ::Arthur C Clarke::H G Wells::Arthur Conan Doyle::Graham Greene::Arthur Conan Doyle
+Literature::Who wrote the "A Song of Ice And Fire" fantasy novel series?::George Orwell::George Eliot::George R. R. Martin::George Lucas::George R. R. Martin
+Literature::Which famous book is sub-titled 'The Modern Prometheus'?::The Legend of Sleepy Hollow::The Strange Case of Dr. Jekyll and Mr. Hyde ::Frankenstein::Dracula::Frankenstein
+Literature::Who wrote the novel "Moby-Dick"?::J. R. R. Tolkien::William Golding::William Shakespeare::Herman Melville::Herman Melville
+Literature::What was the name of Captain Nemo's submarine in "20,000 Leagues Under the Sea"?::The Nautilus::The Poseidon  ::The Neptune::The Atlantis::The Nautilus
+Literature::In the book "The Martian", how long was Mark Watney trapped on Mars (in Sols)?::401 Days::549 Days::765 Days::324 Days::549 Days
+Literature::Which of the following is the world's best-selling book?::The Little Prince::Harry Potter and the Philosopher's Stone::The Da Vinci Code::The Lord of the Rings::The Lord of the Rings
+Literature::In the Harry Potter universe, what is Cornelius Fudge's middle name?::Oswald::Christopher::James::Harold::Oswald
+Literature::What is Hermione Granger's middle name?::Jean::Emma::Jane::Jo::Jean
+Literature::What is Ron Weasley's middle name?::John::Dominic::Arthur::Bilius::Bilius
+Literature::In the Lord of the Rings, who is the father of the dwarf Gimli?::Dwalin::Bombur::Thorin Oakenshield::Gloin::Gloin
+Literature::What position does Harry Potter play in Quidditch?::Keeper::Chaser::Seeker::Beater::Seeker
+Literature::By what nickname is Jack Dawkins known in the Charles Dickens novel, 'Oliver Twist'?::Mr. Fang::Fagin::The Artful Dodger::Bull’s-eye::The Artful Dodger
+Literature::What is the fourth book of the Old Testament?::Genesis::Exodus::Numbers::Leviticus::Numbers
+Literature::Who wrote the novel 'Fear And Loathing In Las Vegas'?::Hunter S. Thompson::Henry Miller::F. Scott Fitzgerald::William S. Burroughs::Hunter S. Thompson
+Literature::Abel Magwitch is a character from which Charles Dickens novel?::Nicholas Nickleby::The Pickwick Papers::Oliver Twist::Great Expectations::Great Expectations
+Literature::"Green Eggs And Ham" is a book by which author?::Beatrix Potter::Roald Dahl::A.A. Milne::Dr. Seuss::Dr. Seuss
+Literature::Which famous spy novelist wrote the childrens' story "Chitty-Chitty-Bang-Bang"?::Graham Greene::Ian Fleming::Joseph Conrad::John Buchan::Ian Fleming
+Literature::By what name was the author Eric Blair better known?::Aldous Huxley::Ernest Hemingway::Ray Bradbury::George Orwell::George Orwell
+Literature::What was the pen name of novelist, Mary Ann Evans?::George Bernard Shaw::George Eliot::George Saunders::George Orwell::George Eliot
+Literature::Who wrote the children's story "The Little Match Girl"?::Hans Christian Andersen::Oscar Wilde::Charles Dickens::Lewis Carroll::Hans Christian Andersen
+Literature::In the "The Hobbit", who kills Smaug?::Gandalf the Grey::Bilbo Baggins::Frodo::Bard::Bard
+Literature::Under what pseudonym did Stephen King publish five novels between 1977 and 1984?::Mark Twain::Lewis Carroll::J. D. Robb::Richard Bachman::Richard Bachman
+Literature::What's Harry Potter's dad's name?::Frank Potter::James Potter::Hairy Potter Sr.::Joey Potter::James Potter
+Literature::The novel "Jane Eyre" was written by what author? ::Jane Austen::Louisa May Alcott::Charlotte Brontë::Emily Brontë::Charlotte Brontë
+Literature::Which of these does Charlie NOT read in The Perks of Being a Wallflower?::The Grapes of Wrath::The Great Gatsby::Peter Pan::Hamlet::The Grapes of Wrath
+Literature::Who was the author of the 1954 novel, "Lord of the Flies"?::F. Scott Fitzgerald::William Golding::Stephen King::Hunter Fox::William Golding
+Literature::J.K. Rowling completed "Harry Potter and the Deathly Hallows" in which hotel in Edinburgh, Scotland?::The Dunstane Hotel::The Balmoral::Sheraton Grand Hotel & Spa::Hotel Novotel::The Balmoral
+Literature::The title of Adolf Hitler's autobiography "Mein Kampf" is what when translated to English?::My Desire::My Struggle::My Hatred::My Sadness::My Struggle
+Literature::What is the name of the protagonist of J.D. Salinger's novel Catcher in the Rye?::Randall Flagg::Fletcher Christian::Jay Gatsby::Holden Caulfield::Holden Caulfield
+Literature::What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?::The Sign of the Four::A Study in Scarlet::A Case of Identity::The Doings of Raffles Haw::A Study in Scarlet
+Literature::Which American author was also a budding travel writer and wrote of his adventures with his dog Charley?::William Faulkner::John Steinbeck::F. Scott Fitzgerald::Ernest Hemingway::John Steinbeck
+Literature::According to The Hitchhiker's Guide to the Galaxy book, the answer to life, the universe and everything else is...::Loving everyone around you::42::Chocolate::Death::42
+Literature::The book "The Little Prince" was written by...::Antoine de Saint-Exupéry::Miguel de Cervantes Saavedra::F. Scott Fitzgerald::Jane Austen::Antoine de Saint-Exupéry
+Literature::Which of these book series is by James Patterson?::The Legend of Xanth::The Bartemaeus Trilogy::Harry Potter::Maximum Ride::Maximum Ride
+Literature::In the novel "Lord of the Rings", how many rings of power were given to the race of man?::11::13::9::5::9
+Literature::In the "Harry Potter" novels, what must a Hogwarts student do to enter the Ravenclaw Common Room?::Answer a riddle::Rhythmically tap barrels with a wand::Speak a password::Knock in sequence::Answer a riddle
+Literature::What is the name of the gang that Ponyboy is a part of in the book, The Outsiders?::The Mafia::The Socs::The Outsiders::The Greasers::The Greasers
+Literature::The book "Fahrenheit 451" was written by whom?::Wolfgang Amadeus Mozart::R. L. Stine::Stephen King::Ray Bradbury::Ray Bradbury
+Literature::Which of the following is NOT a work done by Shakespeare?::Trial of Temperance::Cymbeline::Titus Andronicus::Measure For Measure::Trial of Temperance
+Literature::What book series published by Jim Butcher follows a wizard in modern day Chicago?::The Dresden Files::A Hat in Time::The Cinder Spires::My Life as a Teenage Wizard::The Dresden Files
+Literature::What was the last message of the Dolphins in "The Hitchhiker's Guide to the Galaxy"?::"Goodbye cruel world!"::"So long, and thanks for all the fish."::"Land of the brave."::"The answer is 42."::"So long, and thanks for all the fish."
+Literature::What is the make and model of the tour vehicles in "Jurassic Park"?::1992 Jeep Wrangler YJ Sahar::1992 Toyota Land Cruiser::1992 Ford Explorer XLT::Mercedes M-Class::1992 Toyota Land Cruiser
+Literature::Which of the following was the author of "Username Evie"?::Joe Weller::Joe Sugg::Alfie Deyes::Zoe Sugg::Joe Sugg
+Literature::In "Little Women", which of the March sisters married Laurie?::Meg::Amy::Jo::Beth::Amy
+Literature::In the Magic: The Gathering universe, which plane does the Homelands expansion take place in?::Tazeem::Ulgrotha::Bant::Llanowar::Ulgrotha
+Literature::What's the second book in George R. R. Martin's 'A Song of Ice and Fire' series?::A Feast for Crows::A Storm of Swords::A Dance with Dragons::A Clash of Kings::A Clash of Kings
+Literature::In which classic novel is there a character named Homer Simpson?::Of Mice and Men::The Day of the Locust::Catch-22::A Separate Peace::The Day of the Locust
+Literature::What is the name of Eragon's dragon in "Eragon"?::Thorn::Glaedr::Arya::Saphira::Saphira
+Literature::What was the first ever entry written for the SCP Foundation collaborative writing project?::SCP-173::SCP-001::SCP-1459}::SCP-999::SCP-173
+Computer Science::The Harvard architecture for micro-controllers added which additional bus?::Instruction::Control::Data::Address::Instruction
+Computer Science::Which internet company began life as an online bookstore called 'Cadabra'?::Amazon::eBay::Overstock::Shopify::Amazon
+Computer Science::When Gmail first launched, how much storage did it provide for your email?::1GB::Unlimited::5GB::512MB::1GB
+Computer Science::Whistler was the codename of this Microsoft Operating System.::Windows 95::Windows 2000::Windows 7::Windows XP::Windows XP
+Computer Science::Moore's law originally stated that the number of transistors on a microprocessor chip would double every...::Year::Four Years::Eight Years::Two Years::Year
+Computer Science::HTML is what type of language?::Markup Language::Macro Language::Programming Language::Scripting Language::Markup Language
+Computer Science::What amount of bits commonly equals one byte?::8::64::2::1::8
+Computer Science::Which computer hardware device provides an interface for all other connected devices to communicate?::Random Access Memory::Hard Disk Drive::Motherboard::Central Processing Unit::Motherboard
+Computer Science::On which computer hardware device is the BIOS chip located?::Hard Disk Drive::Central Processing Unit::Graphics Processing Unit::Motherboard::Motherboard
+Computer Science::In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?::Private::Public::Static::Final::Final
+Computer Science::Which of the following languages is used as a scripting language in the Unity 3D game engine?::C#::Java::C++::Objective-C::C#
+Computer Science::If you were to code software in this language you'd only be able to type 0's and 1's.::C++::Binary::JavaScript::Python::Binary
+Computer Science::The series of the Intel HD graphics generation succeeding that of the 5000 and 6000 series (Broadwell) is called:::HD Graphics 600::HD Graphics 7000::HD Graphics 500::HD Graphics 700 ::HD Graphics 500
+Computer Science::The computer OEM manufacturer Clevo, known for its Sager notebook line, is based in which country?::China (People's Republic of)::Taiwan::Germany::United States::Taiwan
+Computer Science::Nvidia's headquarters are based in which Silicon Valley city?::Cupertino::Palo Alto::Santa Clara::Mountain View::Santa Clara
+Computer Science::In web design, what does CSS stand for?::Computer Style Sheet::Corrective Style Sheet::Counter Strike: Source::Cascading Style Sheet::Cascading Style Sheet
+Computer Science::Which of these is the name for the failed key escrow device introduced by the National Security Agency in 1993?::Nautilus::Clipper Chip::Skipjack::Enigma Machine::Clipper Chip
+Computer Science::On which day did the World Wide Web go online?::December 20, 1990::November 24, 1995::November 12, 1990::December 17, 1996::December 20, 1990
+Computer Science::What is the code name for the mobile operating system Android 7.0?::Ice Cream Sandwich::Marshmallow::Jelly Bean::Nougat::Nougat
+Computer Science::What is the domain name for the country Tuvalu?::.tv::.tl::.tt::.tu::.tv
+Computer Science::How many kilobytes in one gigabyte?::1048576::1024::1000::1000000::1000000
+Computer Science::Generally, which component of a computer draws the most power?::Hard Drive::Power Supply::Processor::Video Card::Video Card
+Computer Science::How many cores does the Intel i7-6950X have?::8::12::4::10::10
+Computer Science::In the server hosting industry IaaS stands for...::Infrastructure as a Server::Internet as a Service::Internet and a Server::Infrastructure as a Service::Infrastructure as a Service
+Computer Science::On Twitter, what is the character limit for a Tweet?::160::140::120::100::140
+Computer Science::In CSS, which of these values CANNOT be used with the "position" property?::absolute::center::relative::static::center
+Computer Science::Which of these was the name of a bug found in April 2014 in the publicly available OpenSSL cryptography library?::Shellshock::Heartbleed::Shellscript::Corrupted Blood::Heartbleed
+Computer Science::In "Hexadecimal", what color would be displayed from the color code? "#00FF00"?::Red::Yellow::Blue::Green::Green
+Computer Science::Which computer language would you associate Django framework with?::Java::C#::Python::C++::Python
+Computer Science::In computing terms, typically what does CLI stand for?::Control Line Interface::Common Language Interface::Command Line Interface::Common Language Input::Command Line Interface
+Computer Science::Which of the following is a personal computer made by the Japanese company Fujitsu?::MSX::FM-7::PC-9801::Xmillennium ::FM-7
+Computer Science::.rs is the top-level domain for what country?::Serbia::Romania::Russia::Rwanda::Serbia
+Computer Science::.at is the top-level domain for what country?::Australia::Argentina::Austria::Angola::Austria
+Computer Science::The numbering system with a radix of 16 is more commonly referred to as ::Duodecimal::Hexidecimal::Binary::Octal::Hexidecimal
+Computer Science::What is known as "the brain" of the Computer?::Graphics Processing Unit::Central Processing Unit::Keyboard::Motherboard::Central Processing Unit
+Computer Science::What does the term GPU stand for?::Gaming Processor Unit::Graphite Producing Unit::Graphics Processing Unit::Graphical Proprietary Unit::Graphics Processing Unit
+Computer Science::This mobile OS held the largest market share in 2012.::BlackBerry::iOS::Symbian::Android::iOS
+Computer Science::What does the International System of Quantities refer 1024 bytes as?::Kibibyte::Kylobyte::Kilobyte::Kelobyte::Kibibyte
+Computer Science::Which of these people was NOT a founder of Apple Inc?::Jonathan Ive::Ronald Wayne::Steve Wozniak::Steve Jobs::Jonathan Ive
+Computer Science::Which RAID array type is associated with data mirroring?::RAID 10::RAID 1::RAID 5::RAID 0::RAID 1
+Computer Science::Laserjet and inkjet printers are both examples of what type of printer?::Dot matrix printer::Impact printer::Non-impact printer::Daisywheel printer::Non-impact printer
+Computer Science::Dutch computer scientist Mark Overmars is known for creating which game development engine?::Torque 2D::Game Maker::Stencyl::Construct::Game Maker
+Computer Science::The C programming language was created by this American computer scientist. ::al-Khwārizmī::Dennis Ritchie::Tim Berners Lee::Willis Ware::Dennis Ritchie
+Computer Science::Which programming language was developed by Sun Microsystems in 1995?::Java::C++::Solaris OS::Python::Java
+Computer Science::Who invented the "Spanning Tree Protocol"?::Vint Cerf::Radia Perlman::Michael Roberts::Paul Vixie::Radia Perlman
+Computer Science::Approximately how many Apple I personal computers were created?::200::500::100::1000::200
+Computer Science::In programming, what do you call functions with the same name but different implementations?::Overriding::Overloading::Inheriting}::Abstracting::Overloading
+Video Games::In which country's version of Half-Life are the HECU Marines replaced with robots?::France::Japan::China::Germany::Germany
+Video Games::In the game Half-Life, which enemy is showcased as the final boss?::Dr. Wallace Breen::The Gonarch::The Nihilanth::G-Man::The Nihilanth
+Video Games::Who is the protagonist in the game "The Walking Dead: Season One"?::Kenny::Lee Everett::Clementine::Rick Grimes::Lee Everett
+Video Games::Who made Garry's Mod?::Gabe Newell::Facepunch Studios::Randy Newman::Garry Newman::Garry Newman
+Video Games::What was the first "Team Fortress 2" update to include a war?::Sniper vs. Spy Update::Meet Your Match Update::WAR! Update::Spy Vs. Engineer Update::Sniper vs. Spy Update
+Video Games::Pokémon Go is a location-based augmented reality game developed and published by which company?::Zynga::Rovio::Supercell::Niantic::Niantic
+Video Games::In which order do you need to hit some Deku Scrubs to open the first boss door in "Ocarina of Time"?::2, 3, 1::1, 3, 2::1, 2, 3::2, 1, 3::2, 3, 1
+Video Games::When was "Garry's Mod" released?::November 13, 2004::December 24, 2004::December 13, 2004::November 12, 2004::December 24, 2004
+Video Games::What is the name of the machine that fails and essentially dooms mankind in the beginning of the first Half-Life game?::Anti-mass spectrometer::Oscillation generator::Dark fusion reactor::Dark fusion resonator::Anti-mass spectrometer
+Video Games::In the first game of the Sly Cooper franchise, what family heirloom did Sly Cooper want to steal back?::Raccoon Training 101::Raccoonus Teachus::Thievius Raccoonus::The Art of Sneak::Thievius Raccoonus
+Video Games::In the game "Overwatch," which quote does the hero "McCree" NOT say upon using his flashbang ability?::"You done?"::"Whoa there."::"Don't move."::"Hold up now."::"You done?"
+Video Games::What year was the game "Overwatch" revealed?::2014::2011::2015::2008::2014
+Video Games::Which game was the first time Mario was voiced by Charles Martinet?::Mario Tennis::Dr. Mario 64::Mario's Game Gallery::Super Mario 64::Mario's Game Gallery
+Video Games::Who is the protagonist of the videogame "Dead Rising 2"?::Katie Greene::Frank West::Chuck Greene::Nick Ramos::Chuck Greene
+Video Games::In what Half-Life expansion can you find Gordon's picture in an "Employee of the Month" picture frame?::Half-Life: Decay::Half-Life: Opposing Force::They Hunger::Half-Life: Blue Shift::Half-Life: Opposing Force
+Video Games::In Call of Duty: United Offensive, what two soldiers share a name of a video game character?::Sam & Fisher::Gordon & Freeman::Dig & Dug::Nathan & Drake::Gordon & Freeman
+Video Games::In what year were achivements added to Steam?::2009::2007::2008::2006::2007
+Video Games::What was the original name of Crash Bandicoot?::Coco Bandicoot::Willie Wombat::Marvelous Mole::Wally Wombat::Willie Wombat
+Video Games::In Need For Speed Most Wanted (2005), what do you drive at the beginning of the career mode?::Ford Mustang::Nissan 240SX::Porsche 911 Turbo::BMW M3 GTR::BMW M3 GTR
+Video Games::Mirror's Edge Catalyst takes place in the City of...?::Purity::Diamonds::Glass::Mirrors::Glass
+Video Games::In what year was Hearthstone released?::2011::2012::2013::2014::2014
+Video Games::In the game Call of Duty, what is the last level where you play as an American soldier?::Brecourt::Chateau::Ste. Mere-Eglise (Day)::Festung Recogne::Festung Recogne
+Video Games::In Pokemon Red & Blue, what is the name of HM05?::Strength::Fly::Cut::Flash::Flash
+Video Games::Which of the following Elite Four members from the 6th Generation of Pokémon was a member of Team Flare?::Wikstrom::Malva::Drasna::Siebold::Malva
+Video Games::The first version of Blockland came out in which year?::2008::2007::2006::2004::2004
+Video Games::In Hitman: Blood Money, what is the name of the target in the mission "Death of a Showman"?::Maynard John::Joseph Clarence::Manuel Delgado::The Swing King::Joseph Clarence
+Video Games::What does Solid Snake use to hide himself with?::Metal Crate::Cardboard cut-out::Cardboard Box::Cloaking Device::Cardboard Box
+Video Games::In Terraria, what does the Wall of Flesh not drop upon defeat?::Pwnhammer::Picksaw::Breaker Blade::Laser Rifle::Picksaw
+Video Games::Which day in "Papers, Please" does the man in red appear?::Day 23::Day 17::Day 15::Day 20::Day 23
+Video Games::What video game genre were the original Warcraft games?::TBS (Turn Based Strategy)::MMO (Massively Multiplayer Online)::RPG (Role Playing Game)::RTS (Real Time Strategy)::RTS (Real Time Strategy)
+Video Games::What minimum level in the Defence skill is needed to equip Dragon Armour in the MMO RuneScape?::65::70::60::55::60
+Video Games::What year was Super Mario Bros. released?::1986::1983::1985::1987::1985
+Video Games::Which German city does the map "Clubhouse" in "Tom Clancy's Rainbow Six Siege" take place in?::Munich::Berlin::Hannover::Hamburg::Hannover
+Video Games::Which variant of the MP5 is depicted in Counter-Strike 1.6?::MP5SD::MP5N::MP5K::MP5RAS::MP5N
+Video Games::What is the full name of the protagonist from the indie adventure game "Night in the Woods"?::Marlena Woborski::Katia Managan::Margaret Borowski::Milena Catharina::Margaret Borowski
+Video Games::In "Overwatch", which hero is able to wallride?::Lucio::Reinhardt::Sombra::Mercy::Lucio
+Video Games::In "Call Of Duty: Zombies", what is the name of Samantha Maxis' dog?::Fluffy::Baxter::Fido::Henry::Fluffy
+Video Games::In "Call Of Duty: Zombies", which weapon does NOT deal any damage?::Sliquifier::31-79 JGb215::V-R11::Wunderwaffe DG-2::31-79 JGb215
+Video Games::In "Call Of Duty: Zombies", what does the game traditionally reward you for completing a boss round?::Monkey Bombs::Max Ammo::Death Machine::A Pack-A-Punched gun::Max Ammo
+Video Games::In "Call Of Duty: Zombies", "Richtofen" is in possession of two filled blood vials belonging to who?::Jessica Rose and Jack Vincent::Al Arlington and Sal DeLuca::Richtofen::Sal DeLuca and Finn O'Leary::Sal DeLuca and Finn O'Leary
+Video Games::Who developed the 2016 farming RPG "Stardew Valley"?::Jasper Byrne::Eric Barone::Daisuke Amaya::Lucas Pope::Eric Barone
+Video Games::Which of these is not a character in the game, "Lethal League"?::Candyman::Sonata::Rex::Switch::Rex
+Video Games::What were the first two blocks in "Minecraft"?::Cobblestone and Stone::Grass and Cobblestone::Crafting Table and Cobblestone::Grass and Stone::Grass and Cobblestone
+Video Games::Which character does the player play as in the video game "Bastion"?::Zia::Rucks::The Kid::Zulf::The Kid
+Video Games::What was the name of Sonic the Hedgehog's original human girlfriend?::Nina::Sierra::Madonna::Celeste::Madonna
+Video Games::In Guild Wars 2, what is the name of the home instance for the Norn race?::Hunter's Hearth::Hero's Compass::Wolf Lodge::Biergarten::Hunter's Hearth
+Video Games::In Guild Wars 2, Marjory Delaqua is a human detective of which descent?::Canthan::Krytan::Ascalonian::Elonian::Canthan
+Video Games::What are the names of the Ice Climbers in the video game Ice Climber?::Popo and Nana::Popo and Nina::Papi and Nina::Papi and Nana::Popo and Nana
+Video Games::Who is the main villain of the Crash Bandicoot series?::Sir Cartex::Dr. Evo-Cortex::Dr. Neo Cortex::Dr. Cortox::Dr. Neo Cortex
+Video Games::What are Sans and Papyrus named after in "Undertale"?::Companies::Fonts::Ancient writing paper}::Plants::Fonts
+History::What event marked the start of World War II?::Invasion of Poland (1939)::Invasion of Russia (1942)::Invasion of Normandy (1944)::Battle of Britain (1940)::Invasion of Poland (1939)
+History::Which of these countries was sea charted in 1500 by the Portuguese maritime explorations?::Madagascar::India::Mozambique::Brazil::Brazil
+History::During the Mongolian invasions of Japan, what were the Mongol boats mostly stopped by?::Samurai::Economic depression::Tornados::Typhoons::Typhoons
+History::In what year did Neil Armstrong and Buzz Aldrin land on the moon?::1966::1969::1965::1973::1969
+History::During what war did the "Cuban Missile Crisis" occur?::Cold War::Revolutionary War::World War I::World War II::Cold War
+History::Joseph Smith was the founder of what religion?::Buddhism::Christianity::Mormonism::Hinduism::Mormonism
+History::What historical event was Tchaikovsky's 1812 Overture referencing?::The American War of 1812::The Charge of the Light Brigade (Crimean War)::The Russian Revolution::The Napoleonic Wars::The Napoleonic Wars
+History::The idea of Socialism was articulated and advanced by whom?::Vladimir Lenin::Joseph Stalin::Karl Marx::Vladimir Putin::Karl Marx
+History::In what year did the Wall Street Crash take place?::1925::1930::1929::1932::1929
+History::What was the capital of South Vietnam before the Vietnam War?::Hue::Hanoi::Saigon::Ho Chi Minh City::Saigon
+History::What was the name of the spy ring that helped the United States win the Revolutionary War?::Washington's Spies::New York Spy Ring::Culper Ring::Unnamed::Culper Ring
+History::When did Spanish Peninsular War start?::1806::1808::1810::1809::1808
+History::Which dictator killed the most people?::Kim Il Sung::Joseph Stalin::Mao Zedong::Adolf Hitler::Mao Zedong
+History::Who was the Prime Minister of the United Kingdom for most of World War II?::Neville Chamberlain::Edward Heath::Winston Churchill::Harold Macmillan::Winston Churchill
+History::When did Jamaica recieve its independence from England? ::1963::1987::1492::1962::1962
+History::Which of the following is NOT classified as a Semetic language?::Maltese::Akkadian::Sumerian::Mandaic::Sumerian
+
+History::Which of the following Assyrian kings did NOT rule during the Neo-Assyrian Empire?::Ashur-nasir-pal II::Shalmaneser V::Esharhaddon::Shamshi-Adad III::Shamshi-Adad III
+History::Which of the following ancient peoples was NOT classified as Hellenic (Greek)?::Illyrians::Dorians::Achaeans::Ionians::Illyrians
+History::Which infamous European traitor was known as "the last person to enter Parliament with honest intentions"?::Guy Fawkes::Everard Digby::Francis Tresham::Robert Catesby::Guy Fawkes
+History::The creator of the Enigma Cypher and Machine was of what nationality?::Polish::British::American::German::German
+History::When was the United States National Security Agency established?:: November 25, 2002::November 4, 1952::July 26, 1908:: July 1, 1973::November 4, 1952
+History::What year did the Battle of Agincourt take place?::1422::1463::1415::1401::1415
+History::Which modern day country is the region that was known as Phrygia in ancient times?::Egypt::Syria::Greece::Turkey::Turkey
+History::When was the SS or Schutzstaffel established?::April 4th, 1925::February 21st, 1926::September 1st, 1941::March 8th, 1935::April 4th, 1925
+History::During the Wars of the Roses (1455 - 1487) which Englishman was dubbed "the Kingmaker"?::Thomas Warwick::Richard Neville::Henry V::Richard III::Richard Neville
+History::When did the Battle of the Bulge end?::December 16, 1944::August 6, 1945::December 7, 1941::January 25, 1945::January 25, 1945
+History::When was Adolf Hitler appointed as Chancellor of Germany?::February 27, 1933::September 1, 1939::October 6, 1939::January 30, 1933::January 30, 1933
+History::In 1720, England was in massive debt, and became in involved in the South Sea Bubble. Who was the main mastermind behind it?::Robert Harley::Daniel Defoe::John Churchill::John Blunt::John Blunt
+History::How many sonatas did Ludwig van Beethoven write?::50::31::32::21::32
+History::The Second Boer War in 1899 was fought where?::Argentina::Nepal::South Africa::Bulgaria::South Africa
+History::What nationality was sultan Saladin?::Arab::Kurdish::Egyptian::Syrian::Kurdish
+History::What is the bloodiest event in United States history, in terms of casualties?::D-Day::September 11th::Pearl Harbor::Battle of Antietam::Battle of Antietam
+History::The Hagia Sophia was commissioned by which emperor of the Byzantine Empire?::Arcadius::Theodosius the Great::Justinian I::Constantine IV::Justinian I
+History::Which building was set aflame on August 24th, 1812?::Parliament Building::Grand National Assembly Building::Palace of the Nation::The White House::The White House
+History::What was Genghis Khan's real name?::Temüjin::Möngke::Ögedei::Temür::Temüjin
+History::Which American civilization is the source of the belief that the world would end or drastically change on December 21st, 2012?::The Mayans::The Incas::The Navajos::The Aztecs::The Mayans
+History::When did Norway get its constitution?::1905::1854::1814::1932::1814
+History::How was Socrates executed?::Crucifixion ::Poison::Decapitation::Firing squad::Poison
+History::What was the bloodiest single-day battle during the American Civil War?::The Battle of Antietam::The Battles of Chancellorsville::The Siege of Vicksburg::The Battle of Gettysburg::The Battle of Antietam
+History::What was the unofficial name for Germany between 1919 and 1933?::Weimar Republic::Oesterreich ::Federal Republic of Germany::German Democratic Republic::Weimar Republic
+History::How many women joined the United States Armed Services during World War II?::100,000::225,000::500,000::350,000::350,000
+History::What year did Australia become a federation?::1911::1899::1910::1901::1901
+History::To what political party did Abraham Lincoln belong when elected POTUS?::Democrat::Independent::Republican::Whig::Republican
+History::These two countries held a commonwealth from the 16th to 18th century.::Bangladesh and Bhutan::North Korea and South Korea::Poland and Lithuania::Hutu and Rwanda::Poland and Lithuania
+History::What was the original name of New York City?::New Paris::New London::New Amsterdam::New Rome::New Amsterdam
+History::Which of the following was not one of Joseph Stalin's ten blows during World War II?::Crimean Offensive::Leningrad-Novgorod Offensive::Vistula-Oder Offensive::Operation Bagration::Vistula-Oder Offensive
+History::In 1961, an American B-52 aircraft crashed and nearly detonated two 4mt nuclear bombs over which US city?::Goldsboro, North Carolina::Jacksonville, Florida::Hicksville, New York::Conway, Arkansas::Goldsboro, North Carolina
+History::When was the People's Republic of China founded?::December 6, 1950::October 1, 1949::April 3, 1947::May 7, 1945::October 1, 1949
+History::How old was Adolf Hitler when he died?::65::56::43::47}::56
