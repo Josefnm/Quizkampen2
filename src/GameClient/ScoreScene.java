@@ -124,7 +124,7 @@ public class ScoreScene {
         hboxtop.setSpacing(25);
         hboxtop.setAlignment(Pos.CENTER);
 VBox topBox =new VBox(new Header(main),hboxtop);
-topBox.setSpacing(10);
+topBox.setSpacing(7);
         winnerLabel = new Label();
         winnerLabel.setId("duVann");
         winnerLabel.setVisible(false);

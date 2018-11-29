@@ -151,8 +151,8 @@
 #logonamn {
     -fx-font-size: 30;
     -fx-font-family: "comic sans ms";
-    -fx-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: white;
+    
 }
 #greenScoreKnapp { /* grön */
     -fx-background-color: linear-gradient(#4ba614, #008c00);

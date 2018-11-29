@@ -25,8 +25,10 @@ public class ChatScene {
 
         writeField = new TextField();
         writeField.requestFocus();
+        writeField.getStyleClass().add("text_black");
         chatArea = new TextArea();
         chatArea.setEditable(false);
+        chatArea.getStyleClass().add("text_black");
         
         
         Header header=new Header(main);
