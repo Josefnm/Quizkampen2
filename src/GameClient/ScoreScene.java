@@ -3,6 +3,7 @@ package GameClient;
 import GameServer.IdEnum;
 import GameServer.InfoPacket;
 import java.util.Arrays;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class ScoreScene {
     private int[] totalScores;
     private Button[][][] scoreArray;
     private Text[] totalScoreTexts;
-    
+
     private Scene scoreScene;
     private ClientMain main;
     private Text userName;
@@ -167,15 +168,17 @@ public class ScoreScene {
     }
 
     public void whoWon() {
-        if (roundCounter + 1 == roundsPerGame) { //hur vet man vilken som är sista ronden?
-            if (totalScores[0] > totalScores[1]) {
-                winnerLabel.setText("DU VANN");
-            } else if (totalScores[0] < totalScores[1]) {
-                winnerLabel.setText("DU FÖRLORADE");
-            } else { //lika
-                winnerLabel.setText("LIKA");
-            }
-            winnerLabel.setVisible(true);
+        if (roundCounter + 1 == roundsPerGame) { 
+            Platform.runLater(() -> {
+                if (totalScores[0] > totalScores[1]) {
+                    winnerLabel.setText("DU VANN");
+                } else if (totalScores[0] < totalScores[1]) {
+                    winnerLabel.setText("DU FÖRLORADE");
+                } else { //lika
+                    winnerLabel.setText("LIKA");
+                }
+                winnerLabel.setVisible(true);
+            });
         }
     }
 
